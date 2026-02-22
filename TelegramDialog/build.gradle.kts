@@ -50,3 +50,16 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from(components["release"])
+                groupId = "com.github.AmirBahadorAmiri"
+                artifactId = "TelegramDialog"
+                version = "1.0.3"
+            }
+        }
+    }
+}
