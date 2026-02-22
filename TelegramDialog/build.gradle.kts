@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "io.github.amirbahadoramiri"
-version = "1.0.0"
+version = "1.0.2"
 
 android {
     namespace = "io.github.amirbahadoramiri.telegramdialog"
