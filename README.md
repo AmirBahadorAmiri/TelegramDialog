@@ -155,9 +155,11 @@ maven {
         })
 
 ```
+
 <br><br><br>
 
 <h2>Show Dialog Function</h2>
+
 ```kotlin
 dialog.show()
 ```
