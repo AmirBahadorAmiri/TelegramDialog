@@ -28,11 +28,11 @@ public class DialogTwoButtonWithEditText {
     String TITLE, MESSAGE, BUTTON_ONE_TEXT, BUTTON_TWO_TEXT, EDITTEXT_TEXT, EDITTEXT_HINT;
     boolean CANCELABLE = true;
     DialogDirection DIALOG_DIRECTION = DialogDirection.RIGHT;
-    int BUTTON_ONE_TEXT_COLOR = R.color.main_red;
-    int BUTTON_ONE_RIPPLE_COLOR = R.color.main_red_tint;
-    int BUTTON_TWO_TEXT_COLOR = R.color.main_blue;
-    int BUTTON_TWO_RIPPLE_COLOR = R.color.main_blue_tint;
-    int EDITTEXT_TEXT_COLOR = R.color.main_blue;
+    int BUTTON_ONE_TEXT_COLOR = R.color.main_blue;
+    int BUTTON_ONE_RIPPLE_COLOR = R.color.main_blue_tint;
+    int BUTTON_TWO_TEXT_COLOR = R.color.main_red;
+    int BUTTON_TWO_RIPPLE_COLOR = R.color.main_red_tint;
+    int EDITTEXT_TEXT_COLOR = R.color.textcolor;
     int EDITTEXT_HINT_COLOR = R.color.main_blue_light;
     int EDITTEXT_BACKGROUND_COLOR = R.color.main_blue_tint;
     int EDITTEXT_DRAWABLE = 0;

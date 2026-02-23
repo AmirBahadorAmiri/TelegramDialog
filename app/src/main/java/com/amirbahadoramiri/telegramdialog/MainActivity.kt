@@ -1,13 +1,10 @@
 package com.amirbahadoramiri.telegramdialog
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import io.github.amirbahadoramiri.telegramdialog.DialogTwoButtonWithEditText
-import io.github.amirbahadoramiri.telegramdialog.OnClickListeners
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,8 +27,8 @@ class MainActivity : AppCompatActivity() {
 //            )
 //            .setCancelable(false)
 //            .setButtonText("Delete")
-//            .setButtonTextColor(R.color.main_red)
-//            .setButtonRippleColor(R.color.main_red_tint)
+//            .setButtonTextColor(R.color.main_blue)
+//            .setButtonRippleColor(R.color.main_blue_tint)
 
 
 //        --------------> Single Button RTL <--------------
@@ -41,14 +38,10 @@ class MainActivity : AppCompatActivity() {
 //            .setCancelable(false)
 //            .setButtonText("حذف")
 //            .setDirection(DialogDirection.LEFT)
-//            .setButtonTextColor(R.color.main_red)
-//            .setButtonRippleColor(R.color.main_red_tint)
-
-//        dialog.setOnClickListener(object : OnClickListeners.OneButtonListener {
-//            override fun onButtonClicked() {
-//                dialog.dismiss()
-//            }
-//        })
+//            .setButtonTextColor(R.color.main_blue)
+//            .setButtonRippleColor(R.color.main_blue_tint)
+//
+//        dialog.setOnClickListener { dialog.dismiss() }
 
 
 //        --------------> Double Button LTR <--------------
@@ -97,15 +90,15 @@ class MainActivity : AppCompatActivity() {
 //            )
 //            .setCancelable(false)
 //            .setButtonText("Delete")
-//            .setButtonTextColor(R.color.main_red)
-//            .setButtonRippleColor(R.color.main_red_tint)
+//            .setButtonTextColor(R.color.main_blue)
+//            .setButtonRippleColor(R.color.main_blue_tint)
 //            .setEditTextHint("Typing...")
-//            .setEditTextHintColor(R.color.main_red_light)
-//            .setEditTextColor(R.color.main_red)
-//            .setEditTextBackgroundColor(R.color.main_red_tint)
+//            .setEditTextHintColor(R.color.main_blue_light)
+//            .setEditTextColor(R.color.textcolor)
+//            .setEditTextBackgroundColor(R.color.main_blue_tint)
 ////            ic_person size 20dpx20dp
 //            .setEditTextDrawable(R.drawable.ic_person)
-//            .setEditTextDrawableColor(R.color.main_red)
+//            .setEditTextDrawableColor(R.color.main_blue)
 //
 //        dialog.setOnClickListener { text ->
 //            Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
@@ -114,40 +107,40 @@ class MainActivity : AppCompatActivity() {
 
 
 //        --------------> Double Button LTR With EditText <--------------
-        val dialog = DialogTwoButtonWithEditText(this)
-            .setTitle("Delete message")
-            .setMessage(
-                "Are you sure you want to delete this\n" +
-                        "message?"
-            )
-            .setCancelable(false)
-            .setButtonOneText("Cancel")
-            .setButtonOneTextColor(R.color.main_blue)
-            .setButtonOneRippleColor(R.color.main_blue_tint)
-            .setButtonTwoText("Delete")
-            .setButtonTwoTextColor(R.color.main_red)
-            .setButtonTwoRippleColor(R.color.main_red_tint)
-            .setEditTextHint("Typing...")
-            .setEditTextHintColor(R.color.main_blue_light)
-            .setEditTextColor(R.color.main_blue)
-            .setEditTextBackgroundColor(R.color.main_blue_tint)
-//            ic_person size   **  JUST 20dpx20dp  **
-            .setEditTextDrawable(R.drawable.ic_person)
-            .setEditTextDrawableColor(R.color.main_blue)
+//        val dialog = DialogTwoButtonWithEditText(this)
+//            .setTitle("Delete message")
+//            .setMessage(
+//                "Are you sure you want to delete this\n" +
+//                        "message?"
+//            )
+//            .setCancelable(false)
+//            .setButtonOneText("Cancel")
+//            .setButtonOneTextColor(R.color.main_blue)
+//            .setButtonOneRippleColor(R.color.main_blue_tint)
+//            .setButtonTwoText("Delete")
+//            .setButtonTwoTextColor(R.color.main_red)
+//            .setButtonTwoRippleColor(R.color.main_red_tint)
+//            .setEditTextHint("Typing...")
+//            .setEditTextHintColor(R.color.main_blue_light)
+//            .setEditTextColor(R.color.textcolor)
+//            .setEditTextBackgroundColor(R.color.main_blue_tint)
+////            ic_person size   **  JUST 20dpx20dp  **
+//            .setEditTextDrawable(R.drawable.ic_person)
+//            .setEditTextDrawableColor(R.color.main_blue)
+//
+//        dialog.setOnClickListener(object : OnClickListeners.TwoButtonWithEditTextListener {
+//            override fun onFirstButtonClicked(text: String) {
+//                Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
+//                dialog.dismiss()
+//            }
+//
+//            override fun onSecondButtonClicked(text: String) {
+//                Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
+//                dialog.dismiss()
+//            }
+//        })
 
-        dialog.setOnClickListener(object : OnClickListeners.TwoButtonWithEditTextListener {
-            override fun onFirstButtonClicked(text: String) {
-                Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
-            }
-
-            override fun onSecondButtonClicked(text: String) {
-                Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
-            }
-        })
-
-        dialog.show()
+//        dialog.show()
 
     }
 }

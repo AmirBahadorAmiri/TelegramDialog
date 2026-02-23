@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "io.github.amirbahadoramiri"
-version = "1.0.2"
+version = "1.1.0"
 
 android {
     namespace = "io.github.amirbahadoramiri.telegramdialog"
@@ -58,7 +58,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.github.AmirBahadorAmiri"
                 artifactId = "TelegramDialog"
-                version = "1.0.3"
+                version = "1.1.0"
             }
         }
     }

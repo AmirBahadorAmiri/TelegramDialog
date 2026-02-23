@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="@color/page_background"
     app:cardCornerRadius="16dp"
     app:cardElevation="0dp"
     app:strokeColor="@android:color/transparent"
@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/page_background"
         app:layout_constraintBottom_toBottomOf="@+id/message"
         app:layout_constraintTop_toBottomOf="@+id/message">
 
@@ -23,7 +23,7 @@
             android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginRight="24dp"
-            android:textColor="@color/black"
+            android:textColor="@color/textcolor"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -37,7 +37,7 @@
             android:layout_marginLeft="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginRight="24dp"
-            android:textColor="@color/black"
+            android:textColor="@color/textcolor"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -46,7 +46,7 @@
         <androidx.appcompat.widget.AppCompatEditText
             android:background="@drawable/shape_radius_16"
             android:backgroundTint="@color/main_blue_tint"
-            android:textColor="@color/main_blue"
+            android:textColor="@color/textcolor"
             android:textColorHint="@color/main_blue_light"
             android:id="@+id/edittext"
             android:maxLines="1"
@@ -82,13 +82,13 @@
                 android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:backgroundTint="@color/white"
-                android:textColor="@color/main_green"
+                android:backgroundTint="@color/page_background"
+                android:textColor="@color/main_blue"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:backgroundTint="@color/white"
+                app:backgroundTint="@color/page_background"
                 app:cornerRadius="16dp"
-                app:rippleColor="@color/main_green_tint" />
+                app:rippleColor="@color/main_blue_tint" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

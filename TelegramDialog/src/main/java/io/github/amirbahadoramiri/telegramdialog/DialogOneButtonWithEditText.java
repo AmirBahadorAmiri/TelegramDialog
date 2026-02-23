@@ -30,7 +30,7 @@ public class DialogOneButtonWithEditText {
     DialogDirection DIALOG_DIRECTION = DialogDirection.RIGHT;
     int BUTTON_TEXT_COLOR = R.color.main_blue;
     int BUTTON_RIPPLE_COLOR = R.color.main_blue_tint;
-    int EDITTEXT_TEXT_COLOR = R.color.main_blue;
+    int EDITTEXT_TEXT_COLOR = R.color.textcolor;
     int EDITTEXT_HINT_COLOR = R.color.main_blue_light;
     int EDITTEXT_BACKGROUND_COLOR = R.color.main_blue_tint;
     int EDITTEXT_DRAWABLE = 0;
