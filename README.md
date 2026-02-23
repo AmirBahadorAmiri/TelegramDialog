@@ -1,7 +1,7 @@
 <h2>Add Dependencies</h2>
 
 ```gradle
-implementation("com.github.AmirBahadorAmiri:TelegramDialog:1.0.4")
+implementation("com.github.AmirBahadorAmiri:TelegramDialog:1.1.0")
 
 maven {
   url = uri("https://jitpack.io")
@@ -17,29 +17,30 @@ maven {
 
 ```kotlin
 
-        val dialog = DialogOneButton(this)
-            .setTitle("Delete message")
-            .setMessage(
-                "Are you sure you want to delete this\n" +
-                        "message?"
-            )
-            .setCancelable(false)
-            .setButtonText("Delete")
-            .setButtonTextColor(R.color.main_red)
-            .setButtonRippleColor(R.color.main_red_tint)
+val dialog = DialogOneButton(this)
+    .setTitle("Delete message")
+    .setMessage(
+        "Are you sure you want to delete this\n" +
+                "message?"
+    )
+    .setCancelable(false)
+    .setButtonText("Delete")
+    .setButtonTextColor(R.color.main_blue)
+    .setButtonRippleColor(R.color.main_blue_tint)
 
 
-        val dialog = DialogOneButton(this)
-            .setTitle("حذف پیام")
-            .setMessage("آیا از حذف این پیام اطمینان دارید؟")
-            .setCancelable(false)
-            .setButtonText("حذف")
-            .setDirection(DialogDirection.LEFT)
-            .setButtonTextColor(R.color.main_red)
-            .setButtonRippleColor(R.color.main_red_tint)
 
+val dialog = DialogOneButton(this)
+    .setTitle("حذف پیام")
+    .setMessage("آیا از حذف این پیام اطمینان دارید؟")
+    .setCancelable(false)
+    .setButtonText("حذف")
+    .setDirection(DialogDirection.LEFT)
+    .setButtonTextColor(R.color.main_blue)
+    .setButtonRippleColor(R.color.main_blue_tint)
 
-        dialog.setOnClickListener { dialog.dismiss() }
+dialog.setOnClickListener { dialog.dismiss() }
+
 ```
 <br><br><br>
 
@@ -50,39 +51,40 @@ maven {
 
 ```kotlin
 
-          val dialog = DialogTwoButton(this)
-            .setTitle("Delete message")
-            .setMessage(
-                "Are you sure you want to delete this\n" +
-                        "message?"
-            )
-            .setCancelable(false)
-            .setButtonOneText("Cancel")
-            .setButtonOneTextColor(R.color.main_blue)
-            .setButtonOneRippleColor(R.color.main_blue_tint)
-            .setButtonTwoText("Delete")
-            .setButtonTwoTextColor(R.color.main_red)
-            .setButtonTwoRippleColor(R.color.main_red_tint)
+val dialog = DialogTwoButton(this)
+    .setTitle("Delete message")
+    .setMessage(
+        "Are you sure you want to delete this\n" +
+                "message?"
+    )
+    .setCancelable(false)
+    .setButtonOneText("Cancel")
+    .setButtonOneTextColor(R.color.main_blue)
+    .setButtonOneRippleColor(R.color.main_blue_tint)
+    .setButtonTwoText("Delete")
+    .setButtonTwoTextColor(R.color.main_red)
+    .setButtonTwoRippleColor(R.color.main_red_tint)
 
 
-        val dialog = DialogTwoButton(this)
-            .setTitle("حذف پیام")
-            .setMessage("آیا از حذف این پیام اطمینان دارید؟")
-            .setCancelable(false)
-            .setButtonOneText("حذف")
-            .setButtonTwoText("لغو")
-            .setDirection(DialogDirection.LEFT)
+
+val dialog = DialogTwoButton(this)
+    .setTitle("حذف پیام")
+    .setMessage("آیا از حذف این پیام اطمینان دارید؟")
+    .setCancelable(false)
+    .setButtonOneText("حذف")
+    .setButtonTwoText("لغو")
+    .setDirection(DialogDirection.LEFT)
 
 
-        dialog.setOnClickListener(object : OnClickListeners.TwoButtonListener {
-            override fun onFirstButtonClicked() {
-                dialog.dismiss();
-            }
+dialog.setOnClickListener(object : OnClickListeners.TwoButtonListener {
+    override fun onFirstButtonClicked() {
+        dialog.dismiss();
+    }
 
-            override fun onSecondButtonClicked() {
-                dialog.dismiss()
-            }
-        })
+    override fun onSecondButtonClicked() {
+        dialog.dismiss()
+    }
+})
 
 ```
 
@@ -95,64 +97,63 @@ maven {
 
 ```kotlin
 
-        val dialog = DialogOneButtonWithEditText(this)
-            .setTitle("Delete message")
-            .setMessage(
-                "Are you sure you want to delete this\n" +
-                        "message?"
-            )
-            .setCancelable(false)
-            .setButtonText("Delete")
-            .setButtonTextColor(R.color.main_red)
-            .setButtonRippleColor(R.color.main_red_tint)
-            .setEditTextHint("Typing...")
-            .setEditTextHintColor(R.color.main_red_light)
-            .setEditTextColor(R.color.main_red)
-            .setEditTextBackgroundColor(R.color.main_red_tint)
-//        --------------> ic_person size 20dpx20dp <--------------
-            .setEditTextDrawable(R.drawable.ic_person)
-            .setEditTextDrawableColor(R.color.main_red)
+val dialog = DialogOneButtonWithEditText(this)
+    .setTitle("Delete message")
+    .setMessage(
+        "Are you sure you want to delete this\n" +
+                "message?"
+    )
+    .setCancelable(false)
+    .setButtonText("Delete")
+    .setButtonTextColor(R.color.main_blue)
+    .setButtonRippleColor(R.color.main_blue_tint)
+    .setEditTextHint("Typing...")
+    .setEditTextHintColor(R.color.main_blue_light)
+    .setEditTextColor(R.color.textcolor)
+    .setEditTextBackgroundColor(R.color.main_blue_tint)
+//            ic_person size 20dpx20dp
+    .setEditTextDrawable(R.drawable.ic_person)
+    .setEditTextDrawableColor(R.color.main_blue)
 
-        dialog.setOnClickListener { text ->
-            Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
-            dialog.dismiss()
-        }
-
-
+dialog.setOnClickListener { text ->
+    Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+    dialog.dismiss()
+}
 
 
-        val dialog = DialogTwoButtonWithEditText(this)
-            .setTitle("Delete message")
-            .setMessage(
-                "Are you sure you want to delete this\n" +
-                        "message?"
-            )
-            .setCancelable(false)
-            .setButtonOneText("Cancel")
-            .setButtonOneTextColor(R.color.main_blue)
-            .setButtonOneRippleColor(R.color.main_blue_tint)
-            .setButtonTwoText("Delete")
-            .setButtonTwoTextColor(R.color.main_red)
-            .setButtonTwoRippleColor(R.color.main_red_tint)
-            .setEditTextHint("Typing...")
-            .setEditTextHintColor(R.color.main_blue_light)
-            .setEditTextColor(R.color.main_blue)
-            .setEditTextBackgroundColor(R.color.main_blue_tint)
-//        --------------> ic_person size 20dpx20dp <--------------
-            .setEditTextDrawable(R.drawable.ic_person)
-            .setEditTextDrawableColor(R.color.main_blue)
 
-        dialog.setOnClickListener(object : OnClickListeners.TwoButtonWithEditTextListener {
-            override fun onFirstButtonClicked(text: String) {
-                Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
-            }
+val dialog = DialogTwoButtonWithEditText(this)
+    .setTitle("Delete message")
+    .setMessage(
+        "Are you sure you want to delete this\n" +
+                "message?"
+    )
+    .setCancelable(false)
+    .setButtonOneText("Cancel")
+    .setButtonOneTextColor(R.color.main_blue)
+    .setButtonOneRippleColor(R.color.main_blue_tint)
+    .setButtonTwoText("Delete")
+    .setButtonTwoTextColor(R.color.main_red)
+    .setButtonTwoRippleColor(R.color.main_red_tint)
+    .setEditTextHint("Typing...")
+    .setEditTextHintColor(R.color.main_blue_light)
+    .setEditTextColor(R.color.textcolor)
+    .setEditTextBackgroundColor(R.color.main_blue_tint)
+//            ic_person size   **  JUST 20dpx20dp  **
+    .setEditTextDrawable(R.drawable.ic_person)
+    .setEditTextDrawableColor(R.color.main_blue)
 
-            override fun onSecondButtonClicked(text: String) {
-                Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
-            }
-        })
+dialog.setOnClickListener(object : OnClickListeners.TwoButtonWithEditTextListener {
+    override fun onFirstButtonClicked(text: String) {
+        Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
+        dialog.dismiss()
+    }
+
+    override fun onSecondButtonClicked(text: String) {
+        Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
+        dialog.dismiss()
+    }
+})
 
 ```
 
