@@ -1,10 +1,12 @@
 package com.amirbahadoramiri.telegramdialog
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import io.github.amirbahadoramiri.telegramdialog.mediumprogress.MediumProgressBar
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +27,9 @@ class MainActivity : AppCompatActivity() {
 //                "Are you sure you want to delete this\n" +
 //                        "message?"
 //            )
-//            .setCancelable(false)
+//            .setCancelable(true)
+//            .setCardRadius(16)
+//            .setCardBackgroundColor(R.color.dialog_page_background)
 //            .setButtonText("Delete")
 //            .setButtonTextColor(R.color.main_blue)
 //            .setButtonRippleColor(R.color.main_blue_tint)
@@ -35,13 +39,27 @@ class MainActivity : AppCompatActivity() {
 //        val dialog = DialogOneButton(this)
 //            .setTitle("حذف پیام")
 //            .setMessage("آیا از حذف این پیام اطمینان دارید؟")
-//            .setCancelable(false)
+//            .setCancelable(true)
+//            .setCardRadius(16)
+//            .setCardBackgroundColor(R.color.dialog_page_background)
 //            .setButtonText("حذف")
 //            .setDirection(DialogDirection.LEFT)
 //            .setButtonTextColor(R.color.main_blue)
 //            .setButtonRippleColor(R.color.main_blue_tint)
 //
-//        dialog.setOnClickListener { dialog.dismiss() }
+//        dialog.setOnClickListener(object : OneButtonListener {
+//            override fun onButtonClicked() {
+//                Toast.makeText(this@MainActivity, "onButtonClicked", Toast.LENGTH_SHORT).show()
+//                dialog.dismiss()
+//            }
+//
+//            // Optional Function
+//            override fun onCanceled() {
+//                super.onCanceled()
+//                Toast.makeText(this@MainActivity, "canceled", Toast.LENGTH_SHORT).show()
+//            }
+//
+//        })
 
 
 //        --------------> Double Button LTR <--------------
@@ -51,7 +69,9 @@ class MainActivity : AppCompatActivity() {
 //                "Are you sure you want to delete this\n" +
 //                        "message?"
 //            )
-//            .setCancelable(false)
+//            .setCancelable(true)
+//            .setCardRadius(16)
+//            .setCardBackgroundColor(R.color.dialog_page_background)
 //            .setButtonOneText("Cancel")
 //            .setButtonOneTextColor(R.color.main_blue)
 //            .setButtonOneRippleColor(R.color.main_blue_tint)
@@ -64,20 +84,31 @@ class MainActivity : AppCompatActivity() {
 //        val dialog = DialogTwoButton(this)
 //            .setTitle("حذف پیام")
 //            .setMessage("آیا از حذف این پیام اطمینان دارید؟")
-//            .setCancelable(false)
+//            .setCancelable(true)
+//            .setCardRadius(16)
+//            .setCardBackgroundColor(R.color.dialog_page_background)
 //            .setButtonOneText("حذف")
 //            .setButtonTwoText("لغو")
 //            .setDirection(DialogDirection.LEFT)
-
-
-//        dialog.setOnClickListener(object : OnClickListeners.TwoButtonListener {
+//
+//
+//        dialog.setOnClickListener(object : TwoButtonListener {
 //            override fun onFirstButtonClicked() {
-//                dialog.dismiss();
+//                Toast.makeText(this@MainActivity, "onFirstButtonClicked", Toast.LENGTH_SHORT).show()
+//                dialog.dismiss()
 //            }
 //
 //            override fun onSecondButtonClicked() {
+//                Toast.makeText(this@MainActivity, "onSecondButtonClicked", Toast.LENGTH_SHORT).show()
 //                dialog.dismiss()
 //            }
+//
+//            // Optional Function
+//            override fun onCanceled() {
+//                super.onCanceled()
+//                Toast.makeText(this@MainActivity, "canceled", Toast.LENGTH_SHORT).show()
+//            }
+//
 //        })
 
 
@@ -88,7 +119,9 @@ class MainActivity : AppCompatActivity() {
 //                "Are you sure you want to delete this\n" +
 //                        "message?"
 //            )
-//            .setCancelable(false)
+//            .setCancelable(true)
+//            .setCardRadius(16)
+//            .setCardBackgroundColor(R.color.dialog_page_background)
 //            .setButtonText("Delete")
 //            .setButtonTextColor(R.color.main_blue)
 //            .setButtonRippleColor(R.color.main_blue_tint)
@@ -100,10 +133,19 @@ class MainActivity : AppCompatActivity() {
 //            .setEditTextDrawable(R.drawable.ic_person)
 //            .setEditTextDrawableColor(R.color.main_blue)
 //
-//        dialog.setOnClickListener { text ->
-//            Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
-//            dialog.dismiss()
-//        }
+//        dialog.setOnClickListener(object : OneButtonWithEditTextListener {
+//            override fun onButtonClicked(text: String) {
+//                Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
+//                dialog.dismiss()
+//            }
+//
+//            // Optional Function
+//            override fun onCanceled() {
+//                super.onCanceled()
+//                Toast.makeText(this@MainActivity, "canceled", Toast.LENGTH_SHORT).show();
+//            }
+//
+//        })
 
 
 //        --------------> Double Button LTR With EditText <--------------
@@ -113,7 +155,9 @@ class MainActivity : AppCompatActivity() {
 //                "Are you sure you want to delete this\n" +
 //                        "message?"
 //            )
-//            .setCancelable(false)
+//            .setCancelable(true)
+//            .setCardRadius(16)
+//            .setCardBackgroundColor(R.color.dialog_page_background)
 //            .setButtonOneText("Cancel")
 //            .setButtonOneTextColor(R.color.main_blue)
 //            .setButtonOneRippleColor(R.color.main_blue_tint)
@@ -128,7 +172,7 @@ class MainActivity : AppCompatActivity() {
 //            .setEditTextDrawable(R.drawable.ic_person)
 //            .setEditTextDrawableColor(R.color.main_blue)
 //
-//        dialog.setOnClickListener(object : OnClickListeners.TwoButtonWithEditTextListener {
+//        dialog.setOnClickListener(object : TwoButtonWithEditTextListener {
 //            override fun onFirstButtonClicked(text: String) {
 //                Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
 //                dialog.dismiss()
@@ -138,9 +182,25 @@ class MainActivity : AppCompatActivity() {
 //                Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
 //                dialog.dismiss()
 //            }
+//
+//            // Optional Function
+//            override fun onCanceled() {
+//                super.onCanceled()
+//                Toast.makeText(this@MainActivity, "canceled", Toast.LENGTH_SHORT).show();
+//            }
+//
 //        })
 
-//        dialog.show()
+
+//        --------------> ProgressBar <--------------
+        val dialog = MediumProgressBar(this)
+            .setCancelable(true)
+            .setCardRadius(16)
+            .setCardBackgroundColor(R.color.dialog_page_background)
+            .setProgressbarIndeterminateTint(R.color.main_blue)
+            .setOnClickListener { Toast.makeText(this, "canceled", Toast.LENGTH_SHORT).show() }
+
+        dialog.show()
 
     }
 }

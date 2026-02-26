@@ -1,9 +1,10 @@
-package io.github.amirbahadoramiri.telegramdialog;
+package io.github.amirbahadoramiri.telegramdialog.oneedit;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,129 +17,141 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.ViewCompat;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.Objects;
 
-public class DialogTwoButtonWithEditText {
+import io.github.amirbahadoramiri.telegramdialog.DialogDirection;
+import io.github.amirbahadoramiri.telegramdialog.R;
+
+public class DialogOneButtonWithEditText {
 
     Context context;
     Dialog builder;
-    OnClickListeners.TwoButtonWithEditTextListener listener;
+    OneButtonWithEditTextListener listener;
 
-    String TITLE, MESSAGE, BUTTON_ONE_TEXT, BUTTON_TWO_TEXT, EDITTEXT_TEXT, EDITTEXT_HINT;
+    String TITLE, MESSAGE, BUTTON_TEXT, EDITTEXT_TEXT, EDITTEXT_HINT;
     boolean CANCELABLE = true;
+    int CARD_BACKGROUND_COLOR = R.color.dialog_page_background;
+    int CARD_RADIUS = 16;
     DialogDirection DIALOG_DIRECTION = DialogDirection.RIGHT;
-    int BUTTON_ONE_TEXT_COLOR = R.color.main_blue;
-    int BUTTON_ONE_RIPPLE_COLOR = R.color.main_blue_tint;
-    int BUTTON_TWO_TEXT_COLOR = R.color.main_red;
-    int BUTTON_TWO_RIPPLE_COLOR = R.color.main_red_tint;
+    int BUTTON_TEXT_COLOR = R.color.main_blue;
+    int BUTTON_RIPPLE_COLOR = R.color.main_blue_tint;
     int EDITTEXT_TEXT_COLOR = R.color.textcolor;
     int EDITTEXT_HINT_COLOR = R.color.main_blue_light;
     int EDITTEXT_BACKGROUND_COLOR = R.color.main_blue_tint;
     int EDITTEXT_DRAWABLE = 0;
     int EDITTEXT_DRAWABLE_COLOR = R.color.main_blue;
 
-    public DialogTwoButtonWithEditText(Context context) {
+    public DialogOneButtonWithEditText(Context context) {
         this.context = context;
     }
 
-    public DialogTwoButtonWithEditText setTitle(String title) {
+    public DialogOneButtonWithEditText setTitle(String title) {
         this.TITLE = title;
         return this;
     }
 
-    public DialogTwoButtonWithEditText setMessage(String message) {
+    public DialogOneButtonWithEditText setMessage(String message) {
         this.MESSAGE = message;
         return this;
     }
 
-    public DialogTwoButtonWithEditText setCancelable(boolean cancelable) {
+    public DialogOneButtonWithEditText setCancelable(boolean cancelable) {
         this.CANCELABLE = cancelable;
         return this;
     }
 
-    public DialogTwoButtonWithEditText setDirection(DialogDirection dialogDirection) {
+    public DialogOneButtonWithEditText setDirection(DialogDirection dialogDirection) {
         this.DIALOG_DIRECTION = dialogDirection;
         return this;
     }
 
-    public DialogTwoButtonWithEditText setOnClickListener(OnClickListeners.TwoButtonWithEditTextListener listener) {
+    public DialogOneButtonWithEditText setOnClickListener(OneButtonWithEditTextListener listener) {
         this.listener = listener;
         return this;
     }
 
-    public DialogTwoButtonWithEditText setButtonOneText(String buttonOneText) {
-        this.BUTTON_ONE_TEXT = buttonOneText;
+    public DialogOneButtonWithEditText setCardBackgroundColor(int cardBackgroundColor) {
+        this.CARD_BACKGROUND_COLOR = cardBackgroundColor;
         return this;
     }
 
-    public DialogTwoButtonWithEditText setButtonOneTextColor(int buttonOneTextColor) {
-        this.BUTTON_ONE_TEXT_COLOR = buttonOneTextColor;
+    public DialogOneButtonWithEditText setCardRadius(int cardRadius) {
+        this.CARD_RADIUS = cardRadius;
         return this;
     }
 
-    public DialogTwoButtonWithEditText setButtonOneRippleColor(int buttonOneRippleColor) {
-        this.BUTTON_ONE_RIPPLE_COLOR = buttonOneRippleColor;
+    public DialogOneButtonWithEditText setButtonText(String buttonText) {
+        this.BUTTON_TEXT = buttonText;
         return this;
     }
 
-    public DialogTwoButtonWithEditText setButtonTwoText(String buttonTwoText) {
-        this.BUTTON_TWO_TEXT = buttonTwoText;
+    public DialogOneButtonWithEditText setButtonTextColor(int buttonTextColor) {
+        this.BUTTON_TEXT_COLOR = buttonTextColor;
         return this;
     }
 
-    public DialogTwoButtonWithEditText setButtonTwoTextColor(int buttonTwoTextColor) {
-        this.BUTTON_TWO_TEXT_COLOR = buttonTwoTextColor;
+    public DialogOneButtonWithEditText setButtonRippleColor(int buttonRippleColor) {
+        this.BUTTON_RIPPLE_COLOR = buttonRippleColor;
         return this;
     }
 
-    public DialogTwoButtonWithEditText setButtonTwoRippleColor(int buttonTwoRippleColor) {
-        this.BUTTON_TWO_RIPPLE_COLOR = buttonTwoRippleColor;
-        return this;
-    }
-
-    public DialogTwoButtonWithEditText setEditTextValue(String text) {
+    public DialogOneButtonWithEditText setEditTextValue(String text) {
         this.EDITTEXT_TEXT = text;
         return this;
     }
 
-    public DialogTwoButtonWithEditText setEditTextColor(int color) {
+    public DialogOneButtonWithEditText setEditTextColor(int color) {
         this.EDITTEXT_TEXT_COLOR = color;
         return this;
     }
 
-    public DialogTwoButtonWithEditText setEditTextHint(String hint) {
+    public DialogOneButtonWithEditText setEditTextHint(String hint) {
         this.EDITTEXT_HINT = hint;
         return this;
     }
 
-    public DialogTwoButtonWithEditText setEditTextHintColor(int color) {
+    public DialogOneButtonWithEditText setEditTextHintColor(int color) {
         this.EDITTEXT_HINT_COLOR = color;
         return this;
     }
 
-    public DialogTwoButtonWithEditText setEditTextBackgroundColor(int color) {
+    public DialogOneButtonWithEditText setEditTextBackgroundColor(int color) {
         this.EDITTEXT_BACKGROUND_COLOR = color;
         return this;
     }
 
-    public DialogTwoButtonWithEditText setEditTextDrawable(int drawable) {
+    public DialogOneButtonWithEditText setEditTextDrawable(int drawable) {
         this.EDITTEXT_DRAWABLE = drawable;
         return this;
     }
 
-    public DialogTwoButtonWithEditText setEditTextDrawableColor(int color) {
+    public DialogOneButtonWithEditText setEditTextDrawableColor(int color) {
         this.EDITTEXT_DRAWABLE_COLOR = color;
         return this;
     }
 
     public void show() {
-        builder = new Dialog(context, R.style.TeleDialog);
+        builder = new Dialog(context, R.style.LargeDialogStyle);
         Objects.requireNonNull(builder.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
         builder.setCancelable(CANCELABLE);
 
-        View view = LayoutInflater.from(context).inflate(R.layout.two_button_with_edit_text, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_one_button_with_edit_text, null);
         builder.setContentView(view);
+
+        MaterialCardView cardView = view.findViewById(R.id.cardview);
+        if (CARD_BACKGROUND_COLOR != 0) {
+            cardView.setCardBackgroundColor(ContextCompat.getColor(context, CARD_BACKGROUND_COLOR));
+            view.findViewById(R.id.constraint).setBackgroundColor(ContextCompat.getColor(context, CARD_BACKGROUND_COLOR));
+        }
+        if (CARD_RADIUS != 0) {
+            cardView.setRadius(TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    CARD_RADIUS,
+                    context.getResources().getDisplayMetrics()
+            ));
+        }
 
         AppCompatTextView title = view.findViewById(R.id.title);
         if (this.TITLE != null) title.setText(this.TITLE);
@@ -170,31 +183,23 @@ public class DialogTwoButtonWithEditText {
             edittext.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
         }
 
-        MaterialButton button1 = view.findViewById(R.id.button1);
-        if (this.BUTTON_ONE_TEXT != null) button1.setText(this.BUTTON_ONE_TEXT);
-        if (this.BUTTON_ONE_TEXT_COLOR != 0)
-            button1.setTextColor(ContextCompat.getColor(context, this.BUTTON_ONE_TEXT_COLOR));
-        if (this.BUTTON_ONE_RIPPLE_COLOR != 0)
-            button1.setRippleColorResource(this.BUTTON_ONE_RIPPLE_COLOR);
-        button1.setOnClickListener(v -> {
+        MaterialButton button = view.findViewById(R.id.button);
+        if (this.BUTTON_TEXT != null) button.setText(this.BUTTON_TEXT);
+        if (this.BUTTON_TEXT_COLOR != 0)
+            button.setTextColor(ContextCompat.getColor(context, this.BUTTON_TEXT_COLOR));
+        if (this.BUTTON_RIPPLE_COLOR != 0) button.setRippleColorResource(this.BUTTON_RIPPLE_COLOR);
+        button.setOnClickListener(v -> {
             if (listener != null)
-                listener.onFirstButtonClicked(Objects.requireNonNull(edittext.getText()).toString());
-        });
-
-        MaterialButton button2 = view.findViewById(R.id.button2);
-        if (this.BUTTON_TWO_TEXT != null) button2.setText(this.BUTTON_TWO_TEXT);
-        if (this.BUTTON_TWO_TEXT_COLOR != 0)
-            button2.setTextColor(ContextCompat.getColor(context, this.BUTTON_TWO_TEXT_COLOR));
-        if (this.BUTTON_TWO_RIPPLE_COLOR != 0)
-            button2.setRippleColorResource(this.BUTTON_TWO_RIPPLE_COLOR);
-        button2.setOnClickListener(v -> {
-            if (listener != null)
-                listener.onSecondButtonClicked(Objects.requireNonNull(edittext.getText()).toString());
+                listener.onButtonClicked(Objects.requireNonNull(edittext.getText()).toString());
         });
 
         LinearLayoutCompat buttonGroup = view.findViewById(R.id.button_group);
         if (DIALOG_DIRECTION == DialogDirection.RIGHT) buttonGroup.setGravity(Gravity.RIGHT);
         else buttonGroup.setGravity(Gravity.LEFT);
+
+        builder.setOnCancelListener(dialogInterface -> {
+            if (listener != null) listener.onCanceled();
+        });
 
         builder.show();
     }

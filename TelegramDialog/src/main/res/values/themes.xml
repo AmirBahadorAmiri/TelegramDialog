@@ -1,7 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="TeleDialog" parent="Theme.MaterialComponents.Light.Dialog">
+    <style name="LargeDialogStyle" parent="Theme.MaterialComponents.Light.Dialog">
         <item name="android:windowMinWidthMajor">90%</item>
         <item name="android:windowMinWidthMinor">90%</item>
     </style>
+
+    <style name="MediumDialogStyle" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="android:windowMinWidthMajor">25%</item>
+        <item name="android:windowMinWidthMinor">25%</item>
+    </style>
+
 </resources>
