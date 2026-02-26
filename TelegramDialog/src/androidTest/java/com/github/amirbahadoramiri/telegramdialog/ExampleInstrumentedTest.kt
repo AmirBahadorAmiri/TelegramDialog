@@ -1,4 +1,4 @@
-package io.github.amirbahadoramiri.telegramdialog
+package com.github.amirbahadoramiri.telegramdialog
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -17,6 +17,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        Assert.assertEquals("io.github.amirbahadoramiri.telegramdialog.test", appContext.packageName)
+        Assert.assertEquals("com.github.amirbahadoramiri.telegramdialog.test", appContext.packageName)
     }
 }

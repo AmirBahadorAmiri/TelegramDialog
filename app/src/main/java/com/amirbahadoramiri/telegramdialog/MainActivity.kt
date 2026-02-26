@@ -1,12 +1,10 @@
 package com.amirbahadoramiri.telegramdialog
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import io.github.amirbahadoramiri.telegramdialog.mediumprogress.MediumProgressBar
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -193,14 +191,14 @@ class MainActivity : AppCompatActivity() {
 
 
 //        --------------> ProgressBar <--------------
-        val dialog = MediumProgressBar(this)
-            .setCancelable(true)
-            .setCardRadius(16)
-            .setCardBackgroundColor(R.color.dialog_page_background)
-            .setProgressbarIndeterminateTint(R.color.main_blue)
-            .setOnClickListener { Toast.makeText(this, "canceled", Toast.LENGTH_SHORT).show() }
-
-        dialog.show()
+//        val dialog = MediumProgressBar(this)
+//            .setCancelable(true)
+//            .setCardRadius(16)
+//            .setCardBackgroundColor(R.color.dialog_page_background)
+//            .setProgressbarIndeterminateTint(R.color.main_blue)
+//            .setOnClickListener { Toast.makeText(this, "canceled", Toast.LENGTH_SHORT).show() }
+//
+//        dialog.show()
 
     }
 }

@@ -1,4 +1,4 @@
-package io.github.amirbahadoramiri.telegramdialog.twoedit;
+package com.github.amirbahadoramiri.telegramdialog.twoedit;
 
 public interface TwoButtonWithEditTextListener {
         void onFirstButtonClicked(String text);

@@ -3,11 +3,11 @@ plugins {
     id("maven-publish")
 }
 
-group = "io.github.amirbahadoramiri"
-version = "1.2.0"
+group = "com.github.amirbahadoramiri"
+version = "1.2.1"
 
 android {
-    namespace = "io.github.amirbahadoramiri.telegramdialog"
+    namespace = "com.github.amirbahadoramiri.telegramdialog"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -58,7 +58,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.github.AmirBahadorAmiri"
                 artifactId = "TelegramDialog"
-                version = "1.2.0"
+                version = "1.2.1"
             }
         }
     }

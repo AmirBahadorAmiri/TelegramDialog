@@ -1,4 +1,4 @@
-package io.github.amirbahadoramiri.telegramdialog.one;
+package com.github.amirbahadoramiri.telegramdialog.one;
 
 public interface OneButtonListener {
         void onButtonClicked();

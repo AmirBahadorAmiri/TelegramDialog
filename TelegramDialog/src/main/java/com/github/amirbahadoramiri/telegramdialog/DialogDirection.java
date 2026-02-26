@@ -1,4 +1,4 @@
-package io.github.amirbahadoramiri.telegramdialog;
+package com.github.amirbahadoramiri.telegramdialog;
 
 public enum DialogDirection {
     RIGHT,

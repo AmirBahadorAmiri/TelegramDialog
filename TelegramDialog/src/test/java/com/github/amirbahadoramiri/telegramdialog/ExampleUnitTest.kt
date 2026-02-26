@@ -1,4 +1,4 @@
-package io.github.amirbahadoramiri.telegramdialog
+package com.github.amirbahadoramiri.telegramdialog
 
 import org.junit.Assert
 import org.junit.Test

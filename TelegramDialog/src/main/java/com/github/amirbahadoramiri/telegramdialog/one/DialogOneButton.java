@@ -1,4 +1,4 @@
-package io.github.amirbahadoramiri.telegramdialog.one;
+package com.github.amirbahadoramiri.telegramdialog.one;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -16,8 +16,8 @@ import com.google.android.material.card.MaterialCardView;
 
 import java.util.Objects;
 
-import io.github.amirbahadoramiri.telegramdialog.DialogDirection;
-import io.github.amirbahadoramiri.telegramdialog.R;
+import com.github.amirbahadoramiri.telegramdialog.DialogDirection;
+import com.github.amirbahadoramiri.telegramdialog.R;
 
 public class DialogOneButton {
 

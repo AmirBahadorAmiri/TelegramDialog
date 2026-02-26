@@ -1,4 +1,4 @@
-package io.github.amirbahadoramiri.telegramdialog.two;
+package com.github.amirbahadoramiri.telegramdialog.two;
 
 public interface TwoButtonListener {
         void onFirstButtonClicked();
