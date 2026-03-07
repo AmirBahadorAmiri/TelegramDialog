@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardBackgroundColor="@color/dialog_page_background"
     app:cardCornerRadius="16dp"
-    android:id="@+id/cardview"
     app:cardElevation="0dp"
     app:strokeColor="@android:color/transparent"
     app:strokeWidth="0dp">
@@ -26,53 +27,42 @@
             android:layout_marginTop="24dp"
             android:layout_marginRight="24dp"
             android:textColor="@color/textcolor"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="title" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/message"
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@android:style/Widget.Material.ProgressBar.Horizontal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
-            android:layout_marginTop="8dp"
             android:layout_marginRight="24dp"
-            android:textColor="@color/textcolor"
-            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:max="100"
+            android:progress="30"
+            android:progressBackgroundTint="@color/main_blue_light"
+            android:progressTint="@color/main_blue"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/button_group"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/status"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="8dp"
-            android:gravity="left"
-            android:orientation="horizontal"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="24dp"
+            android:textColor="@color/textcolor"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/message">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:backgroundTint="@color/dialog_page_background"
-                android:textColor="@color/main_blue"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:backgroundTint="@color/dialog_page_background"
-                app:cornerRadius="16dp"
-                app:rippleColor="@color/main_blue_tint" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
+            app:layout_constraintTop_toBottomOf="@id/progress_bar"
+            tools:text="percent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
