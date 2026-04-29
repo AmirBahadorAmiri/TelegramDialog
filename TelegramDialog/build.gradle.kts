@@ -1,8 +1,8 @@
 val packageName = "com.github.amirbahadoramiri.telegramdialog"
 
 val versionMajor = 1
-val versionMinor = 2
-val versionPatch = 2
+val versionMinor = 3
+val versionPatch = 1
 
 private fun generateVersionCode() : Int {
     return (versionMajor+versionMinor+versionPatch);
