@@ -65,6 +65,11 @@ public class TeleDialogSingle {
         return this;
     }
 
+    public TeleDialogSingle setJustificationMode(int mode) {
+        messageView.setJustificationMode(mode);
+        return this;
+    }
+
     public TeleDialogSingle setCancelable(boolean cancelable) {
         builder.setCancelable(cancelable);
         return this;

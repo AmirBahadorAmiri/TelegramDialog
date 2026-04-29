@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 //                "Are you sure you want to delete this\n" +
 //                        "message?"
 //            )
+//            .setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD)
 //            .setCancelable(true)
 //            .setCardRadius(16)
 //            .setCardBackgroundColor(R.color.dialog_page_background)

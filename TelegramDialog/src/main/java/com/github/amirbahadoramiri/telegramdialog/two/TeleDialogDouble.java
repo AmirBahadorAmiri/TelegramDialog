@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat;
 import com.github.amirbahadoramiri.telegramdialog.R;
 import com.github.amirbahadoramiri.telegramdialog.library.TeleDirection;
 import com.github.amirbahadoramiri.telegramdialog.one.TeleDialogSingle;
+import com.github.amirbahadoramiri.telegramdialog.oneedit.TeleDialogSingleWithEditText;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
@@ -68,6 +69,11 @@ public class TeleDialogDouble {
 
     public TeleDialogDouble setMessage(String message) {
         messageView.setText(message);
+        return this;
+    }
+
+    public TeleDialogDouble setJustificationMode(int mode) {
+        messageView.setJustificationMode(mode);
         return this;
     }
 

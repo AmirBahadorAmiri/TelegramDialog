@@ -1,13 +1,26 @@
+val packageName = "com.github.amirbahadoramiri.telegramdialog"
+
+val versionMajor = 1
+val versionMinor = 2
+val versionPatch = 2
+
+private fun generateVersionCode() : Int {
+    return (versionMajor+versionMinor+versionPatch);
+}
+
+private fun generateVersionName() : String {
+    return "${versionMajor}.${versionMinor}.${versionPatch}"
+}
 plugins {
     alias(libs.plugins.android.library)
     id("maven-publish")
 }
 
 group = "com.github.amirbahadoramiri"
-version = "1.2.1"
+version = generateVersionName()
 
 android {
-    namespace = "com.github.amirbahadoramiri.telegramdialog"
+    namespace = packageName
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -21,7 +34,7 @@ android {
     }
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 26
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -58,7 +71,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.github.AmirBahadorAmiri"
                 artifactId = "TelegramDialog"
-                version = "1.2.1"
+                version = generateVersionName()
             }
         }
     }

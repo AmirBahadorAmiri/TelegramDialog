@@ -20,7 +20,7 @@ dependencyResolutionManagement {
 ```
 Then add the dependency:
 ```gradle
-implementation("com.github.AmirBahadorAmiri:TelegramDialog:1.2.1")
+implementation("com.github.AmirBahadorAmiri:TelegramDialog:1.2.2")
 ```
 🎯 Features
 
@@ -122,10 +122,15 @@ dialog.show()
 🌍 RTL Support
 
 Supports both LTR (English) and RTL (Persian, Arabic) layout directions.
-```koylin
+```kotlin
 .setDirection(DialogDirection.LEFT)
 ```
-<br>
+<br><br>
+* Text Justification
+```kotlin
+.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD)
+```
+<br><br>
 
 🤝 Contributing
 
