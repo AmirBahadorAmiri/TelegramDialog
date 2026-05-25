@@ -20,7 +20,7 @@ dependencyResolutionManagement {
 ```
 Then add the dependency:
 ```gradle
-implementation("com.github.AmirBahadorAmiri:TelegramDialog:1.2.2")
+implementation("com.github.AmirBahadorAmiri:TelegramDialog:1.3.1")
 ```
 🎯 Features
 
