@@ -46,11 +46,11 @@ implementation("com.github.AmirBahadorAmiri:TelegramDialog:1.3.1")
 <br><br>
 
 ```kotlin
-
-val dialog = DialogOneButton(this)
+val dialog = TeleDialogSingle(this)
     .setTitle("Delete message")
     .setMessage("Are you sure you want to delete this message?")
     .setButtonText("Delete")
+    .setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD)
     .setCancelable(true)
 
 dialog.setOnClickListener(object : OneButtonListener {
@@ -69,7 +69,7 @@ dialog.show()
 <br><br>
 ```kotlin
 
-val dialog = DialogTwoButton(this)
+val dialog = TeleDialogDouble(this)
     .setTitle("Delete message")
     .setMessage("Are you sure?")
     .setButtonOneText("Cancel")
@@ -90,7 +90,7 @@ dialog.show()
 <br><br>
 ```kotlin
 
-val dialog = DialogOneButtonWithEditText(this)
+val dialog = TeleDialogSingleWithEditText(this)
     .setTitle("Input")
     .setEditTextHint("Type something...")
     .setButtonText("Submit")
@@ -111,7 +111,7 @@ dialog.show()
 <br><br><br>
 ```kotlin
 
-val dialog = MediumProgressBar(this)
+val dialog = TeleProgressBar(this)
     .setCancelable(true)
     .setProgressbarIndeterminateTint(R.color.main_blue)
 
