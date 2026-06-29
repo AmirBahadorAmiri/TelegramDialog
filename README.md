@@ -108,6 +108,8 @@ dialog.show()
 🔹 Medium Progress Dialog<br><br>
 <img width="120" src="https://github.com/user-attachments/assets/231c5428-f134-4eff-afa8-0fd0db0a50e8" />
 <img width="120" src="https://github.com/user-attachments/assets/4b647f3b-5f04-48ff-9bbc-64f124683aa1" />
+<img width="120" src="https://github.com/user-attachments/assets/1549520b-c62b-42a4-b8bc-778ccb1478ba" />
+
 <br><br><br>
 ```kotlin
 
