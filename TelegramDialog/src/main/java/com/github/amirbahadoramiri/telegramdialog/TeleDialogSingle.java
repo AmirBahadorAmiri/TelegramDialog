@@ -1,4 +1,4 @@
-package com.github.amirbahadoramiri.telegramdialog.one;
+package com.github.amirbahadoramiri.telegramdialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -11,8 +11,8 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.content.ContextCompat;
 
-import com.github.amirbahadoramiri.telegramdialog.R;
-import com.github.amirbahadoramiri.telegramdialog.library.TeleDirection;
+import com.github.amirbahadoramiri.telegramdialog.direction.TeleDirection;
+import com.github.amirbahadoramiri.telegramdialog.listeners.TeleDialogSingleListener;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 

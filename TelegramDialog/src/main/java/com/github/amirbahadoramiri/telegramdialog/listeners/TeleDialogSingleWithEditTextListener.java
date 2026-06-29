@@ -1,4 +1,4 @@
-package com.github.amirbahadoramiri.telegramdialog.oneedit;
+package com.github.amirbahadoramiri.telegramdialog.listeners;
 
 public interface TeleDialogSingleWithEditTextListener {
     void onButtonClicked(String text);

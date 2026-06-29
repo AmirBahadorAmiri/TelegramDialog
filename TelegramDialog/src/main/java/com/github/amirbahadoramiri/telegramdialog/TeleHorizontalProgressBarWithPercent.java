@@ -1,4 +1,4 @@
-package com.github.amirbahadoramiri.telegramdialog.progressbarhorizontalwithpercent;
+package com.github.amirbahadoramiri.telegramdialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -10,7 +10,7 @@ import android.widget.ProgressBar;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
 
-import com.github.amirbahadoramiri.telegramdialog.R;
+import com.github.amirbahadoramiri.telegramdialog.listeners.TeleHorizontalProgressBarWithPercentListener;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.Objects;

@@ -1,4 +1,4 @@
-package com.github.amirbahadoramiri.telegramdialog.oneedit;
+package com.github.amirbahadoramiri.telegramdialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -16,15 +16,14 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.ViewCompat;
 
-import com.github.amirbahadoramiri.telegramdialog.R;
-import com.github.amirbahadoramiri.telegramdialog.library.TeleDirection;
-import com.github.amirbahadoramiri.telegramdialog.one.TeleDialogSingle;
+import com.github.amirbahadoramiri.telegramdialog.direction.TeleDirection;
+import com.github.amirbahadoramiri.telegramdialog.listeners.TeleDialogDoubleWithEditTextListener;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.Objects;
 
-public class TeleDialogSingleWithEditText {
+public class TeleDialogDoubleWithEditText {
 
     private Context context;
     private Dialog builder;
@@ -33,21 +32,22 @@ public class TeleDialogSingleWithEditText {
     private MaterialCardView cardView;
     private AppCompatTextView titleView, messageView;
     private AppCompatEditText edittextView;
-    private MaterialButton buttonView;
+    private MaterialButton btn1View, btn2View;
     private LinearLayoutCompat buttonGroup;
 
-    public TeleDialogSingleWithEditText(Context context) {
+    public TeleDialogDoubleWithEditText(Context context) {
         this.context = context;
         builder = new Dialog(context, R.style.LargeDialogStyle);
         Objects.requireNonNull(builder.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
-        view = LayoutInflater.from(context).inflate(R.layout.tele_dialog_single_with_edit_text, null);
+        view = LayoutInflater.from(context).inflate(R.layout.tele_dialog_double_with_edit_text, null);
         builder.setContentView(view);
 
         cardView = view.findViewById(R.id.cardview);
         titleView = view.findViewById(R.id.title);
         messageView = view.findViewById(R.id.message);
         edittextView = view.findViewById(R.id.edittext);
-        buttonView = view.findViewById(R.id.button);
+        btn1View = view.findViewById(R.id.button1);
+        btn2View = view.findViewById(R.id.button2);
         buttonGroup = view.findViewById(R.id.button_group);
 
         setTitle("Title");
@@ -55,10 +55,14 @@ public class TeleDialogSingleWithEditText {
         setEditTextColor(R.color.textcolor);
         setEditTextHintColor(R.color.main_blue_light);
         setEditTextBackgroundColor(R.color.main_blue_tint);
-        setButtonText("OK");
-        setButtonTextColor(R.color.main_blue);
-        setButtonRippleColor(R.color.main_blue_tint);
-        setButtonCornerRadius(16);
+        setButtonOneText("NO");
+        setButtonOneTextColor(R.color.main_blue);
+        setButtonOneRippleColor(R.color.main_blue_tint);
+        setButtonOneCornerRadius(16);
+        setButtonTwoText("OK");
+        setButtonTwoTextColor(R.color.main_red);
+        setButtonTwoRippleColor(R.color.main_red_tint);
+        setButtonTwoCornerRadius(16);
         setCardRadius(16);
         setCardBackgroundColor(R.color.dialog_page_background);
         setCancelable(true);
@@ -66,27 +70,27 @@ public class TeleDialogSingleWithEditText {
 
     }
 
-    public TeleDialogSingleWithEditText setTitle(String title) {
+    public TeleDialogDoubleWithEditText setTitle(String title) {
         titleView.setText(title);
         return this;
     }
 
-    public TeleDialogSingleWithEditText setMessage(String message) {
+    public TeleDialogDoubleWithEditText setMessage(String message) {
         messageView.setText(message);
         return this;
     }
 
-    public TeleDialogSingleWithEditText setJustificationMode(int mode) {
+    public TeleDialogDoubleWithEditText setJustificationMode(int mode) {
         messageView.setJustificationMode(mode);
         return this;
     }
 
-    public TeleDialogSingleWithEditText setCancelable(boolean cancelable) {
+    public TeleDialogDoubleWithEditText setCancelable(boolean cancelable) {
         builder.setCancelable(cancelable);
         return this;
     }
 
-    public TeleDialogSingleWithEditText setDirection(TeleDirection teleDirection) {
+    public TeleDialogDoubleWithEditText setDirection(TeleDirection teleDirection) {
         if (teleDirection == TeleDirection.LTR)
             buttonGroup.setGravity(Gravity.RIGHT);
         else
@@ -94,19 +98,20 @@ public class TeleDialogSingleWithEditText {
         return this;
     }
 
-    public TeleDialogSingleWithEditText setOnClickListener(TeleDialogSingleWithEditTextListener listener) {
-        buttonView.setOnClickListener(v -> listener.onButtonClicked(Objects.requireNonNull(edittextView.getText()).toString()));
+    public TeleDialogDoubleWithEditText setOnClickListener(TeleDialogDoubleWithEditTextListener listener) {
+        btn1View.setOnClickListener(v -> listener.onFirstButtonClicked(Objects.requireNonNull(edittextView.getText()).toString()));
+        btn2View.setOnClickListener(v -> listener.onSecondButtonClicked(Objects.requireNonNull(edittextView.getText()).toString()));
         builder.setOnCancelListener(dialogInterface -> listener.onCanceled());
         return this;
     }
 
-    public TeleDialogSingleWithEditText setCardBackgroundColor(int cardBackgroundColor) {
+    public TeleDialogDoubleWithEditText setCardBackgroundColor(int cardBackgroundColor) {
         cardView.setCardBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
         view.findViewById(R.id.constraint).setBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
         return this;
     }
 
-    public TeleDialogSingleWithEditText setCardRadius(int cardRadius) {
+    public TeleDialogDoubleWithEditText setCardRadius(int cardRadius) {
         cardView.setRadius(TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 cardRadius,
@@ -115,23 +120,23 @@ public class TeleDialogSingleWithEditText {
         return this;
     }
 
-    public TeleDialogSingleWithEditText setButtonText(String buttonText) {
-        buttonView.setText(buttonText);
+    public TeleDialogDoubleWithEditText setButtonOneText(String buttonOneText) {
+        btn1View.setText(buttonOneText);
         return this;
     }
 
-    public TeleDialogSingleWithEditText setButtonTextColor(int buttonTextColor) {
-        buttonView.setTextColor(ContextCompat.getColor(context, buttonTextColor));
+    public TeleDialogDoubleWithEditText setButtonOneTextColor(int buttonOneTextColor) {
+        btn1View.setTextColor(ContextCompat.getColor(context, buttonOneTextColor));
         return this;
     }
 
-    public TeleDialogSingleWithEditText setButtonRippleColor(int buttonRippleColor) {
-        buttonView.setRippleColorResource(buttonRippleColor);
+    public TeleDialogDoubleWithEditText setButtonOneRippleColor(int buttonOneRippleColor) {
+        btn1View.setRippleColorResource(buttonOneRippleColor);
         return this;
     }
 
-    public TeleDialogSingleWithEditText setButtonCornerRadius(int radius) {
-        buttonView.setCornerRadius((int) TypedValue.applyDimension(
+    public TeleDialogDoubleWithEditText setButtonOneCornerRadius(int radius) {
+        btn1View.setCornerRadius((int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 radius,
                 context.getResources().getDisplayMetrics()
@@ -139,27 +144,51 @@ public class TeleDialogSingleWithEditText {
         return this;
     }
 
-    public TeleDialogSingleWithEditText setEditTextValue(String text) {
+    public TeleDialogDoubleWithEditText setButtonTwoText(String buttonTwoText) {
+        btn2View.setText(buttonTwoText);
+        return this;
+    }
+
+    public TeleDialogDoubleWithEditText setButtonTwoTextColor(int buttonTwoTextColor) {
+        btn2View.setTextColor(ContextCompat.getColor(context, buttonTwoTextColor));
+        return this;
+    }
+
+    public TeleDialogDoubleWithEditText setButtonTwoRippleColor(int buttonTwoRippleColor) {
+        btn2View.setRippleColorResource(buttonTwoRippleColor);
+        return this;
+    }
+
+    public TeleDialogDoubleWithEditText setButtonTwoCornerRadius(int radius) {
+        btn2View.setCornerRadius((int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                radius,
+                context.getResources().getDisplayMetrics()
+        ));
+        return this;
+    }
+
+    public TeleDialogDoubleWithEditText setEditTextValue(String text) {
         edittextView.setText(text);
         return this;
     }
 
-    public TeleDialogSingleWithEditText setEditTextColor(int color) {
+    public TeleDialogDoubleWithEditText setEditTextColor(int color) {
         edittextView.setTextColor(ContextCompat.getColor(context, color));
         return this;
     }
 
-    public TeleDialogSingleWithEditText setEditTextHint(String hint) {
+    public TeleDialogDoubleWithEditText setEditTextHint(String hint) {
         edittextView.setHint(hint);
         return this;
     }
 
-    public TeleDialogSingleWithEditText setEditTextHintColor(int color) {
+    public TeleDialogDoubleWithEditText setEditTextHintColor(int color) {
         edittextView.setHintTextColor(ContextCompat.getColor(context, color));
         return this;
     }
 
-    public TeleDialogSingleWithEditText setEditTextBackgroundColor(int color) {
+    public TeleDialogDoubleWithEditText setEditTextBackgroundColor(int color) {
         ColorStateList colorStateList = ColorStateList.valueOf(
                 ContextCompat.getColor(context, color)
         );
@@ -167,7 +196,7 @@ public class TeleDialogSingleWithEditText {
         return this;
     }
 
-    public TeleDialogSingleWithEditText setEditTextDrawable(int drawableID, int tintColor) {
+    public TeleDialogDoubleWithEditText setEditTextDrawable(int drawableID, int tintColor) {
         Drawable drawable = ContextCompat.getDrawable(context, drawableID);
         if (drawable != null) {
             drawable = drawable.mutate();

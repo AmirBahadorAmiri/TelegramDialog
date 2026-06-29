@@ -1,4 +1,4 @@
-package com.github.amirbahadoramiri.telegramdialog.twoedit;
+package com.github.amirbahadoramiri.telegramdialog.listeners;
 
 public interface TeleDialogDoubleWithEditTextListener {
         void onFirstButtonClicked(String text);

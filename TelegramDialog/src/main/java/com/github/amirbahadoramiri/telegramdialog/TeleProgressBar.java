@@ -1,4 +1,4 @@
-package com.github.amirbahadoramiri.telegramdialog.progressbarhorizontal;
+package com.github.amirbahadoramiri.telegramdialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -9,12 +9,12 @@ import android.widget.ProgressBar;
 
 import androidx.core.content.ContextCompat;
 
-import com.github.amirbahadoramiri.telegramdialog.R;
+import com.github.amirbahadoramiri.telegramdialog.listeners.TeleProgressBarListener;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.Objects;
 
-public class TeleHorizontalProgressBar {
+public class TeleProgressBar {
 
     private Context context;
     private Dialog builder;
@@ -23,43 +23,40 @@ public class TeleHorizontalProgressBar {
     private MaterialCardView cardView;
     private ProgressBar progressBarView;
 
-    public TeleHorizontalProgressBar(Context context) {
+    public TeleProgressBar(Context context) {
         this.context = context;
-        builder = new Dialog(context, R.style.LargeDialogStyle);
+        builder = new Dialog(context);
         Objects.requireNonNull(builder.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
-        view = LayoutInflater.from(context).inflate(R.layout.tele_horizontal_progressbar, null);
+        view = LayoutInflater.from(context).inflate(R.layout.tele_progressbar, null);
         builder.setContentView(view);
 
         cardView = view.findViewById(R.id.cardview);
         progressBarView = view.findViewById(R.id.progress_bar);
 
-        setMax(100);
-        setValue(30);
-        setProgressbarTint(R.color.main_blue);
-        setProgressbarBackgroundTint(R.color.main_blue_light);
+        setProgressbarIndeterminateTint(R.color.progressbar_indeterminate_tint);
         setCardRadius(16);
         setCardBackgroundColor(R.color.dialog_page_background);
         setCancelable(true);
 
     }
 
-    public TeleHorizontalProgressBar setCancelable(boolean cancelable) {
+    public TeleProgressBar setCancelable(boolean cancelable) {
         builder.setCancelable(cancelable);
         return this;
     }
 
-    public TeleHorizontalProgressBar setOnClickListener(TeleHorizontalProgressBarListener listener) {
+    public TeleProgressBar setOnClickListener(TeleProgressBarListener listener) {
         builder.setOnCancelListener(dialogInterface -> listener.onCanceled());
         return this;
     }
 
-    public TeleHorizontalProgressBar setCardBackgroundColor(int cardBackgroundColor) {
+    public TeleProgressBar setCardBackgroundColor(int cardBackgroundColor) {
         cardView.setCardBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
         view.findViewById(R.id.constraint).setBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
         return this;
     }
 
-    public TeleHorizontalProgressBar setCardRadius(int cardRadius) {
+    public TeleProgressBar setCardRadius(int cardRadius) {
         cardView.setRadius(TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 cardRadius,
@@ -68,23 +65,8 @@ public class TeleHorizontalProgressBar {
         return this;
     }
 
-    public TeleHorizontalProgressBar setProgressbarTint(int progressbarTint) {
-        progressBarView.setProgressTintList(ContextCompat.getColorStateList(context, progressbarTint));
-        return this;
-    }
-
-    public TeleHorizontalProgressBar setProgressbarBackgroundTint(int progressbarBackgroundTint) {
-        progressBarView.setProgressBackgroundTintList(ContextCompat.getColorStateList(context, progressbarBackgroundTint));
-        return this;
-    }
-
-    public TeleHorizontalProgressBar setMax(int progressbarMax) {
-        progressBarView.setMax(progressbarMax);
-        return this;
-    }
-
-    public TeleHorizontalProgressBar setValue(int progressbarValue) {
-        progressBarView.setProgress(progressbarValue);
+    public TeleProgressBar setProgressbarIndeterminateTint(int progressbarIndeterminateTint) {
+        progressBarView.setIndeterminateTintList(ContextCompat.getColorStateList(context, progressbarIndeterminateTint));
         return this;
     }
 
