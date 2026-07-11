@@ -10,12 +10,12 @@ import android.widget.ProgressBar;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
 
-import com.github.amirbahadoramiri.telegramdialog.listeners.TeleHorizontalProgressBarWithPercentListener;
+import com.github.amirbahadoramiri.telegramdialog.listeners.OnPercentageProgressListener;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.Objects;
 
-public class TeleHorizontalProgressBarWithPercent {
+public class TelegramPercentageProgressDialog {
 
     private Context context;
     private Dialog builder;
@@ -25,11 +25,11 @@ public class TeleHorizontalProgressBarWithPercent {
     private AppCompatTextView titleView, statusView;
     private ProgressBar progressBarView;
 
-    public TeleHorizontalProgressBarWithPercent(Context context) {
+    public TelegramPercentageProgressDialog(Context context) {
         this.context = context;
         builder = new Dialog(context, R.style.LargeDialogStyle);
         Objects.requireNonNull(builder.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
-        view = LayoutInflater.from(context).inflate(R.layout.tele_horizontal_progressbar_with_percent, null);
+        view = LayoutInflater.from(context).inflate(R.layout.telegram_percentage_progress_dialog, null);
         builder.setContentView(view);
 
         cardView = view.findViewById(R.id.cardview);
@@ -49,33 +49,33 @@ public class TeleHorizontalProgressBarWithPercent {
 
     }
 
-    public TeleHorizontalProgressBarWithPercent setTitle(String title) {
+    public TelegramPercentageProgressDialog setTitle(String title) {
         titleView.setText(title);
         return this;
     }
 
-    public TeleHorizontalProgressBarWithPercent setStatus(String status) {
+    public TelegramPercentageProgressDialog setStatus(String status) {
         statusView.setText(status);
         return this;
     }
 
-    public TeleHorizontalProgressBarWithPercent setCancelable(boolean cancelable) {
+    public TelegramPercentageProgressDialog setCancelable(boolean cancelable) {
         builder.setCancelable(cancelable);
         return this;
     }
 
-    public TeleHorizontalProgressBarWithPercent setOnClickListener(TeleHorizontalProgressBarWithPercentListener listener) {
+    public TelegramPercentageProgressDialog setOnClickListener(OnPercentageProgressListener listener) {
         builder.setOnCancelListener(dialogInterface -> listener.onCanceled());
         return this;
     }
 
-    public TeleHorizontalProgressBarWithPercent setCardBackgroundColor(int cardBackgroundColor) {
+    public TelegramPercentageProgressDialog setCardBackgroundColor(int cardBackgroundColor) {
         cardView.setCardBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
         view.findViewById(R.id.constraint).setBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
         return this;
     }
 
-    public TeleHorizontalProgressBarWithPercent setCardRadius(int cardRadius) {
+    public TelegramPercentageProgressDialog setCardRadius(int cardRadius) {
         cardView.setRadius(TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 cardRadius,
@@ -84,22 +84,22 @@ public class TeleHorizontalProgressBarWithPercent {
         return this;
     }
 
-    public TeleHorizontalProgressBarWithPercent setProgressbarTint(int progressbarTint) {
+    public TelegramPercentageProgressDialog setProgressbarTint(int progressbarTint) {
         progressBarView.setProgressTintList(ContextCompat.getColorStateList(context, progressbarTint));
         return this;
     }
 
-    public TeleHorizontalProgressBarWithPercent setProgressbarBackgroundTint(int progressbarBackgroundTint) {
+    public TelegramPercentageProgressDialog setProgressbarBackgroundTint(int progressbarBackgroundTint) {
         progressBarView.setProgressBackgroundTintList(ContextCompat.getColorStateList(context, progressbarBackgroundTint));
         return this;
     }
 
-    public TeleHorizontalProgressBarWithPercent setMax(int progressbarMax) {
+    public TelegramPercentageProgressDialog setMax(int progressbarMax) {
         progressBarView.setMax(progressbarMax);
         return this;
     }
 
-    public TeleHorizontalProgressBarWithPercent setValue(int progressbarValue) {
+    public TelegramPercentageProgressDialog setValue(int progressbarValue) {
         progressBarView.setProgress(progressbarValue);
         return this;
     }

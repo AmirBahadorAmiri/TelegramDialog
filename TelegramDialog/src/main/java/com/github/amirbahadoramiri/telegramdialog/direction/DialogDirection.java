@@ -1,6 +1,6 @@
 package com.github.amirbahadoramiri.telegramdialog.direction;
 
-public enum TeleDirection {
+public enum DialogDirection {
     LTR,
     RTL
 }

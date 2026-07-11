@@ -11,14 +11,14 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.content.ContextCompat;
 
-import com.github.amirbahadoramiri.telegramdialog.direction.TeleDirection;
-import com.github.amirbahadoramiri.telegramdialog.listeners.TeleDialogSingleListener;
+import com.github.amirbahadoramiri.telegramdialog.direction.DialogDirection;
+import com.github.amirbahadoramiri.telegramdialog.listeners.OnAlertListener;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.Objects;
 
-public class TeleDialogSingle {
+public class TelegramAlertDialog {
 
     private Context context;
     private Dialog builder;
@@ -29,11 +29,11 @@ public class TeleDialogSingle {
     private MaterialButton buttonView;
     private LinearLayoutCompat buttonGroup;
 
-    public TeleDialogSingle(Context context) {
+    public TelegramAlertDialog(Context context) {
         this.context = context;
         builder = new Dialog(context, R.style.LargeDialogStyle);
         Objects.requireNonNull(builder.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
-        view = LayoutInflater.from(context).inflate(R.layout.tele_dialog_single, null);
+        view = LayoutInflater.from(context).inflate(R.layout.telegram_alert_dialog, null);
         builder.setContentView(view);
 
         cardView = view.findViewById(R.id.cardview);
@@ -51,51 +51,51 @@ public class TeleDialogSingle {
         setCardRadius(16);
         setCardBackgroundColor(R.color.dialog_page_background);
         setCancelable(true);
-        setDirection(TeleDirection.LTR);
+        setDirection(DialogDirection.LTR);
 
     }
 
-    public TeleDialogSingle setTitle(String title) {
+    public TelegramAlertDialog setTitle(String title) {
         titleView.setText(title);
         return this;
     }
 
-    public TeleDialogSingle setMessage(String message) {
+    public TelegramAlertDialog setMessage(String message) {
         messageView.setText(message);
         return this;
     }
 
-    public TeleDialogSingle setJustificationMode(int mode) {
+    public TelegramAlertDialog setJustificationMode(int mode) {
         messageView.setJustificationMode(mode);
         return this;
     }
 
-    public TeleDialogSingle setCancelable(boolean cancelable) {
+    public TelegramAlertDialog setCancelable(boolean cancelable) {
         builder.setCancelable(cancelable);
         return this;
     }
 
-    public TeleDialogSingle setDirection(TeleDirection teleDirection) {
-        if (teleDirection == TeleDirection.LTR)
+    public TelegramAlertDialog setDirection(DialogDirection dialogDirection) {
+        if (dialogDirection == DialogDirection.LTR)
             buttonGroup.setGravity(Gravity.RIGHT);
         else
             buttonGroup.setGravity(Gravity.LEFT);
         return this;
     }
 
-    public TeleDialogSingle setOnClickListener(TeleDialogSingleListener listener) {
+    public TelegramAlertDialog setOnClickListener(OnAlertListener listener) {
         buttonView.setOnClickListener(v -> listener.onButtonClicked());
         builder.setOnCancelListener(dialogInterface -> listener.onCanceled());
         return this;
     }
 
-    public TeleDialogSingle setCardBackgroundColor(int cardBackgroundColor) {
+    public TelegramAlertDialog setCardBackgroundColor(int cardBackgroundColor) {
         cardView.setCardBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
         view.findViewById(R.id.constraint).setBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
         return this;
     }
 
-    public TeleDialogSingle setCardRadius(int cardRadius) {
+    public TelegramAlertDialog setCardRadius(int cardRadius) {
         cardView.setRadius(TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 cardRadius,
@@ -104,22 +104,22 @@ public class TeleDialogSingle {
         return this;
     }
 
-    public TeleDialogSingle setButtonText(String buttonText) {
+    public TelegramAlertDialog setButtonText(String buttonText) {
         buttonView.setText(buttonText);
         return this;
     }
 
-    public TeleDialogSingle setButtonTextColor(int buttonTextColor) {
+    public TelegramAlertDialog setButtonTextColor(int buttonTextColor) {
         buttonView.setTextColor(ContextCompat.getColor(context, buttonTextColor));
         return this;
     }
 
-    public TeleDialogSingle setButtonRippleColor(int buttonRippleColor) {
+    public TelegramAlertDialog setButtonRippleColor(int buttonRippleColor) {
         buttonView.setRippleColorResource(buttonRippleColor);
         return this;
     }
 
-    public TeleDialogSingle setButtonCornerRadius(int radius) {
+    public TelegramAlertDialog setButtonCornerRadius(int radius) {
         buttonView.setCornerRadius((int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 radius,

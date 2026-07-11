@@ -9,12 +9,12 @@ import android.widget.ProgressBar;
 
 import androidx.core.content.ContextCompat;
 
-import com.github.amirbahadoramiri.telegramdialog.listeners.TeleProgressBarListener;
+import com.github.amirbahadoramiri.telegramdialog.listeners.OnLoadingListener;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.Objects;
 
-public class TeleProgressBar {
+public class TelegramLoadingDialog {
 
     private Context context;
     private Dialog builder;
@@ -23,11 +23,11 @@ public class TeleProgressBar {
     private MaterialCardView cardView;
     private ProgressBar progressBarView;
 
-    public TeleProgressBar(Context context) {
+    public TelegramLoadingDialog(Context context) {
         this.context = context;
         builder = new Dialog(context);
         Objects.requireNonNull(builder.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
-        view = LayoutInflater.from(context).inflate(R.layout.tele_progressbar, null);
+        view = LayoutInflater.from(context).inflate(R.layout.telegram_loading_dialog, null);
         builder.setContentView(view);
 
         cardView = view.findViewById(R.id.cardview);
@@ -40,23 +40,23 @@ public class TeleProgressBar {
 
     }
 
-    public TeleProgressBar setCancelable(boolean cancelable) {
+    public TelegramLoadingDialog setCancelable(boolean cancelable) {
         builder.setCancelable(cancelable);
         return this;
     }
 
-    public TeleProgressBar setOnClickListener(TeleProgressBarListener listener) {
+    public TelegramLoadingDialog setOnClickListener(OnLoadingListener listener) {
         builder.setOnCancelListener(dialogInterface -> listener.onCanceled());
         return this;
     }
 
-    public TeleProgressBar setCardBackgroundColor(int cardBackgroundColor) {
+    public TelegramLoadingDialog setCardBackgroundColor(int cardBackgroundColor) {
         cardView.setCardBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
         view.findViewById(R.id.constraint).setBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
         return this;
     }
 
-    public TeleProgressBar setCardRadius(int cardRadius) {
+    public TelegramLoadingDialog setCardRadius(int cardRadius) {
         cardView.setRadius(TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 cardRadius,
@@ -65,7 +65,7 @@ public class TeleProgressBar {
         return this;
     }
 
-    public TeleProgressBar setProgressbarIndeterminateTint(int progressbarIndeterminateTint) {
+    public TelegramLoadingDialog setProgressbarIndeterminateTint(int progressbarIndeterminateTint) {
         progressBarView.setIndeterminateTintList(ContextCompat.getColorStateList(context, progressbarIndeterminateTint));
         return this;
     }

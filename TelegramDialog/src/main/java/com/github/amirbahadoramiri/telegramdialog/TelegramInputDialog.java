@@ -16,14 +16,14 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.ViewCompat;
 
-import com.github.amirbahadoramiri.telegramdialog.direction.TeleDirection;
-import com.github.amirbahadoramiri.telegramdialog.listeners.TeleDialogSingleWithEditTextListener;
+import com.github.amirbahadoramiri.telegramdialog.direction.DialogDirection;
+import com.github.amirbahadoramiri.telegramdialog.listeners.OnInputListener;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.Objects;
 
-public class TeleDialogSingleWithEditText {
+public class TelegramInputDialog {
 
     private Context context;
     private Dialog builder;
@@ -35,11 +35,11 @@ public class TeleDialogSingleWithEditText {
     private MaterialButton buttonView;
     private LinearLayoutCompat buttonGroup;
 
-    public TeleDialogSingleWithEditText(Context context) {
+    public TelegramInputDialog(Context context) {
         this.context = context;
         builder = new Dialog(context, R.style.LargeDialogStyle);
         Objects.requireNonNull(builder.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
-        view = LayoutInflater.from(context).inflate(R.layout.tele_dialog_single_with_edit_text, null);
+        view = LayoutInflater.from(context).inflate(R.layout.telegram_input_dialog, null);
         builder.setContentView(view);
 
         cardView = view.findViewById(R.id.cardview);
@@ -61,51 +61,51 @@ public class TeleDialogSingleWithEditText {
         setCardRadius(16);
         setCardBackgroundColor(R.color.dialog_page_background);
         setCancelable(true);
-        setDirection(TeleDirection.LTR);
+        setDirection(DialogDirection.LTR);
 
     }
 
-    public TeleDialogSingleWithEditText setTitle(String title) {
+    public TelegramInputDialog setTitle(String title) {
         titleView.setText(title);
         return this;
     }
 
-    public TeleDialogSingleWithEditText setMessage(String message) {
+    public TelegramInputDialog setMessage(String message) {
         messageView.setText(message);
         return this;
     }
 
-    public TeleDialogSingleWithEditText setJustificationMode(int mode) {
+    public TelegramInputDialog setJustificationMode(int mode) {
         messageView.setJustificationMode(mode);
         return this;
     }
 
-    public TeleDialogSingleWithEditText setCancelable(boolean cancelable) {
+    public TelegramInputDialog setCancelable(boolean cancelable) {
         builder.setCancelable(cancelable);
         return this;
     }
 
-    public TeleDialogSingleWithEditText setDirection(TeleDirection teleDirection) {
-        if (teleDirection == TeleDirection.LTR)
+    public TelegramInputDialog setDirection(DialogDirection dialogDirection) {
+        if (dialogDirection == DialogDirection.LTR)
             buttonGroup.setGravity(Gravity.RIGHT);
         else
             buttonGroup.setGravity(Gravity.LEFT);
         return this;
     }
 
-    public TeleDialogSingleWithEditText setOnClickListener(TeleDialogSingleWithEditTextListener listener) {
+    public TelegramInputDialog setOnClickListener(OnInputListener listener) {
         buttonView.setOnClickListener(v -> listener.onButtonClicked(Objects.requireNonNull(edittextView.getText()).toString()));
         builder.setOnCancelListener(dialogInterface -> listener.onCanceled());
         return this;
     }
 
-    public TeleDialogSingleWithEditText setCardBackgroundColor(int cardBackgroundColor) {
+    public TelegramInputDialog setCardBackgroundColor(int cardBackgroundColor) {
         cardView.setCardBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
         view.findViewById(R.id.constraint).setBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
         return this;
     }
 
-    public TeleDialogSingleWithEditText setCardRadius(int cardRadius) {
+    public TelegramInputDialog setCardRadius(int cardRadius) {
         cardView.setRadius(TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 cardRadius,
@@ -114,22 +114,22 @@ public class TeleDialogSingleWithEditText {
         return this;
     }
 
-    public TeleDialogSingleWithEditText setButtonText(String buttonText) {
+    public TelegramInputDialog setButtonText(String buttonText) {
         buttonView.setText(buttonText);
         return this;
     }
 
-    public TeleDialogSingleWithEditText setButtonTextColor(int buttonTextColor) {
+    public TelegramInputDialog setButtonTextColor(int buttonTextColor) {
         buttonView.setTextColor(ContextCompat.getColor(context, buttonTextColor));
         return this;
     }
 
-    public TeleDialogSingleWithEditText setButtonRippleColor(int buttonRippleColor) {
+    public TelegramInputDialog setButtonRippleColor(int buttonRippleColor) {
         buttonView.setRippleColorResource(buttonRippleColor);
         return this;
     }
 
-    public TeleDialogSingleWithEditText setButtonCornerRadius(int radius) {
+    public TelegramInputDialog setButtonCornerRadius(int radius) {
         buttonView.setCornerRadius((int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 radius,
@@ -138,27 +138,27 @@ public class TeleDialogSingleWithEditText {
         return this;
     }
 
-    public TeleDialogSingleWithEditText setEditTextValue(String text) {
+    public TelegramInputDialog setEditTextValue(String text) {
         edittextView.setText(text);
         return this;
     }
 
-    public TeleDialogSingleWithEditText setEditTextColor(int color) {
+    public TelegramInputDialog setEditTextColor(int color) {
         edittextView.setTextColor(ContextCompat.getColor(context, color));
         return this;
     }
 
-    public TeleDialogSingleWithEditText setEditTextHint(String hint) {
+    public TelegramInputDialog setEditTextHint(String hint) {
         edittextView.setHint(hint);
         return this;
     }
 
-    public TeleDialogSingleWithEditText setEditTextHintColor(int color) {
+    public TelegramInputDialog setEditTextHintColor(int color) {
         edittextView.setHintTextColor(ContextCompat.getColor(context, color));
         return this;
     }
 
-    public TeleDialogSingleWithEditText setEditTextBackgroundColor(int color) {
+    public TelegramInputDialog setEditTextBackgroundColor(int color) {
         ColorStateList colorStateList = ColorStateList.valueOf(
                 ContextCompat.getColor(context, color)
         );
@@ -166,7 +166,7 @@ public class TeleDialogSingleWithEditText {
         return this;
     }
 
-    public TeleDialogSingleWithEditText setEditTextDrawable(int drawableID, int tintColor) {
+    public TelegramInputDialog setEditTextDrawable(int drawableID, int tintColor) {
         Drawable drawable = ContextCompat.getDrawable(context, drawableID);
         if (drawable != null) {
             drawable = drawable.mutate();

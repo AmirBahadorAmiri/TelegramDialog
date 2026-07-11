@@ -1,5 +1,5 @@
 package com.github.amirbahadoramiri.telegramdialog.listeners;
 
-public interface TeleHorizontalProgressBarListener {
+public interface OnPercentageProgressListener {
     void onCanceled();
 }

@@ -1,6 +1,6 @@
 package com.github.amirbahadoramiri.telegramdialog.listeners;
 
-public interface TeleDialogSingleWithEditTextListener {
+public interface OnInputListener {
     void onButtonClicked(String text);
     default void onCanceled() {}
 }
