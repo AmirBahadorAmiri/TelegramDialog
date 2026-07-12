@@ -1,7 +1,7 @@
 package com.github.amirbahadoramiri.telegramdialog.listeners;
 
 public interface OnInputConfirmListener {
-        void onFirstButtonClicked(String text);
-        void onSecondButtonClicked(String text);
+        void onNegativeButtonClicked(String text);
+        void onPositiveButtonClicked(String text);
         default void onCanceled() {}
     }

@@ -1,5 +1,6 @@
 package com.github.amirbahadoramiri.telegramdialog;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -35,6 +36,7 @@ public class TelegramInputDialog {
     private MaterialButton buttonView;
     private LinearLayoutCompat buttonGroup;
 
+    @SuppressLint("InflateParams")
     public TelegramInputDialog(Context context) {
         this.context = context;
         builder = new Dialog(context, R.style.LargeDialogStyle);
@@ -51,15 +53,16 @@ public class TelegramInputDialog {
 
         setTitle("Title");
         setMessage("Message");
-        setEditTextColor(R.color.textcolor);
-        setEditTextHintColor(R.color.main_blue_light);
-        setEditTextBackgroundColor(R.color.main_blue_tint);
-        setButtonText("OK");
-        setButtonTextColor(R.color.main_blue);
-        setButtonRippleColor(R.color.main_blue_tint);
-        setButtonCornerRadius(16);
+        setEditTextColor(TelegramColors.getTextColor(context));
+        setEditTextHintColor(TelegramColors.getColor(TelegramColors.MAIN_BLUE_LIGHT));
+        setEditTextBackgroundColor(TelegramColors.getMainBlueTint(context));
+        setPositiveButtonText("OK");
+        setPositiveButtonTextColor(TelegramColors.getMainBlue());
+        setPositiveButtonRippleColor(TelegramColors.getMainBlueTint(context));
+        setPositiveButtonCornerRadius(16);
+        setPositiveButtonBackgroundColor(TelegramColors.getDialogBackground(context));
         setCardRadius(16);
-        setCardBackgroundColor(R.color.dialog_page_background);
+        setCardBackgroundColor(TelegramColors.getDialogBackground(context));
         setCancelable(true);
         setDirection(DialogDirection.LTR);
 
@@ -70,8 +73,18 @@ public class TelegramInputDialog {
         return this;
     }
 
+    public TelegramInputDialog setTitleTextColor(int color) {
+        titleView.setTextColor(color);
+        return this;
+    }
+
     public TelegramInputDialog setMessage(String message) {
         messageView.setText(message);
+        return this;
+    }
+
+    public TelegramInputDialog setMessageTextColor(int color) {
+        messageView.setTextColor(color);
         return this;
     }
 
@@ -94,14 +107,14 @@ public class TelegramInputDialog {
     }
 
     public TelegramInputDialog setOnClickListener(OnInputListener listener) {
-        buttonView.setOnClickListener(v -> listener.onButtonClicked(Objects.requireNonNull(edittextView.getText()).toString()));
+        buttonView.setOnClickListener(v -> listener.onPositiveButtonClicked(Objects.requireNonNull(edittextView.getText()).toString()));
         builder.setOnCancelListener(dialogInterface -> listener.onCanceled());
         return this;
     }
 
-    public TelegramInputDialog setCardBackgroundColor(int cardBackgroundColor) {
-        cardView.setCardBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
-        view.findViewById(R.id.constraint).setBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
+    public TelegramInputDialog setCardBackgroundColor(int color) {
+        cardView.setCardBackgroundColor(color);
+        view.findViewById(R.id.constraint).setBackgroundColor(color);
         return this;
     }
 
@@ -114,27 +127,32 @@ public class TelegramInputDialog {
         return this;
     }
 
-    public TelegramInputDialog setButtonText(String buttonText) {
+    public TelegramInputDialog setPositiveButtonText(String buttonText) {
         buttonView.setText(buttonText);
         return this;
     }
 
-    public TelegramInputDialog setButtonTextColor(int buttonTextColor) {
-        buttonView.setTextColor(ContextCompat.getColor(context, buttonTextColor));
+    public TelegramInputDialog setPositiveButtonTextColor(int color) {
+        buttonView.setTextColor(color);
         return this;
     }
 
-    public TelegramInputDialog setButtonRippleColor(int buttonRippleColor) {
-        buttonView.setRippleColorResource(buttonRippleColor);
+    public TelegramInputDialog setPositiveButtonRippleColor(int color) {
+        buttonView.setRippleColor(ColorStateList.valueOf(color));
         return this;
     }
 
-    public TelegramInputDialog setButtonCornerRadius(int radius) {
+    public TelegramInputDialog setPositiveButtonCornerRadius(int radius) {
         buttonView.setCornerRadius((int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 radius,
                 context.getResources().getDisplayMetrics()
         ));
+        return this;
+    }
+
+    public TelegramInputDialog setPositiveButtonBackgroundColor(int color) {
+        buttonView.setBackgroundTintList(ColorStateList.valueOf(color));
         return this;
     }
 
@@ -144,7 +162,7 @@ public class TelegramInputDialog {
     }
 
     public TelegramInputDialog setEditTextColor(int color) {
-        edittextView.setTextColor(ContextCompat.getColor(context, color));
+        edittextView.setTextColor(color);
         return this;
     }
 
@@ -154,14 +172,12 @@ public class TelegramInputDialog {
     }
 
     public TelegramInputDialog setEditTextHintColor(int color) {
-        edittextView.setHintTextColor(ContextCompat.getColor(context, color));
+        edittextView.setHintTextColor(color);
         return this;
     }
 
     public TelegramInputDialog setEditTextBackgroundColor(int color) {
-        ColorStateList colorStateList = ColorStateList.valueOf(
-                ContextCompat.getColor(context, color)
-        );
+        ColorStateList colorStateList = ColorStateList.valueOf(color);
         ViewCompat.setBackgroundTintList(edittextView, colorStateList);
         return this;
     }
@@ -170,7 +186,7 @@ public class TelegramInputDialog {
         Drawable drawable = ContextCompat.getDrawable(context, drawableID);
         if (drawable != null) {
             drawable = drawable.mutate();
-            DrawableCompat.setTint(drawable, ContextCompat.getColor(context, tintColor));
+            DrawableCompat.setTint(drawable, tintColor);
             edittextView.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
         }
         return this;

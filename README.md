@@ -1,14 +1,19 @@
-<h2>📌 TelegramDialog</h2>
+## 📌 TelegramDialog
 
 TelegramDialog is a customizable Android dialog library inspired by Telegram style dialogs.
-It provides modern, clean, and flexible dialogs with one button, two buttons, edit text support, and a custom progress dialog.
+It provides modern, clean, and flexible dialogs with positive/negative buttons, edit text support, and various progress dialogs.
 
-✨ Built with Kotlin<br>
-✨ Fully customizable<br>
-✨ RTL & LTR support<br>
-✨ Lightweight & easy to use<br><br>
+✨ Built with Java & Kotlin support
 
-📦 Installation (JitPack)
+✨ Fully customizable (Colors, Radius, Ripple)
+
+✨ Native Dark Mode support via `TelegramColors`
+
+✨ RTL & LTR support
+
+✨ Lightweight & easy to use<br>
+
+### 📦 Installation (JitPack)
 
 Add JitPack to your settings.gradle:
 ```gradle
@@ -20,136 +25,134 @@ dependencyResolutionManagement {
 ```
 Then add the dependency:
 ```gradle
-implementation("com.github.AmirBahadorAmiri:TelegramDialog:1.3.2")
+implementation("com.github.AmirBahadorAmiri:TelegramDialog:2.0.0")
 ```
 🎯 Features
 
-✅ One Button Dialog
+✅ ***TelegramAlertDialog***
 
-✅ Two Button Dialog
+✅ ***TelegramConfirmDialog***
 
-✅ Dialog with EditText
+✅ ***TelegramInputDialog***
 
-✅ RTL & LTR Direction Support
+✅ ***TelegramInputConfirmDialog***
 
-✅ Customizable Colors & Radius
+✅ ***TelegramLoadingDialog***
 
-✅ Medium Progress Dialog
+✅ ***TelegramProgressDialog***
 
-✅ Ripple & Tint Support
-<br><br><br>
-<h2>🖼 Preview</h2>
-🔹 One Button Dialog
-<br><br>
-<img width="120" src="https://github.com/user-attachments/assets/af807cf0-6fb7-41cb-ab72-b6b8a0e7dd90" />
-<img width="120" src="https://github.com/user-attachments/assets/e0dac78b-6f32-40a5-80d9-ba68cd7999ec" />
-<br><br>
+✅ ***TelegramPercentageProgressDialog***
 
+✅ ***RTL & LTR Direction Support***
+<br>
+
+<h2>🖼 Preview & Usage</h2>
+
+https://github.com/user-attachments/assets/5d76692d-769e-4e0f-bcfe-98a4d424968c
+
+<br><br><br><br>
+
+### 🔹 Alert Dialog
 ```kotlin
-val dialog = TeleDialogSingle(this)
+val dialog = TelegramAlertDialog(this)
     .setTitle("Delete message")
     .setMessage("Are you sure you want to delete this message?")
-    .setButtonText("Delete")
-    .setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD)
+    .setPositiveButtonText("Delete")
+    .setPositiveButtonTextColor(TelegramColors.getMainBlue())
+    .setCardRadius(16)
     .setCancelable(true)
 
-dialog.setOnClickListener(object : OneButtonListener {
-    override fun onButtonClicked() {
+dialog.setOnClickListener(object : OnAlertListener {
+    override fun onPositiveButtonClicked() {
         dialog.dismiss()
     }
 })
 
 dialog.show()
-
 ```
-<br><br><br>
-🔹 Two Button Dialog<br><br>
-<img width="120" src="https://github.com/user-attachments/assets/a2c99a8f-a2be-411b-9888-092ce42089b4" />
-<img width="120" src="https://github.com/user-attachments/assets/a9753b0e-b38a-4190-b37e-06bd448ae9c8" />
-<br><br>
-```kotlin
 
-val dialog = TeleDialogDouble(this)
+<br>
+
+### 🔹 Confirm Dialog
+```kotlin
+val dialog = TelegramConfirmDialog(this)
     .setTitle("Delete message")
     .setMessage("Are you sure?")
-    .setButtonOneText("Cancel")
-    .setButtonTwoText("Delete")
+    .setNegativeButtonText("Cancel")
+    .setPositiveButtonText("Delete")
+    .setPositiveButtonTextColor(TelegramColors.getMainRed())
 
-dialog.setOnClickListener(object : TwoButtonListener {
-    override fun onFirstButtonClicked() { dialog.dismiss() }
-    override fun onSecondButtonClicked() { dialog.dismiss() }
+dialog.setOnClickListener(object : OnConfirmListener {
+    override fun onNegativeButtonClicked() { dialog.dismiss() }
+    override fun onPositiveButtonClicked() { 
+        // Do something
+        dialog.dismiss() 
+    }
 })
 
 dialog.show()
-
 ```
-<br><br><br>
-🔹 Dialog With EditText<br><br>
-<img width="120" src="https://github.com/user-attachments/assets/310e7bb2-24f1-41f2-bc52-c7ba125ba15c" />
-<img width="120" src="https://github.com/user-attachments/assets/6782e750-781f-40fe-8bba-8a70804c7921" />
-<br><br>
-```kotlin
 
-val dialog = TeleDialogSingleWithEditText(this)
+<br>
+
+### 🔹 Input Dialog
+```kotlin
+val dialog = TelegramInputDialog(this)
     .setTitle("Input")
     .setEditTextHint("Type something...")
-    .setButtonText("Submit")
+    .setPositiveButtonText("Submit")
+    .setEditTextBackgroundColor(TelegramColors.getMainBlueTint(this))
 
-dialog.setOnClickListener(object : OneButtonWithEditTextListener {
-    override fun onButtonClicked(text: String) {
+dialog.setOnClickListener(object : OnInputListener {
+    override fun onPositiveButtonClicked(text: String) {
+        Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
         dialog.dismiss()
     }
 })
 
 dialog.show()
-
 ```
-<br><br><br>
-🔹 Progress Dialog<br><br>
-<img width="120" src="https://github.com/user-attachments/assets/231c5428-f134-4eff-afa8-0fd0db0a50e8" />
-<img width="120" src="https://github.com/user-attachments/assets/4b647f3b-5f04-48ff-9bbc-64f124683aa1" />
-<img width="120" src="https://github.com/user-attachments/assets/1549520b-c62b-42a4-b8bc-778ccb1478ba" />
 
-<br><br><br>
+<br>
+
+### 🔹 Progress Dialogs
 ```kotlin
+// Loading
+val loading = TelegramLoadingDialog(this)
+    .setProgressbarIndeterminateTint(TelegramColors.getMainBlue())
+    .show()
 
-val dialog = TeleProgressBar(this)
-    .setCancelable(true)
-    .setProgressbarIndeterminateTint(R.color.main_blue)
-
-dialog.show()
-
+// Percentage Progress
+val progress = TelegramPercentageProgressDialog(this)
+    .setTitle("Downloading...")
+    .setStatus("30%")
+    .setValue(30)
+    .show()
 ```
-<br><br><br>
 
-**All Classes Can Use**
-* TeleDialogSingle
-* TeleDialogDouble
-* TeleDialogSingleWithEditText
-* TeleDialogDoubleWithEditText
-* TeleProgressBar
-* TeleHorizontalProgressBar
-* TeleHorizontalProgressBarWithPercent
+<br><br>
+🎨 Color Management
 
-<br><br><br>
+The library now uses `TelegramColors` for smart color management and Dark Mode support without needing a `colors.xml` file in your project.
+
+```kotlin
+.setPositiveButtonBackgroundColor(TelegramColors.getMainBlue())
+.setCardBackgroundColor(TelegramColors.getDialogBackground(this))
+```
+
+<br>
 🌍 RTL Support
 
-Supports both LTR (English) and RTL (Persian, Arabic) layout directions.
+Supports both LTR and RTL (Persian, Arabic) layout directions.
 ```kotlin
-.setDirection(DialogDirection.LEFT)
+.setDirection(DialogDirection.RTL)
 ```
-<br><br>
-* Text Justification
-```kotlin
-.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD)
-```
-<br><br>
 
+<br><br>
 🤝 Contributing
 
-Pull requests are welcome.
-If you find a bug or have suggestions, feel free to open an issue.
-<br><br>
+Pull requests are welcome. If you find a bug or have suggestions, feel free to open an issue.
+
 ⭐ Support
 
 If you like this project, please consider giving it a star on GitHub ⭐

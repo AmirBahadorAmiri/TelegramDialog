@@ -1,6 +1,6 @@
 package com.github.amirbahadoramiri.telegramdialog.listeners;
 
 public interface OnAlertListener {
-    void onButtonClicked();
+    void onPositiveButtonClicked();
     default void onCanceled() {}
 }

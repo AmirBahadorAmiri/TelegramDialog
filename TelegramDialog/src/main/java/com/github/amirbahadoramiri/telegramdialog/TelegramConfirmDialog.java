@@ -1,7 +1,9 @@
 package com.github.amirbahadoramiri.telegramdialog;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -9,7 +11,6 @@ import android.view.View;
 
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.core.content.ContextCompat;
 
 import com.github.amirbahadoramiri.telegramdialog.direction.DialogDirection;
 import com.github.amirbahadoramiri.telegramdialog.listeners.OnConfirmListener;
@@ -29,6 +30,7 @@ public class TelegramConfirmDialog {
     private MaterialButton btn1View, btn2View;
     private LinearLayoutCompat buttonGroup;
 
+    @SuppressLint("InflateParams")
     public TelegramConfirmDialog(Context context) {
         this.context = context;
         builder = new Dialog(context, R.style.LargeDialogStyle);
@@ -45,16 +47,18 @@ public class TelegramConfirmDialog {
 
         setTitle("Title");
         setMessage("Message");
-        setButtonOneText("NO");
-        setButtonOneTextColor(R.color.main_blue);
-        setButtonOneRippleColor(R.color.main_blue_tint);
-        setButtonOneCornerRadius(16);
-        setButtonTwoText("OK");
-        setButtonTwoTextColor(R.color.main_red);
-        setButtonTwoRippleColor(R.color.main_red_tint);
-        setButtonTwoCornerRadius(16);
+        setNegativeButtonText("NO");
+        setNegativeButtonTextColor(TelegramColors.getMainBlue());
+        setNegativeButtonRippleColor(TelegramColors.getMainBlueTint(context));
+        setNegativeButtonCornerRadius(16);
+        setNegativeButtonBackgroundColor(TelegramColors.getDialogBackground(context));
+        setPositiveButtonText("OK");
+        setPositiveButtonTextColor(TelegramColors.getMainRed());
+        setPositiveButtonRippleColor(TelegramColors.getMainRedTint(context));
+        setPositiveButtonCornerRadius(16);
+        setPositiveButtonBackgroundColor(TelegramColors.getDialogBackground(context));
         setCardRadius(16);
-        setCardBackgroundColor(R.color.dialog_page_background);
+        setCardBackgroundColor(TelegramColors.getDialogBackground(context));
         setCancelable(true);
         setDirection(DialogDirection.LTR);
 
@@ -65,8 +69,18 @@ public class TelegramConfirmDialog {
         return this;
     }
 
+    public TelegramConfirmDialog setTitleTextColor(int color) {
+        titleView.setTextColor(color);
+        return this;
+    }
+
     public TelegramConfirmDialog setMessage(String message) {
         messageView.setText(message);
+        return this;
+    }
+
+    public TelegramConfirmDialog setMessageTextColor(int color) {
+        messageView.setTextColor(color);
         return this;
     }
 
@@ -89,15 +103,15 @@ public class TelegramConfirmDialog {
     }
 
     public TelegramConfirmDialog setOnClickListener(OnConfirmListener listener) {
-        btn1View.setOnClickListener(v -> listener.onFirstButtonClicked());
-        btn2View.setOnClickListener(v -> listener.onSecondButtonClicked());
+        btn1View.setOnClickListener(v -> listener.onNegativeButtonClicked());
+        btn2View.setOnClickListener(v -> listener.onPositiveButtonClicked());
         builder.setOnCancelListener(dialogInterface -> listener.onCanceled());
         return this;
     }
 
-    public TelegramConfirmDialog setCardBackgroundColor(int cardBackgroundColor) {
-        cardView.setCardBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
-        view.findViewById(R.id.constraint).setBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
+    public TelegramConfirmDialog setCardBackgroundColor(int color) {
+        cardView.setCardBackgroundColor(color);
+        view.findViewById(R.id.constraint).setBackgroundColor(color);
         return this;
     }
 
@@ -110,22 +124,22 @@ public class TelegramConfirmDialog {
         return this;
     }
 
-    public TelegramConfirmDialog setButtonOneText(String buttonOneText) {
+    public TelegramConfirmDialog setNegativeButtonText(String buttonOneText) {
         btn1View.setText(buttonOneText);
         return this;
     }
 
-    public TelegramConfirmDialog setButtonOneTextColor(int buttonOneTextColor) {
-        btn1View.setTextColor(ContextCompat.getColor(context, buttonOneTextColor));
+    public TelegramConfirmDialog setNegativeButtonTextColor(int color) {
+        btn1View.setTextColor(color);
         return this;
     }
 
-    public TelegramConfirmDialog setButtonOneRippleColor(int buttonOneRippleColor) {
-        btn1View.setRippleColorResource(buttonOneRippleColor);
+    public TelegramConfirmDialog setNegativeButtonRippleColor(int color) {
+        btn1View.setRippleColor(ColorStateList.valueOf(color));
         return this;
     }
 
-    public TelegramConfirmDialog setButtonOneCornerRadius(int radius) {
+    public TelegramConfirmDialog setNegativeButtonCornerRadius(int radius) {
         btn1View.setCornerRadius((int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 radius,
@@ -134,27 +148,37 @@ public class TelegramConfirmDialog {
         return this;
     }
 
-    public TelegramConfirmDialog setButtonTwoText(String buttonTwoText) {
+    public TelegramConfirmDialog setPositiveButtonText(String buttonTwoText) {
         btn2View.setText(buttonTwoText);
         return this;
     }
 
-    public TelegramConfirmDialog setButtonTwoTextColor(int buttonTwoTextColor) {
-        btn2View.setTextColor(ContextCompat.getColor(context, buttonTwoTextColor));
+    public TelegramConfirmDialog setPositiveButtonTextColor(int color) {
+        btn2View.setTextColor(color);
         return this;
     }
 
-    public TelegramConfirmDialog setButtonTwoRippleColor(int buttonTwoRippleColor) {
-        btn2View.setRippleColorResource(buttonTwoRippleColor);
+    public TelegramConfirmDialog setPositiveButtonRippleColor(int color) {
+        btn2View.setRippleColor(ColorStateList.valueOf(color));
         return this;
     }
 
-    public TelegramConfirmDialog setButtonTwoCornerRadius(int radius) {
+    public TelegramConfirmDialog setPositiveButtonCornerRadius(int radius) {
         btn2View.setCornerRadius((int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 radius,
                 context.getResources().getDisplayMetrics()
         ));
+        return this;
+    }
+
+    public TelegramConfirmDialog setNegativeButtonBackgroundColor(int color) {
+        btn1View.setBackgroundTintList(ColorStateList.valueOf(color));
+        return this;
+    }
+
+    public TelegramConfirmDialog setPositiveButtonBackgroundColor(int color) {
+        btn2View.setBackgroundTintList(ColorStateList.valueOf(color));
         return this;
     }
 

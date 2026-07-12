@@ -2,12 +2,11 @@ package com.github.amirbahadoramiri.telegramdialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
-
-import androidx.core.content.ContextCompat;
 
 import com.github.amirbahadoramiri.telegramdialog.listeners.OnProgressListener;
 import com.google.android.material.card.MaterialCardView;
@@ -35,10 +34,10 @@ public class TelegramProgressDialog {
 
         setMax(100);
         setValue(30);
-        setProgressbarTint(R.color.main_blue);
-        setProgressbarBackgroundTint(R.color.main_blue_light);
+        setProgressbarTint(TelegramColors.getMainBlue());
+        setProgressbarBackgroundTint(TelegramColors.getColor(TelegramColors.MAIN_BLUE_LIGHT));
         setCardRadius(16);
-        setCardBackgroundColor(R.color.dialog_page_background);
+        setCardBackgroundColor(TelegramColors.getDialogBackground(context));
         setCancelable(true);
 
     }
@@ -53,9 +52,9 @@ public class TelegramProgressDialog {
         return this;
     }
 
-    public TelegramProgressDialog setCardBackgroundColor(int cardBackgroundColor) {
-        cardView.setCardBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
-        view.findViewById(R.id.constraint).setBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
+    public TelegramProgressDialog setCardBackgroundColor(int color) {
+        cardView.setCardBackgroundColor(color);
+        view.findViewById(R.id.constraint).setBackgroundColor(color);
         return this;
     }
 
@@ -68,13 +67,13 @@ public class TelegramProgressDialog {
         return this;
     }
 
-    public TelegramProgressDialog setProgressbarTint(int progressbarTint) {
-        progressBarView.setProgressTintList(ContextCompat.getColorStateList(context, progressbarTint));
+    public TelegramProgressDialog setProgressbarTint(int color) {
+        progressBarView.setProgressTintList(ColorStateList.valueOf(color));
         return this;
     }
 
-    public TelegramProgressDialog setProgressbarBackgroundTint(int progressbarBackgroundTint) {
-        progressBarView.setProgressBackgroundTintList(ContextCompat.getColorStateList(context, progressbarBackgroundTint));
+    public TelegramProgressDialog setProgressbarBackgroundTint(int color) {
+        progressBarView.setProgressBackgroundTintList(ColorStateList.valueOf(color));
         return this;
     }
 

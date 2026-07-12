@@ -2,13 +2,13 @@ package com.github.amirbahadoramiri.telegramdialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.core.content.ContextCompat;
 
 import com.github.amirbahadoramiri.telegramdialog.listeners.OnPercentageProgressListener;
 import com.google.android.material.card.MaterialCardView;
@@ -41,10 +41,10 @@ public class TelegramPercentageProgressDialog {
         setStatus("30%");
         setMax(100);
         setValue(30);
-        setProgressbarTint(R.color.main_blue);
-        setProgressbarBackgroundTint(R.color.main_blue_light);
+        setProgressbarTint(TelegramColors.getMainBlue());
+        setProgressbarBackgroundTint(TelegramColors.getColor(TelegramColors.MAIN_BLUE_LIGHT));
         setCardRadius(16);
-        setCardBackgroundColor(R.color.dialog_page_background);
+        setCardBackgroundColor(TelegramColors.getDialogBackground(context));
         setCancelable(true);
 
     }
@@ -54,8 +54,18 @@ public class TelegramPercentageProgressDialog {
         return this;
     }
 
+    public TelegramPercentageProgressDialog setTitleTextColor(int color) {
+        titleView.setTextColor(color);
+        return this;
+    }
+
     public TelegramPercentageProgressDialog setStatus(String status) {
         statusView.setText(status);
+        return this;
+    }
+
+    public TelegramPercentageProgressDialog setStatusTextColor(int color) {
+        statusView.setTextColor(color);
         return this;
     }
 
@@ -69,9 +79,9 @@ public class TelegramPercentageProgressDialog {
         return this;
     }
 
-    public TelegramPercentageProgressDialog setCardBackgroundColor(int cardBackgroundColor) {
-        cardView.setCardBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
-        view.findViewById(R.id.constraint).setBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
+    public TelegramPercentageProgressDialog setCardBackgroundColor(int color) {
+        cardView.setCardBackgroundColor(color);
+        view.findViewById(R.id.constraint).setBackgroundColor(color);
         return this;
     }
 
@@ -84,13 +94,13 @@ public class TelegramPercentageProgressDialog {
         return this;
     }
 
-    public TelegramPercentageProgressDialog setProgressbarTint(int progressbarTint) {
-        progressBarView.setProgressTintList(ContextCompat.getColorStateList(context, progressbarTint));
+    public TelegramPercentageProgressDialog setProgressbarTint(int color) {
+        progressBarView.setProgressTintList(ColorStateList.valueOf(color));
         return this;
     }
 
-    public TelegramPercentageProgressDialog setProgressbarBackgroundTint(int progressbarBackgroundTint) {
-        progressBarView.setProgressBackgroundTintList(ContextCompat.getColorStateList(context, progressbarBackgroundTint));
+    public TelegramPercentageProgressDialog setProgressbarBackgroundTint(int color) {
+        progressBarView.setProgressBackgroundTintList(ColorStateList.valueOf(color));
         return this;
     }
 

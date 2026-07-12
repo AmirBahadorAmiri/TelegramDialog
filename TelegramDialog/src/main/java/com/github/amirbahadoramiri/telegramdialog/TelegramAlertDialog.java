@@ -1,7 +1,9 @@
 package com.github.amirbahadoramiri.telegramdialog;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -9,7 +11,6 @@ import android.view.View;
 
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.core.content.ContextCompat;
 
 import com.github.amirbahadoramiri.telegramdialog.direction.DialogDirection;
 import com.github.amirbahadoramiri.telegramdialog.listeners.OnAlertListener;
@@ -29,6 +30,7 @@ public class TelegramAlertDialog {
     private MaterialButton buttonView;
     private LinearLayoutCompat buttonGroup;
 
+    @SuppressLint("InflateParams")
     public TelegramAlertDialog(Context context) {
         this.context = context;
         builder = new Dialog(context, R.style.LargeDialogStyle);
@@ -44,12 +46,13 @@ public class TelegramAlertDialog {
 
         setTitle("Title");
         setMessage("Message");
-        setButtonText("OK");
-        setButtonTextColor(R.color.main_blue);
-        setButtonRippleColor(R.color.main_blue_tint);
-        setButtonCornerRadius(16);
+        setPositiveButtonText("OK");
+        setPositiveButtonTextColor(TelegramColors.getMainBlue());
+        setPositiveButtonRippleColor(TelegramColors.getMainBlueTint(context));
+        setPositiveButtonCornerRadius(16);
+        setPositiveButtonBackgroundColor(TelegramColors.getDialogBackground(context));
         setCardRadius(16);
-        setCardBackgroundColor(R.color.dialog_page_background);
+        setCardBackgroundColor(TelegramColors.getDialogBackground(context));
         setCancelable(true);
         setDirection(DialogDirection.LTR);
 
@@ -60,8 +63,18 @@ public class TelegramAlertDialog {
         return this;
     }
 
+    public TelegramAlertDialog setTitleTextColor(int color) {
+        titleView.setTextColor(color);
+        return this;
+    }
+
     public TelegramAlertDialog setMessage(String message) {
         messageView.setText(message);
+        return this;
+    }
+
+    public TelegramAlertDialog setMessageTextColor(int color) {
+        messageView.setTextColor(color);
         return this;
     }
 
@@ -84,14 +97,14 @@ public class TelegramAlertDialog {
     }
 
     public TelegramAlertDialog setOnClickListener(OnAlertListener listener) {
-        buttonView.setOnClickListener(v -> listener.onButtonClicked());
+        buttonView.setOnClickListener(v -> listener.onPositiveButtonClicked());
         builder.setOnCancelListener(dialogInterface -> listener.onCanceled());
         return this;
     }
 
-    public TelegramAlertDialog setCardBackgroundColor(int cardBackgroundColor) {
-        cardView.setCardBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
-        view.findViewById(R.id.constraint).setBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
+    public TelegramAlertDialog setCardBackgroundColor(int color) {
+        cardView.setCardBackgroundColor(color);
+        view.findViewById(R.id.constraint).setBackgroundColor(color);
         return this;
     }
 
@@ -104,27 +117,32 @@ public class TelegramAlertDialog {
         return this;
     }
 
-    public TelegramAlertDialog setButtonText(String buttonText) {
+    public TelegramAlertDialog setPositiveButtonText(String buttonText) {
         buttonView.setText(buttonText);
         return this;
     }
 
-    public TelegramAlertDialog setButtonTextColor(int buttonTextColor) {
-        buttonView.setTextColor(ContextCompat.getColor(context, buttonTextColor));
+    public TelegramAlertDialog setPositiveButtonTextColor(int color) {
+        buttonView.setTextColor(color);
         return this;
     }
 
-    public TelegramAlertDialog setButtonRippleColor(int buttonRippleColor) {
-        buttonView.setRippleColorResource(buttonRippleColor);
+    public TelegramAlertDialog setPositiveButtonRippleColor(int color) {
+        buttonView.setRippleColor(ColorStateList.valueOf(color));
         return this;
     }
 
-    public TelegramAlertDialog setButtonCornerRadius(int radius) {
+    public TelegramAlertDialog setPositiveButtonCornerRadius(int radius) {
         buttonView.setCornerRadius((int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 radius,
                 context.getResources().getDisplayMetrics()
         ));
+        return this;
+    }
+
+    public TelegramAlertDialog setPositiveButtonBackgroundColor(int color) {
+        buttonView.setBackgroundTintList(ColorStateList.valueOf(color));
         return this;
     }
 
