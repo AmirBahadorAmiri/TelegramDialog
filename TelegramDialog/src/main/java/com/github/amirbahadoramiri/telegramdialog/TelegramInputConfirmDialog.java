@@ -1,5 +1,6 @@
 package com.github.amirbahadoramiri.telegramdialog;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -35,6 +36,7 @@ public class TelegramInputConfirmDialog {
     private MaterialButton btn1View, btn2View;
     private LinearLayoutCompat buttonGroup;
 
+    @SuppressLint("InflateParams")
     public TelegramInputConfirmDialog(Context context) {
         this.context = context;
         builder = new Dialog(context, R.style.LargeDialogStyle);
@@ -52,19 +54,21 @@ public class TelegramInputConfirmDialog {
 
         setTitle("Title");
         setMessage("Message");
-        setEditTextColor(R.color.textcolor);
-        setEditTextHintColor(R.color.main_blue_light);
-        setEditTextBackgroundColor(R.color.main_blue_tint);
-        setButtonOneText("NO");
-        setButtonOneTextColor(R.color.main_blue);
-        setButtonOneRippleColor(R.color.main_blue_tint);
-        setButtonOneCornerRadius(16);
-        setButtonTwoText("OK");
-        setButtonTwoTextColor(R.color.main_red);
-        setButtonTwoRippleColor(R.color.main_red_tint);
-        setButtonTwoCornerRadius(16);
+        setEditTextColor(TelegramColors.getTextColor(context));
+        setEditTextHintColor(TelegramColors.getColor(TelegramColors.MAIN_BLUE_LIGHT));
+        setEditTextBackgroundColor(TelegramColors.getMainBlueTint(context));
+        setNegativeButtonText("NO");
+        setNegativeButtonTextColor(TelegramColors.getMainBlue());
+        setNegativeButtonRippleColor(TelegramColors.getMainBlueTint(context));
+        setNegativeButtonCornerRadius(16);
+        setNegativeButtonBackgroundColor(TelegramColors.getDialogBackground(context));
+        setPositiveButtonText("OK");
+        setPositiveButtonTextColor(TelegramColors.getMainRed());
+        setPositiveButtonRippleColor(TelegramColors.getMainRedTint(context));
+        setPositiveButtonCornerRadius(16);
+        setPositiveButtonBackgroundColor(TelegramColors.getDialogBackground(context));
         setCardRadius(16);
-        setCardBackgroundColor(R.color.dialog_page_background);
+        setCardBackgroundColor(TelegramColors.getDialogBackground(context));
         setCancelable(true);
         setDirection(DialogDirection.LTR);
 
@@ -75,8 +79,18 @@ public class TelegramInputConfirmDialog {
         return this;
     }
 
+    public TelegramInputConfirmDialog setTitleTextColor(int color) {
+        titleView.setTextColor(color);
+        return this;
+    }
+
     public TelegramInputConfirmDialog setMessage(String message) {
         messageView.setText(message);
+        return this;
+    }
+
+    public TelegramInputConfirmDialog setMessageTextColor(int color) {
+        messageView.setTextColor(color);
         return this;
     }
 
@@ -99,15 +113,15 @@ public class TelegramInputConfirmDialog {
     }
 
     public TelegramInputConfirmDialog setOnClickListener(OnInputConfirmListener listener) {
-        btn1View.setOnClickListener(v -> listener.onFirstButtonClicked(Objects.requireNonNull(edittextView.getText()).toString()));
-        btn2View.setOnClickListener(v -> listener.onSecondButtonClicked(Objects.requireNonNull(edittextView.getText()).toString()));
+        btn1View.setOnClickListener(v -> listener.onNegativeButtonClicked(Objects.requireNonNull(edittextView.getText()).toString()));
+        btn2View.setOnClickListener(v -> listener.onPositiveButtonClicked(Objects.requireNonNull(edittextView.getText()).toString()));
         builder.setOnCancelListener(dialogInterface -> listener.onCanceled());
         return this;
     }
 
-    public TelegramInputConfirmDialog setCardBackgroundColor(int cardBackgroundColor) {
-        cardView.setCardBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
-        view.findViewById(R.id.constraint).setBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
+    public TelegramInputConfirmDialog setCardBackgroundColor(int color) {
+        cardView.setCardBackgroundColor(color);
+        view.findViewById(R.id.constraint).setBackgroundColor(color);
         return this;
     }
 
@@ -120,22 +134,22 @@ public class TelegramInputConfirmDialog {
         return this;
     }
 
-    public TelegramInputConfirmDialog setButtonOneText(String buttonOneText) {
+    public TelegramInputConfirmDialog setNegativeButtonText(String buttonOneText) {
         btn1View.setText(buttonOneText);
         return this;
     }
 
-    public TelegramInputConfirmDialog setButtonOneTextColor(int buttonOneTextColor) {
-        btn1View.setTextColor(ContextCompat.getColor(context, buttonOneTextColor));
+    public TelegramInputConfirmDialog setNegativeButtonTextColor(int color) {
+        btn1View.setTextColor(color);
         return this;
     }
 
-    public TelegramInputConfirmDialog setButtonOneRippleColor(int buttonOneRippleColor) {
-        btn1View.setRippleColorResource(buttonOneRippleColor);
+    public TelegramInputConfirmDialog setNegativeButtonRippleColor(int color) {
+        btn1View.setRippleColor(ColorStateList.valueOf(color));
         return this;
     }
 
-    public TelegramInputConfirmDialog setButtonOneCornerRadius(int radius) {
+    public TelegramInputConfirmDialog setNegativeButtonCornerRadius(int radius) {
         btn1View.setCornerRadius((int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 radius,
@@ -144,27 +158,37 @@ public class TelegramInputConfirmDialog {
         return this;
     }
 
-    public TelegramInputConfirmDialog setButtonTwoText(String buttonTwoText) {
+    public TelegramInputConfirmDialog setPositiveButtonText(String buttonTwoText) {
         btn2View.setText(buttonTwoText);
         return this;
     }
 
-    public TelegramInputConfirmDialog setButtonTwoTextColor(int buttonTwoTextColor) {
-        btn2View.setTextColor(ContextCompat.getColor(context, buttonTwoTextColor));
+    public TelegramInputConfirmDialog setPositiveButtonTextColor(int color) {
+        btn2View.setTextColor(color);
         return this;
     }
 
-    public TelegramInputConfirmDialog setButtonTwoRippleColor(int buttonTwoRippleColor) {
-        btn2View.setRippleColorResource(buttonTwoRippleColor);
+    public TelegramInputConfirmDialog setPositiveButtonRippleColor(int color) {
+        btn2View.setRippleColor(ColorStateList.valueOf(color));
         return this;
     }
 
-    public TelegramInputConfirmDialog setButtonTwoCornerRadius(int radius) {
+    public TelegramInputConfirmDialog setPositiveButtonCornerRadius(int radius) {
         btn2View.setCornerRadius((int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 radius,
                 context.getResources().getDisplayMetrics()
         ));
+        return this;
+    }
+
+    public TelegramInputConfirmDialog setNegativeButtonBackgroundColor(int color) {
+        btn1View.setBackgroundTintList(ColorStateList.valueOf(color));
+        return this;
+    }
+
+    public TelegramInputConfirmDialog setPositiveButtonBackgroundColor(int color) {
+        btn2View.setBackgroundTintList(ColorStateList.valueOf(color));
         return this;
     }
 
@@ -174,7 +198,7 @@ public class TelegramInputConfirmDialog {
     }
 
     public TelegramInputConfirmDialog setEditTextColor(int color) {
-        edittextView.setTextColor(ContextCompat.getColor(context, color));
+        edittextView.setTextColor(color);
         return this;
     }
 
@@ -184,14 +208,12 @@ public class TelegramInputConfirmDialog {
     }
 
     public TelegramInputConfirmDialog setEditTextHintColor(int color) {
-        edittextView.setHintTextColor(ContextCompat.getColor(context, color));
+        edittextView.setHintTextColor(color);
         return this;
     }
 
     public TelegramInputConfirmDialog setEditTextBackgroundColor(int color) {
-        ColorStateList colorStateList = ColorStateList.valueOf(
-                ContextCompat.getColor(context, color)
-        );
+        ColorStateList colorStateList = ColorStateList.valueOf(color);
         ViewCompat.setBackgroundTintList(edittextView, colorStateList);
         return this;
     }
@@ -200,7 +222,7 @@ public class TelegramInputConfirmDialog {
         Drawable drawable = ContextCompat.getDrawable(context, drawableID);
         if (drawable != null) {
             drawable = drawable.mutate();
-            DrawableCompat.setTint(drawable, ContextCompat.getColor(context, tintColor));
+            DrawableCompat.setTint(drawable, tintColor);
             edittextView.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
         }
         return this;

@@ -4,7 +4,6 @@
     android:id="@+id/cardview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/dialog_page_background"
     app:cardCornerRadius="16dp"
     app:cardElevation="0dp"
     app:strokeColor="@android:color/transparent"
@@ -14,7 +13,6 @@
         android:id="@+id/constraint"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/dialog_page_background"
         app:layout_constraintBottom_toBottomOf="@+id/message"
         app:layout_constraintTop_toBottomOf="@+id/message">
 
@@ -23,7 +21,6 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="32dp"
-            android:indeterminateTint="@color/progressbar_indeterminate_tint"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

@@ -2,12 +2,11 @@ package com.github.amirbahadoramiri.telegramdialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
-
-import androidx.core.content.ContextCompat;
 
 import com.github.amirbahadoramiri.telegramdialog.listeners.OnLoadingListener;
 import com.google.android.material.card.MaterialCardView;
@@ -33,9 +32,9 @@ public class TelegramLoadingDialog {
         cardView = view.findViewById(R.id.cardview);
         progressBarView = view.findViewById(R.id.progress_bar);
 
-        setProgressbarIndeterminateTint(R.color.progressbar_indeterminate_tint);
+        setProgressbarIndeterminateTint(TelegramColors.getProgressBarIndeterminateTint(context));
         setCardRadius(16);
-        setCardBackgroundColor(R.color.dialog_page_background);
+        setCardBackgroundColor(TelegramColors.getDialogBackground(context));
         setCancelable(true);
 
     }
@@ -50,9 +49,9 @@ public class TelegramLoadingDialog {
         return this;
     }
 
-    public TelegramLoadingDialog setCardBackgroundColor(int cardBackgroundColor) {
-        cardView.setCardBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
-        view.findViewById(R.id.constraint).setBackgroundColor(ContextCompat.getColor(context, cardBackgroundColor));
+    public TelegramLoadingDialog setCardBackgroundColor(int color) {
+        cardView.setCardBackgroundColor(color);
+        view.findViewById(R.id.constraint).setBackgroundColor(color);
         return this;
     }
 
@@ -65,8 +64,8 @@ public class TelegramLoadingDialog {
         return this;
     }
 
-    public TelegramLoadingDialog setProgressbarIndeterminateTint(int progressbarIndeterminateTint) {
-        progressBarView.setIndeterminateTintList(ContextCompat.getColorStateList(context, progressbarIndeterminateTint));
+    public TelegramLoadingDialog setProgressbarIndeterminateTint(int color) {
+        progressBarView.setIndeterminateTintList(ColorStateList.valueOf(color));
         return this;
     }
 
