@@ -25,7 +25,7 @@ dependencyResolutionManagement {
 ```
 Then add the dependency:
 ```gradle
-implementation("com.github.AmirBahadorAmiri:TelegramDialog:2.0.0")
+implementation("com.github.AmirBahadorAmiri:TelegramDialog:2.1.0")
 ```
 🎯 Features
 
@@ -56,14 +56,18 @@ https://github.com/user-attachments/assets/5d76692d-769e-4e0f-bcfe-98a4d424968c
 ```kotlin
 val dialog = TelegramAlertDialog(this)
     .setTitle("Delete message")
-    .setMessage("Are you sure you want to delete this message?")
+    .setMessage("Are you sure you want to delete this\n" + "message?")
+    .setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD)
+    .setCancelable(true)
+    .setCardRadius(16)
+    .setCardBackgroundColor(TelegramColors.getDialogBackground(this))
     .setPositiveButtonText("Delete")
     .setPositiveButtonTextColor(TelegramColors.getMainBlue())
-    .setCardRadius(16)
-    .setCancelable(true)
+    .setPositiveButtonRippleColor(TelegramColors.getMainBlueTint(this))
 
 dialog.setOnClickListener(object : OnAlertListener {
     override fun onPositiveButtonClicked() {
+        /* Do something */
         dialog.dismiss()
     }
 })
@@ -71,11 +75,41 @@ dialog.setOnClickListener(object : OnAlertListener {
 dialog.show()
 ```
 
+or
+
+```kotlin
+val dialog = TelegramAlertDialog(this)
+            .setTitle("حذف پیام")
+            .setMessage("آیا از حذف این پیام اطمینان دارید؟")
+            .setCancelable(true)
+            .setCardRadius(16)
+            .setPositiveButtonCornerRadius(32)
+            .setCardBackgroundColor(TelegramColors.getDialogBackground(this))
+            .setPositiveButtonText("حذف")
+            .setDirection(DialogDirection.RTL)
+            .setPositiveButtonTextColor(TelegramColors.getMainBlue())
+            .setPositiveButtonRippleColor(TelegramColors.getMainBlueTint(this))
+
+dialog.setOnClickListener(object : OnAlertListener {
+            override fun onPositiveButtonClicked() {
+                /* Do something */
+                dialog.dismiss()
+            }
+            /* Optional Function */
+            override fun onCanceled() {
+                /* Do something */
+            }
+        })
+
+dialog.show()
+```
+
+
 <br>
 
 ### 🔹 Confirm Dialog
 ```kotlin
-val dialog = TelegramConfirmDialog(this)
+val dialog = TelegramConfirmDialog(this,DialogDirection.LTR)
     .setTitle("Delete message")
     .setMessage("Are you sure?")
     .setNegativeButtonText("Cancel")
@@ -115,11 +149,58 @@ dialog.show()
 
 <br>
 
+### 🔹 Input Confirm Dialog
+```kotlin
+val dialog = TelegramInputConfirmDialog(this, DialogDirection.LTR)
+    .setTitle("Delete message")
+    .setMessage("Are you sure you want to delete this\n" + "message?")
+    .setCancelable(true)
+    .setCardRadius(16)
+    .setCardBackgroundColor(TelegramColors.getDialogBackground(this))
+    .setNegativeButtonText("Cancel")
+    .setNegativeButtonTextColor(TelegramColors.getMainBlue())
+    .setNegativeButtonRippleColor(TelegramColors.getMainBlueTint(this))
+    .setNegativeButtonCornerRadius(16)
+    .setPositiveButtonText("Delete")
+    .setPositiveButtonTextColor(TelegramColors.getMainRed())
+    .setPositiveButtonRippleColor(TelegramColors.getMainRedTint(this))
+    .setPositiveButtonCornerRadius(32)
+    .setEditTextHint("Typing...")
+    .setEditTextHintColor(TelegramColors.getColor(TelegramColors.MAIN_BLUE_LIGHT))
+    .setEditTextColor(TelegramColors.getTextColor(this))
+    .setEditTextBackgroundColor(TelegramColors.getMainBlueTint(this))
+//            ic_person size   **  JUST 20dpx20dp  **
+    .setEditTextDrawable(R.drawable.ic_person,TelegramColors.getMainBlue())
+
+dialog.setOnClickListener(object : OnInputConfirmListener {
+    override fun onNegativeButtonClicked(text: String) {
+        Toast.makeText(this@MainActivity, "onNegativeButtonClicked: ${text}", Toast.LENGTH_SHORT).show()
+        dialog.dismiss()
+    }
+    override fun onPositiveButtonClicked(text: String) {
+        Toast.makeText(this@MainActivity, "onPositiveButtonClicked: ${text}", Toast.LENGTH_SHORT).show()
+        dialog.dismiss()
+    }
+    /* Optional Function */
+    override fun onCanceled() {
+        Toast.makeText(this@MainActivity, "onCanceled", Toast.LENGTH_SHORT).show();
+    }
+})
+dialog.show()
+```
+
+<br>
+
 ### 🔹 Progress Dialogs
 ```kotlin
 // Loading
 val loading = TelegramLoadingDialog(this)
     .setProgressbarIndeterminateTint(TelegramColors.getMainBlue())
+    .show()
+
+// Progress
+val progress = TelegramProgressDialog(this)
+    .setValue(30)
     .show()
 
 // Percentage Progress
@@ -140,7 +221,14 @@ The library now uses `TelegramColors` for smart color management and Dark Mode s
 .setCardBackgroundColor(TelegramColors.getDialogBackground(this))
 ```
 
-<br>
+or
+
+```kotlin
+.setPositiveButtonBackgroundColor(getColor(R.color.btn_background))
+.setCardBackgroundColor(getColor(R.color.background))
+```
+
+<br><br>
 🌍 RTL Support
 
 Supports both LTR and RTL (Persian, Arabic) layout directions.

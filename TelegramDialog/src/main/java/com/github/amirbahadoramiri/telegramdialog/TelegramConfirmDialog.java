@@ -29,9 +29,10 @@ public class TelegramConfirmDialog {
     private AppCompatTextView titleView, messageView;
     private MaterialButton btn1View, btn2View;
     private LinearLayoutCompat buttonGroup;
+    private DialogDirection direction;
 
     @SuppressLint("InflateParams")
-    public TelegramConfirmDialog(Context context) {
+    public TelegramConfirmDialog(Context context, DialogDirection direction) {
         this.context = context;
         builder = new Dialog(context, R.style.LargeDialogStyle);
         Objects.requireNonNull(builder.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
@@ -44,6 +45,8 @@ public class TelegramConfirmDialog {
         btn1View = view.findViewById(R.id.button1);
         btn2View = view.findViewById(R.id.button2);
         buttonGroup = view.findViewById(R.id.button_group);
+
+        setDirection(direction);
 
         setTitle("Title");
         setMessage("Message");
@@ -60,7 +63,6 @@ public class TelegramConfirmDialog {
         setCardRadius(16);
         setCardBackgroundColor(TelegramColors.getDialogBackground(context));
         setCancelable(true);
-        setDirection(DialogDirection.LTR);
 
     }
 
@@ -94,7 +96,8 @@ public class TelegramConfirmDialog {
         return this;
     }
 
-    public TelegramConfirmDialog setDirection(DialogDirection dialogDirection) {
+    private TelegramConfirmDialog setDirection(DialogDirection dialogDirection) {
+        this.direction = dialogDirection;
         if (dialogDirection == DialogDirection.LTR)
             buttonGroup.setGravity(Gravity.RIGHT);
         else
@@ -103,8 +106,13 @@ public class TelegramConfirmDialog {
     }
 
     public TelegramConfirmDialog setOnClickListener(OnConfirmListener listener) {
-        btn1View.setOnClickListener(v -> listener.onNegativeButtonClicked());
-        btn2View.setOnClickListener(v -> listener.onPositiveButtonClicked());
+        if ( direction == DialogDirection.LTR ) {
+            btn1View.setOnClickListener(v -> listener.onNegativeButtonClicked());
+            btn2View.setOnClickListener(v -> listener.onPositiveButtonClicked());
+        } else {
+            btn2View.setOnClickListener(v -> listener.onNegativeButtonClicked());
+            btn1View.setOnClickListener(v -> listener.onPositiveButtonClicked());
+        }
         builder.setOnCancelListener(dialogInterface -> listener.onCanceled());
         return this;
     }
@@ -125,60 +133,108 @@ public class TelegramConfirmDialog {
     }
 
     public TelegramConfirmDialog setNegativeButtonText(String buttonOneText) {
-        btn1View.setText(buttonOneText);
+        if (direction == DialogDirection.LTR) {
+            btn1View.setText(buttonOneText);
+        } else {
+            btn2View.setText(buttonOneText);
+        }
         return this;
     }
 
     public TelegramConfirmDialog setNegativeButtonTextColor(int color) {
-        btn1View.setTextColor(color);
+        if (direction == DialogDirection.LTR) {
+            btn1View.setTextColor(color);
+        } else {
+            btn2View.setTextColor(color);
+        }
         return this;
     }
 
     public TelegramConfirmDialog setNegativeButtonRippleColor(int color) {
-        btn1View.setRippleColor(ColorStateList.valueOf(color));
+        if (direction == DialogDirection.LTR) {
+            btn1View.setRippleColor(ColorStateList.valueOf(color));
+        } else {
+            btn2View.setRippleColor(ColorStateList.valueOf(color));
+        }
         return this;
     }
 
     public TelegramConfirmDialog setNegativeButtonCornerRadius(int radius) {
-        btn1View.setCornerRadius((int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                radius,
-                context.getResources().getDisplayMetrics()
-        ));
-        return this;
-    }
-
-    public TelegramConfirmDialog setPositiveButtonText(String buttonTwoText) {
-        btn2View.setText(buttonTwoText);
-        return this;
-    }
-
-    public TelegramConfirmDialog setPositiveButtonTextColor(int color) {
-        btn2View.setTextColor(color);
-        return this;
-    }
-
-    public TelegramConfirmDialog setPositiveButtonRippleColor(int color) {
-        btn2View.setRippleColor(ColorStateList.valueOf(color));
-        return this;
-    }
-
-    public TelegramConfirmDialog setPositiveButtonCornerRadius(int radius) {
-        btn2View.setCornerRadius((int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                radius,
-                context.getResources().getDisplayMetrics()
-        ));
+        if (direction == DialogDirection.LTR) {
+            btn1View.setCornerRadius((int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    radius,
+                    context.getResources().getDisplayMetrics()
+            ));
+        } else {
+            btn2View.setCornerRadius((int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    radius,
+                    context.getResources().getDisplayMetrics()
+            ));
+        }
         return this;
     }
 
     public TelegramConfirmDialog setNegativeButtonBackgroundColor(int color) {
-        btn1View.setBackgroundTintList(ColorStateList.valueOf(color));
+        if (direction == DialogDirection.LTR) {
+            btn1View.setBackgroundTintList(ColorStateList.valueOf(color));
+        } else {
+            btn2View.setBackgroundTintList(ColorStateList.valueOf(color));
+        }
+        return this;
+    }
+
+    public TelegramConfirmDialog setPositiveButtonText(String buttonTwoText) {
+        if (direction == DialogDirection.LTR) {
+            btn2View.setText(buttonTwoText);
+        } else {
+            btn1View.setText(buttonTwoText);
+        }
+        return this;
+    }
+
+    public TelegramConfirmDialog setPositiveButtonTextColor(int color) {
+        if (direction == DialogDirection.LTR) {
+            btn2View.setTextColor(color);
+        } else {
+            btn1View.setTextColor(color);
+        }
+        return this;
+    }
+
+    public TelegramConfirmDialog setPositiveButtonRippleColor(int color) {
+        if (direction == DialogDirection.LTR) {
+            btn2View.setRippleColor(ColorStateList.valueOf(color));
+        } else {
+            btn1View.setRippleColor(ColorStateList.valueOf(color));
+        }
+        return this;
+    }
+
+    public TelegramConfirmDialog setPositiveButtonCornerRadius(int radius) {
+        if (direction == DialogDirection.LTR) {
+            btn2View.setCornerRadius((int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    radius,
+                    context.getResources().getDisplayMetrics()
+            ));
+        } else {
+            btn1View.setCornerRadius((int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    radius,
+                    context.getResources().getDisplayMetrics()
+            ));
+        }
         return this;
     }
 
     public TelegramConfirmDialog setPositiveButtonBackgroundColor(int color) {
-        btn2View.setBackgroundTintList(ColorStateList.valueOf(color));
+        if (direction == DialogDirection.LTR) {
+            btn2View.setBackgroundTintList(ColorStateList.valueOf(color));
+        } else {
+            btn1View.setBackgroundTintList(ColorStateList.valueOf(color));
+        }
         return this;
     }
 

@@ -40,10 +40,7 @@ class MainActivity : AppCompatActivity() {
 
         val telegramAlertDialog = TelegramAlertDialog(this)
             .setTitle("Delete message")
-            .setMessage(
-                "Are you sure you want to delete this\n" +
-                        "message?"
-            )
+            .setMessage("Are you sure you want to delete this\n" + "message?")
             .setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD)
             .setCancelable(true)
             .setCardRadius(16)
@@ -69,21 +66,21 @@ class MainActivity : AppCompatActivity() {
 
         telegramAlertDialog2.setOnClickListener(object : OnAlertListener {
             override fun onPositiveButtonClicked() {
-                Toast.makeText(this@MainActivity, "onButtonClicked", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "onPositiveButtonClicked", Toast.LENGTH_SHORT).show()
                 telegramAlertDialog2.dismiss()
             }
-            // Optional Function
+            /* Optional Function */
             override fun onCanceled() {
-                super.onCanceled()
                 Toast.makeText(this@MainActivity, "onCanceled", Toast.LENGTH_SHORT).show()
             }
         })
+
         telegramAlertDialog2.show()
 
 
 
 
-        val telegramConfirmDialog = TelegramConfirmDialog(this)
+        val telegramConfirmDialog = TelegramConfirmDialog(this,DialogDirection.LTR)
             .setTitle("Delete message")
             .setMessage(
                 "Are you sure you want to delete this\n" +
@@ -103,16 +100,15 @@ class MainActivity : AppCompatActivity() {
 
         telegramConfirmDialog.setOnClickListener(object : OnConfirmListener {
             override fun onNegativeButtonClicked() {
-                Toast.makeText(this@MainActivity, "onFirstButtonClicked", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "onNegativeButtonClicked", Toast.LENGTH_SHORT).show()
                 telegramConfirmDialog.dismiss()
             }
             override fun onPositiveButtonClicked() {
-                Toast.makeText(this@MainActivity, "onSecondButtonClicked", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "onPositiveButtonClicked", Toast.LENGTH_SHORT).show()
                 telegramConfirmDialog.dismiss()
             }
-            // Optional Function
+            /* Optional Function */
             override fun onCanceled() {
-                super.onCanceled()
                 Toast.makeText(this@MainActivity, "onCanceled", Toast.LENGTH_SHORT).show()
             }
         })
@@ -120,35 +116,32 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        val telegramConfirmDialog2 = TelegramConfirmDialog(this)
+        val telegramConfirmDialog2 = TelegramConfirmDialog(this,DialogDirection.RTL)
             .setTitle("حذف پیام")
             .setMessage("آیا از حذف این پیام اطمینان دارید؟")
             .setCancelable(true)
             .setCardRadius(16)
             .setCardBackgroundColor(TelegramColors.getDialogBackground(this))
-            .setNegativeButtonText("حذف")
-            .setNegativeButtonCornerRadius(32)
-            .setPositiveButtonText("لغو")
+            .setPositiveButtonText("حذف")
             .setPositiveButtonCornerRadius(32)
-            .setDirection(DialogDirection.RTL)
+            .setNegativeButtonText("لغو")
+            .setNegativeButtonCornerRadius(32)
 
-        telegramConfirmDialog.setOnClickListener(object : OnConfirmListener {
+        telegramConfirmDialog2.setOnClickListener(object : OnConfirmListener {
             override fun onNegativeButtonClicked() {
-                Toast.makeText(this@MainActivity, "onFirstButtonClicked", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "onNegativeButtonClicked", Toast.LENGTH_SHORT).show()
                 telegramConfirmDialog2.dismiss()
             }
             override fun onPositiveButtonClicked() {
-                Toast.makeText(this@MainActivity, "onSecondButtonClicked", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "onPositiveButtonClicked", Toast.LENGTH_SHORT).show()
                 telegramConfirmDialog2.dismiss()
             }
-            // Optional Function
+            /* Optional Function */
             override fun onCanceled() {
-                super.onCanceled()
                 Toast.makeText(this@MainActivity, "onCanceled", Toast.LENGTH_SHORT).show()
             }
         })
         telegramConfirmDialog2.show()
-
 
 
 
@@ -177,9 +170,8 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
                 telegramInputDialog.dismiss()
             }
-            // Optional Function
+            /* Optional Function */
             override fun onCanceled() {
-                super.onCanceled()
                 Toast.makeText(this@MainActivity, "onCanceled", Toast.LENGTH_SHORT).show();
             }
         })
@@ -187,12 +179,36 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        val telegramInputConfirmDialog = TelegramInputConfirmDialog(this)
+        val telegramInputConfirmDialog = TelegramInputConfirmDialog(this, DialogDirection.RTL)
+            .setTitle("حذف پیام")
+            .setMessage("آیا از حذف این پیام اطمینان دارید؟")
+            .setNegativeButtonText("لغو")
+            .setPositiveButtonText("حذف")
+            .setEditTextHint("بنویسید...")
+//            ic_person size   **  JUST 20dpx20dp  **
+            .setEditTextDrawable(R.drawable.ic_person,TelegramColors.getMainBlue())
+
+        telegramInputConfirmDialog.setOnClickListener(object : OnInputConfirmListener {
+            override fun onNegativeButtonClicked(text: String) {
+                Toast.makeText(this@MainActivity, "onNegativeButtonClicked: ${text}", Toast.LENGTH_SHORT).show()
+                telegramInputConfirmDialog.dismiss()
+            }
+            override fun onPositiveButtonClicked(text: String) {
+                Toast.makeText(this@MainActivity, "onPositiveButtonClicked: ${text}", Toast.LENGTH_SHORT).show()
+                telegramInputConfirmDialog.dismiss()
+            }
+            /* Optional Function */
+            override fun onCanceled() {
+                Toast.makeText(this@MainActivity, "onCanceled", Toast.LENGTH_SHORT).show();
+            }
+        })
+        telegramInputConfirmDialog.show()
+
+
+
+        val telegramInputConfirmDialog2 = TelegramInputConfirmDialog(this, DialogDirection.LTR)
             .setTitle("Delete message")
-            .setMessage(
-                "Are you sure you want to delete this\n" +
-                        "message?"
-            )
+            .setMessage("Are you sure you want to delete this\n" + "message?")
             .setCancelable(true)
             .setCardRadius(16)
             .setCardBackgroundColor(TelegramColors.getDialogBackground(this))
@@ -211,22 +227,21 @@ class MainActivity : AppCompatActivity() {
 //            ic_person size   **  JUST 20dpx20dp  **
             .setEditTextDrawable(R.drawable.ic_person,TelegramColors.getMainBlue())
 
-        telegramInputConfirmDialog.setOnClickListener(object : OnInputConfirmListener {
+        telegramInputConfirmDialog2.setOnClickListener(object : OnInputConfirmListener {
             override fun onNegativeButtonClicked(text: String) {
-                Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
-                telegramInputConfirmDialog.dismiss()
+                Toast.makeText(this@MainActivity, "onNegativeButtonClicked: ${text}", Toast.LENGTH_SHORT).show()
+                telegramInputConfirmDialog2.dismiss()
             }
             override fun onPositiveButtonClicked(text: String) {
-                Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
-                telegramInputConfirmDialog.dismiss()
+                Toast.makeText(this@MainActivity, "onPositiveButtonClicked: ${text}", Toast.LENGTH_SHORT).show()
+                telegramInputConfirmDialog2.dismiss()
             }
-            // Optional Function
+            /* Optional Function */
             override fun onCanceled() {
-                super.onCanceled()
                 Toast.makeText(this@MainActivity, "onCanceled", Toast.LENGTH_SHORT).show();
             }
         })
-        telegramInputConfirmDialog.show()
+        telegramInputConfirmDialog2.show()
 
 
 
