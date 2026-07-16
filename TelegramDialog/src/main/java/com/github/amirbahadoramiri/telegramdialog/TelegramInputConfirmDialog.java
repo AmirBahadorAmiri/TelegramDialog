@@ -275,6 +275,11 @@ public class TelegramInputConfirmDialog {
         return this;
     }
 
+    public TelegramInputConfirmDialog setInputType(int inputType) {
+        edittextView.setInputType(inputType);
+        return this;
+    }
+
     public TelegramInputConfirmDialog setEditTextDrawable(int drawableID, int tintColor) {
         Drawable drawable = ContextCompat.getDrawable(context, drawableID);
         if (drawable != null) {

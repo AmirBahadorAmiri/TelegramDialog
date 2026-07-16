@@ -1,6 +1,7 @@
 package com.amirbahadoramiri.telegramdialog
 
 import android.os.Bundle
+import android.text.InputType
 import android.text.Layout
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -211,6 +212,7 @@ class MainActivity : AppCompatActivity() {
             .setMessage("Are you sure you want to delete this\n" + "message?")
             .setCancelable(true)
             .setCardRadius(16)
+            .setInputType(InputType.TYPE_CLASS_NUMBER)
             .setCardBackgroundColor(TelegramColors.getDialogBackground(this))
             .setNegativeButtonText("Cancel")
             .setNegativeButtonTextColor(TelegramColors.getMainBlue())

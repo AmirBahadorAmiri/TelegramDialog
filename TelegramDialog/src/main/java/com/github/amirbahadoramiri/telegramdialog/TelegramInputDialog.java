@@ -182,6 +182,11 @@ public class TelegramInputDialog {
         return this;
     }
 
+    public TelegramInputDialog setInputType(int inputType) {
+        edittextView.setInputType(inputType);
+        return this;
+    }
+
     public TelegramInputDialog setEditTextDrawable(int drawableID, int tintColor) {
         Drawable drawable = ContextCompat.getDrawable(context, drawableID);
         if (drawable != null) {
