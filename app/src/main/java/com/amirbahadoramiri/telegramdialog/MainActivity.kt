@@ -3,6 +3,8 @@ package com.amirbahadoramiri.telegramdialog
 import android.os.Bundle
 import android.text.InputType
 import android.text.Layout
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +27,7 @@ import com.github.amirbahadoramiri.telegramdialog.listeners.OnInputListener
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,8 +53,6 @@ class MainActivity : AppCompatActivity() {
             .setPositiveButtonTextColor(TelegramColors.getMainBlue())
             .setPositiveButtonRippleColor(TelegramColors.getMainBlueTint(this))
         telegramAlertDialog.show()
-
-
 
         val telegramAlertDialog2 = TelegramAlertDialog(this)
             .setTitle("حذف پیام")
@@ -145,7 +146,7 @@ class MainActivity : AppCompatActivity() {
         telegramConfirmDialog2.show()
 
 
-
+        val shake: Animation = AnimationUtils.loadAnimation(this, android.R.anim.fade_in)
         val telegramInputDialog = TelegramInputDialog(this)
             .setTitle("Delete message")
             .setMessage(
@@ -168,8 +169,7 @@ class MainActivity : AppCompatActivity() {
 
         telegramInputDialog.setOnClickListener(object : OnInputListener {
             override fun onPositiveButtonClicked(text: String) {
-                Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
-                telegramInputDialog.dismiss()
+                telegramInputDialog.startEditTextAnimation(shake)
             }
             /* Optional Function */
             override fun onCanceled() {

@@ -9,6 +9,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
 
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -277,6 +278,11 @@ public class TelegramInputConfirmDialog {
 
     public TelegramInputConfirmDialog setInputType(int inputType) {
         edittextView.setInputType(inputType);
+        return this;
+    }
+
+    public TelegramInputConfirmDialog startEditTextAnimation(Animation animation) {
+        edittextView.startAnimation(animation);
         return this;
     }
 
