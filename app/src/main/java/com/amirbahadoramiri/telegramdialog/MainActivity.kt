@@ -146,7 +146,7 @@ class MainActivity : AppCompatActivity() {
         telegramConfirmDialog2.show()
 
 
-        val shake: Animation = AnimationUtils.loadAnimation(this, android.R.anim.fade_in)
+        val fade_in: Animation = AnimationUtils.loadAnimation(this, android.R.anim.fade_in)
         val telegramInputDialog = TelegramInputDialog(this)
             .setTitle("Delete message")
             .setMessage(
@@ -169,7 +169,7 @@ class MainActivity : AppCompatActivity() {
 
         telegramInputDialog.setOnClickListener(object : OnInputListener {
             override fun onPositiveButtonClicked(text: String) {
-                telegramInputDialog.startEditTextAnimation(shake)
+                telegramInputDialog.startEditTextAnimation(fade_in)
             }
             /* Optional Function */
             override fun onCanceled() {

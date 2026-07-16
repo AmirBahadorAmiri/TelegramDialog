@@ -11,7 +11,7 @@ It provides modern, clean, and flexible dialogs with positive/negative buttons, 
 
 ✨ RTL & LTR support
 
-✨ Lightweight & easy to use<br>
+✨ Lightweight & easy to use
 
 ### 📦 Installation (JitPack)
 
@@ -25,7 +25,7 @@ dependencyResolutionManagement {
 ```
 Then add the dependency:
 ```gradle
-implementation("com.github.AmirBahadorAmiri:TelegramDialog:2.1.0")
+implementation("com.github.AmirBahadorAmiri:TelegramDialog:2.2.0")
 ```
 🎯 Features
 
@@ -134,6 +134,7 @@ val dialog = TelegramInputDialog(this)
     .setTitle("Input")
     .setEditTextHint("Type something...")
     .setPositiveButtonText("Submit")
+    .setInputType(InputType.TYPE_CLASS_TEXT) // Set input type (Numeric, Password, etc.)
     .setEditTextBackgroundColor(TelegramColors.getMainBlueTint(this))
 
 dialog.setOnClickListener(object : OnInputListener {
@@ -168,21 +169,21 @@ val dialog = TelegramInputConfirmDialog(this, DialogDirection.LTR)
     .setEditTextHintColor(TelegramColors.getColor(TelegramColors.MAIN_BLUE_LIGHT))
     .setEditTextColor(TelegramColors.getTextColor(this))
     .setEditTextBackgroundColor(TelegramColors.getMainBlueTint(this))
-//            ic_person size   **  JUST 20dpx20dp  **
-    .setEditTextDrawable(R.drawable.ic_person,TelegramColors.getMainBlue())
+    .setInputType(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD) // Password support
+    .setEditTextDrawable(R.drawable.ic_person, TelegramColors.getMainBlue()) // Support for drawables
 
 dialog.setOnClickListener(object : OnInputConfirmListener {
     override fun onNegativeButtonClicked(text: String) {
-        Toast.makeText(this@MainActivity, "onNegativeButtonClicked: ${text}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this@MainActivity, "onNegativeButtonClicked: $text", Toast.LENGTH_SHORT).show()
         dialog.dismiss()
     }
     override fun onPositiveButtonClicked(text: String) {
-        Toast.makeText(this@MainActivity, "onPositiveButtonClicked: ${text}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this@MainActivity, "onPositiveButtonClicked: $text", Toast.LENGTH_SHORT).show()
         dialog.dismiss()
     }
     /* Optional Function */
     override fun onCanceled() {
-        Toast.makeText(this@MainActivity, "onCanceled", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this@MainActivity, "onCanceled", Toast.LENGTH_SHORT).show()
     }
 })
 dialog.show()
@@ -233,6 +234,15 @@ or
 Supports both LTR and RTL (Persian, Arabic) layout directions.
 ```kotlin
 .setDirection(DialogDirection.RTL)
+```
+
+<br><br>
+🎬 Animations
+
+You can start any animation on EditText (e.g., Shake effect on error).
+```kotlin
+val shake = AnimationUtils.loadAnimation(this, R.anim.shake)
+dialog.startEditTextAnimation(shake)
 ```
 
 <br><br>
