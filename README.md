@@ -1,19 +1,15 @@
-## 📌 TelegramDialog
+## TelegramDialog
 
-TelegramDialog is a customizable Android dialog library inspired by Telegram style dialogs.
-It provides modern, clean, and flexible dialogs with positive/negative buttons, edit text support, and various progress dialogs.
+TelegramDialog is a customizable Android dialog library inspired by the Telegram user interface. It provides modern and flexible dialog components, including support for positive/negative buttons, input fields, and various progress indicators.
 
-✨ Built with Java & Kotlin support
+**Features**
+- Compatible with Java and Kotlin.
+- Fully customizable properties including colors, corner radius, and ripple effects.
+- Native Dark Mode support via the TelegramColors utility.
+- Comprehensive support for RTL and LTR layouts.
+- Lightweight implementation with an intuitive API.
 
-✨ Fully customizable (Colors, Radius, Ripple)
-
-✨ Native Dark Mode support via `TelegramColors`
-
-✨ RTL & LTR support
-
-✨ Lightweight & easy to use
-
-### 📦 Installation (JitPack)
+### Installation (JitPack)
 
 Add JitPack to your settings.gradle:
 ```gradle
@@ -23,36 +19,21 @@ dependencyResolutionManagement {
     }
 }
 ```
-Then add the dependency:
+Add the dependency to your project:
 ```gradle
 implementation("com.github.AmirBahadorAmiri:TelegramDialog:2.2.0")
 ```
-🎯 Features
-
-✅ ***TelegramAlertDialog***
-
-✅ ***TelegramConfirmDialog***
-
-✅ ***TelegramInputDialog***
-
-✅ ***TelegramInputConfirmDialog***
-
-✅ ***TelegramLoadingDialog***
-
-✅ ***TelegramProgressDialog***
-
-✅ ***TelegramPercentageProgressDialog***
-
-✅ ***RTL & LTR Direction Support***
 <br>
 
-<h2>🖼 Preview & Usage</h2>
+### Preview and Usage
 
-https://github.com/user-attachments/assets/5d76692d-769e-4e0f-bcfe-98a4d424968c
+|                        `Preview`                         |                        `Start Animation`                         |
+|:---------------------------------------------------------:|:-----------------------------------------------------------:|
+| <img width="184" height="408" src="https://github.com/user-attachments/assets/57c8e94b-24e9-4265-863a-1cafc3d2794f" /> | <img width="184" height="408" src="https://github.com/user-attachments/assets/4e1eb892-fc7d-4458-b9bd-0624bf9c2a81" /> |
 
-<br><br><br><br>
+<br><br>
 
-### 🔹 Alert Dialog
+### Alert Dialog
 ```kotlin
 val dialog = TelegramAlertDialog(this)
     .setTitle("Delete message")
@@ -79,26 +60,26 @@ or
 
 ```kotlin
 val dialog = TelegramAlertDialog(this)
-            .setTitle("حذف پیام")
-            .setMessage("آیا از حذف این پیام اطمینان دارید؟")
-            .setCancelable(true)
-            .setCardRadius(16)
-            .setCardBackgroundColor(TelegramColors.getDialogBackground(this))
-            .setPositiveButtonText("حذف")
-            .setDirection(DialogDirection.RTL)
-            .setPositiveButtonTextColor(TelegramColors.getMainBlue())
-            .setPositiveButtonRippleColor(TelegramColors.getMainBlueTint(this))
+    .setTitle("حذف پیام")
+    .setMessage("آیا از حذف این پیام اطمینان دارید؟")
+    .setCancelable(true)
+    .setCardRadius(16)
+    .setCardBackgroundColor(TelegramColors.getDialogBackground(this))
+    .setPositiveButtonText("حذف")
+    .setDirection(DialogDirection.RTL)
+    .setPositiveButtonTextColor(TelegramColors.getMainBlue())
+    .setPositiveButtonRippleColor(TelegramColors.getMainBlueTint(this))
 
 dialog.setOnClickListener(object : OnAlertListener {
-            override fun onPositiveButtonClicked() {
-                /* Do something */
-                dialog.dismiss()
-            }
-            /* Optional Function */
-            override fun onCanceled() {
-                /* Do something */
-            }
-        })
+    override fun onPositiveButtonClicked() {
+        /* Do something */
+        dialog.dismiss()
+    }
+    /* Optional Function */
+    override fun onCanceled() {
+        /* Do something */
+    }
+})
 
 dialog.show()
 ```
@@ -106,7 +87,7 @@ dialog.show()
 
 <br>
 
-### 🔹 Confirm Dialog
+### Confirm Dialog
 ```kotlin
 val dialog = TelegramConfirmDialog(this,DialogDirection.LTR)
     .setTitle("Delete message")
@@ -117,9 +98,9 @@ val dialog = TelegramConfirmDialog(this,DialogDirection.LTR)
 
 dialog.setOnClickListener(object : OnConfirmListener {
     override fun onNegativeButtonClicked() { dialog.dismiss() }
-    override fun onPositiveButtonClicked() { 
+    override fun onPositiveButtonClicked() {
         // Do something
-        dialog.dismiss() 
+        dialog.dismiss()
     }
 })
 
@@ -128,7 +109,7 @@ dialog.show()
 
 <br>
 
-### 🔹 Input Dialog
+### Input Dialog
 ```kotlin
 val dialog = TelegramInputDialog(this)
     .setTitle("Input")
@@ -149,7 +130,7 @@ dialog.show()
 
 <br>
 
-### 🔹 Input Confirm Dialog
+### Input Confirm Dialog
 ```kotlin
 val dialog = TelegramInputConfirmDialog(this, DialogDirection.LTR)
     .setTitle("Delete message")
@@ -191,7 +172,7 @@ dialog.show()
 
 <br>
 
-### 🔹 Progress Dialogs
+### Progress Dialogs
 ```kotlin
 // Loading
 val loading = TelegramLoadingDialog(this)
@@ -212,44 +193,44 @@ val progress = TelegramPercentageProgressDialog(this)
 ```
 
 <br><br>
-🎨 Color Management
+### Color Management
 
-The library now uses `TelegramColors` for smart color management and Dark Mode support without needing a `colors.xml` file in your project.
+The library utilizes the TelegramColors class for intelligent color management and Dark Mode integration, eliminating the need for external resource files.
 
 ```kotlin
 .setPositiveButtonBackgroundColor(TelegramColors.getMainBlue())
-.setCardBackgroundColor(TelegramColors.getDialogBackground(this))
+    .setCardBackgroundColor(TelegramColors.getDialogBackground(this))
 ```
 
 or
 
 ```kotlin
 .setPositiveButtonBackgroundColor(getColor(R.color.btn_background))
-.setCardBackgroundColor(getColor(R.color.background))
+    .setCardBackgroundColor(getColor(R.color.background))
 ```
 
 <br><br>
-🌍 RTL Support
+### RTL Support
 
-Supports both LTR and RTL (Persian, Arabic) layout directions.
+The library supports both LTR and RTL directions, ensuring compatibility with languages such as Persian and Arabic.
 ```kotlin
 .setDirection(DialogDirection.RTL)
 ```
 
 <br><br>
-🎬 Animations
+### Animations
 
-You can start any animation on EditText (e.g., Shake effect on error).
+Developers can apply custom animations to dialog components, such as shake effects for input validation.
 ```kotlin
 val shake = AnimationUtils.loadAnimation(this, R.anim.shake)
 dialog.startEditTextAnimation(shake)
 ```
 
 <br><br>
-🤝 Contributing
+### Contributing
 
-Pull requests are welcome. If you find a bug or have suggestions, feel free to open an issue.
+Contributions are welcome through pull requests. For bug reports or feature suggestions, please open an issue.
 
-⭐ Support
+### Support
 
-If you like this project, please consider giving it a star on GitHub ⭐
+You may support the project by starring the repository on GitHub.

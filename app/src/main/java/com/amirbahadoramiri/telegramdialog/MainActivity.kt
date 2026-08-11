@@ -146,7 +146,7 @@ class MainActivity : AppCompatActivity() {
         telegramConfirmDialog2.show()
 
 
-        val fade_in: Animation = AnimationUtils.loadAnimation(this, android.R.anim.fade_in)
+
         val telegramInputDialog = TelegramInputDialog(this)
             .setTitle("Delete message")
             .setMessage(
@@ -169,7 +169,7 @@ class MainActivity : AppCompatActivity() {
 
         telegramInputDialog.setOnClickListener(object : OnInputListener {
             override fun onPositiveButtonClicked(text: String) {
-                telegramInputDialog.startEditTextAnimation(fade_in)
+                telegramInputDialog.dismiss()
             }
             /* Optional Function */
             override fun onCanceled() {
@@ -229,14 +229,16 @@ class MainActivity : AppCompatActivity() {
 //            ic_person size   **  JUST 20dpx20dp  **
             .setEditTextDrawable(R.drawable.ic_person,TelegramColors.getMainBlue())
 
+        val shaked: Animation = AnimationUtils.loadAnimation(this, R.anim.shake_animation)
+
         telegramInputConfirmDialog2.setOnClickListener(object : OnInputConfirmListener {
             override fun onNegativeButtonClicked(text: String) {
-                Toast.makeText(this@MainActivity, "onNegativeButtonClicked: ${text}", Toast.LENGTH_SHORT).show()
-                telegramInputConfirmDialog2.dismiss()
+                telegramInputConfirmDialog2.startEditTextAnimation(shaked)
+                telegramInputConfirmDialog2.setEditTextValue("")
             }
             override fun onPositiveButtonClicked(text: String) {
-                Toast.makeText(this@MainActivity, "onPositiveButtonClicked: ${text}", Toast.LENGTH_SHORT).show()
-                telegramInputConfirmDialog2.dismiss()
+                telegramInputConfirmDialog2.startEditTextAnimation(shaked)
+                telegramInputConfirmDialog2.setEditTextValue("")
             }
             /* Optional Function */
             override fun onCanceled() {
