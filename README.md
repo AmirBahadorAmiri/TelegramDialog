@@ -1,43 +1,72 @@
-## TelegramDialog
+# TelegramDialog
 
-TelegramDialog is a customizable Android dialog library inspired by the Telegram user interface. It provides modern and flexible dialog components, including support for positive/negative buttons, input fields, and various progress indicators.
+> 📖 [نسخه فارسی](./README.fa.md)
 
-**Features**
-- Compatible with Java and Kotlin.
-- Fully customizable properties including colors, corner radius, and ripple effects.
-- Native Dark Mode support via the TelegramColors utility.
-- Comprehensive support for RTL and LTR layouts.
-- Lightweight implementation with an intuitive API.
+A customizable Android dialog library inspired by the Telegram UI — built with Java, with Alert, Confirm, Input and Progress dialogs.
 
-### Installation (JitPack)
+[![Platform](https://img.shields.io/badge/Platform-Android-3DDC84?logo=android&logoColor=white)](https://developer.android.com)
+[![Language](https://img.shields.io/badge/Language-Java_%2B_Kotlin-ED8B00?logo=java&logoColor=white)](https://github.com/AmirBahadorAmiri/TelegramDialog)
+[![minSdk](https://img.shields.io/badge/minSdk-26-blue)](./TelegramDialog/build.gradle.kts)
+[![Version](https://img.shields.io/badge/Version-2.2.0-orange)](./TelegramDialog/build.gradle.kts)
+[![JitPack](https://jitpack.io/v/AmirBahadorAmiri/TelegramDialog.svg)](https://jitpack.io/#AmirBahadorAmiri/TelegramDialog)
 
-Add JitPack to your settings.gradle:
-```gradle
+## 👀 Preview
+
+| `Preview` | `Start Animation` |
+|:---------:|:-----------------:|
+| <img width="184" height="408" src="https://github.com/user-attachments/assets/57c8e94b-24e9-4265-863a-1cafc3d2794f" /> | <img width="184" height="408" src="https://github.com/user-attachments/assets/4e1eb892-fc7d-4458-b9bd-0624bf9c2a81" /> |
+
+## 📥 Installation
+
+**Get it on JitPack** — [![Get it on JitPack](https://img.shields.io/badge/Get_it_on-JitPack-909090?logo=jitpack&logoColor=white)](https://jitpack.io/#AmirBahadorAmiri/TelegramDialog)
+
+1. Add JitPack to your `settings.gradle.kts`:
+
+```kotlin
 dependencyResolutionManagement {
     repositories {
-        maven { url 'https://jitpack.io' }
+        maven { url = uri("https://jitpack.io") }
     }
 }
 ```
-Add the dependency to your project:
-```gradle
+
+2. Add the dependency:
+
+```kotlin
 implementation("com.github.AmirBahadorAmiri:TelegramDialog:2.2.0")
 ```
-<br>
 
-### Preview and Usage
+## ✨ Features
 
-|                        `Preview`                         |                        `Start Animation`                         |
-|:---------------------------------------------------------:|:-----------------------------------------------------------:|
-| <img width="184" height="408" src="https://github.com/user-attachments/assets/57c8e94b-24e9-4265-863a-1cafc3d2794f" /> | <img width="184" height="408" src="https://github.com/user-attachments/assets/4e1eb892-fc7d-4458-b9bd-0624bf9c2a81" /> |
+### 💬 Dialogs
+- `TelegramAlertDialog` — single-button alert with title, message, justification mode.
+- `TelegramConfirmDialog` — two-button confirm with `OnConfirmListener`.
+- `TelegramInputDialog` — text input with `OnInputListener`, hint, input-type and drawable support.
+- `TelegramInputConfirmDialog` — input + confirm buttons with `OnInputConfirmListener`.
+- `TelegramLoadingDialog` — indeterminate loading spinner.
+- `TelegramProgressDialog` — determinate progress bar with `setMax` / `setValue`.
+- `TelegramPercentageProgressDialog` — progress with title + status text (e.g. `30%`), live updatable.
 
-<br><br>
+### 🌍 RTL & Dark Mode
+- Full RTL/LTR support via `DialogDirection.RTL` / `DialogDirection.LTR` and `setDirection()`.
+- Native Dark Mode via `TelegramColors` — `getDialogBackground()`, `getTextColor()`, `getMainBlueTint()`, `getMainRedTint()`, no extra resource files needed.
+
+### 🎨 Customization
+- Compatible with Java and Kotlin.
+- Card radius, background color, button text/ripple/corner-radius, `EditText` colors, hint and drawable (`setEditTextDrawable()`).
+- Custom animations — e.g. shake validation via `startEditTextAnimation()`.
+
+### ⚙️ Listeners
+- `OnAlertListener`, `OnConfirmListener`, `OnInputListener`, `OnInputConfirmListener`, `OnLoadingListener`, `OnProgressListener`, `OnPercentageProgressListener` with optional `onCanceled()`.
+
+## 📚 Usage
 
 ### Alert Dialog
+
 ```kotlin
 val dialog = TelegramAlertDialog(this)
     .setTitle("Delete message")
-    .setMessage("Are you sure you want to delete this\n" + "message?")
+    .setMessage("Are you sure you want to delete this\nmessage?")
     .setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD)
     .setCancelable(true)
     .setCardRadius(16)
@@ -48,7 +77,6 @@ val dialog = TelegramAlertDialog(this)
 
 dialog.setOnClickListener(object : OnAlertListener {
     override fun onPositiveButtonClicked() {
-        /* Do something */
         dialog.dismiss()
     }
 })
@@ -56,7 +84,7 @@ dialog.setOnClickListener(object : OnAlertListener {
 dialog.show()
 ```
 
-or
+RTL example:
 
 ```kotlin
 val dialog = TelegramAlertDialog(this)
@@ -70,26 +98,13 @@ val dialog = TelegramAlertDialog(this)
     .setPositiveButtonTextColor(TelegramColors.getMainBlue())
     .setPositiveButtonRippleColor(TelegramColors.getMainBlueTint(this))
 
-dialog.setOnClickListener(object : OnAlertListener {
-    override fun onPositiveButtonClicked() {
-        /* Do something */
-        dialog.dismiss()
-    }
-    /* Optional Function */
-    override fun onCanceled() {
-        /* Do something */
-    }
-})
-
 dialog.show()
 ```
 
-
-<br>
-
 ### Confirm Dialog
+
 ```kotlin
-val dialog = TelegramConfirmDialog(this,DialogDirection.LTR)
+val dialog = TelegramConfirmDialog(this, DialogDirection.LTR)
     .setTitle("Delete message")
     .setMessage("Are you sure?")
     .setNegativeButtonText("Cancel")
@@ -98,24 +113,20 @@ val dialog = TelegramConfirmDialog(this,DialogDirection.LTR)
 
 dialog.setOnClickListener(object : OnConfirmListener {
     override fun onNegativeButtonClicked() { dialog.dismiss() }
-    override fun onPositiveButtonClicked() {
-        // Do something
-        dialog.dismiss()
-    }
+    override fun onPositiveButtonClicked() { dialog.dismiss() }
 })
 
 dialog.show()
 ```
 
-<br>
-
 ### Input Dialog
+
 ```kotlin
 val dialog = TelegramInputDialog(this)
     .setTitle("Input")
     .setEditTextHint("Type something...")
     .setPositiveButtonText("Submit")
-    .setInputType(InputType.TYPE_CLASS_TEXT) // Set input type (Numeric, Password, etc.)
+    .setInputType(InputType.TYPE_CLASS_TEXT)
     .setEditTextBackgroundColor(TelegramColors.getMainBlueTint(this))
 
 dialog.setOnClickListener(object : OnInputListener {
@@ -128,51 +139,31 @@ dialog.setOnClickListener(object : OnInputListener {
 dialog.show()
 ```
 
-<br>
-
 ### Input Confirm Dialog
+
 ```kotlin
 val dialog = TelegramInputConfirmDialog(this, DialogDirection.LTR)
     .setTitle("Delete message")
-    .setMessage("Are you sure you want to delete this\n" + "message?")
-    .setCancelable(true)
-    .setCardRadius(16)
-    .setCardBackgroundColor(TelegramColors.getDialogBackground(this))
+    .setMessage("Are you sure you want to delete this\nmessage?")
     .setNegativeButtonText("Cancel")
-    .setNegativeButtonTextColor(TelegramColors.getMainBlue())
-    .setNegativeButtonRippleColor(TelegramColors.getMainBlueTint(this))
-    .setNegativeButtonCornerRadius(16)
     .setPositiveButtonText("Delete")
     .setPositiveButtonTextColor(TelegramColors.getMainRed())
     .setPositiveButtonRippleColor(TelegramColors.getMainRedTint(this))
-    .setPositiveButtonCornerRadius(32)
     .setEditTextHint("Typing...")
-    .setEditTextHintColor(TelegramColors.getColor(TelegramColors.MAIN_BLUE_LIGHT))
-    .setEditTextColor(TelegramColors.getTextColor(this))
     .setEditTextBackgroundColor(TelegramColors.getMainBlueTint(this))
-    .setInputType(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD) // Password support
-    .setEditTextDrawable(R.drawable.ic_person, TelegramColors.getMainBlue()) // Support for drawables
+    .setInputType(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
+    .setEditTextDrawable(R.drawable.ic_person, TelegramColors.getMainBlue())
 
 dialog.setOnClickListener(object : OnInputConfirmListener {
-    override fun onNegativeButtonClicked(text: String) {
-        Toast.makeText(this@MainActivity, "onNegativeButtonClicked: $text", Toast.LENGTH_SHORT).show()
-        dialog.dismiss()
-    }
-    override fun onPositiveButtonClicked(text: String) {
-        Toast.makeText(this@MainActivity, "onPositiveButtonClicked: $text", Toast.LENGTH_SHORT).show()
-        dialog.dismiss()
-    }
-    /* Optional Function */
-    override fun onCanceled() {
-        Toast.makeText(this@MainActivity, "onCanceled", Toast.LENGTH_SHORT).show()
-    }
+    override fun onNegativeButtonClicked(text: String) { dialog.dismiss() }
+    override fun onPositiveButtonClicked(text: String) { dialog.dismiss() }
 })
+
 dialog.show()
 ```
 
-<br>
-
 ### Progress Dialogs
+
 ```kotlin
 // Loading
 val loading = TelegramLoadingDialog(this)
@@ -185,52 +176,97 @@ val progress = TelegramProgressDialog(this)
     .show()
 
 // Percentage Progress
-val progress = TelegramPercentageProgressDialog(this)
+val percentage = TelegramPercentageProgressDialog(this)
     .setTitle("Downloading...")
     .setStatus("30%")
     .setValue(30)
     .show()
 ```
 
-<br><br>
 ### Color Management
-
-The library utilizes the TelegramColors class for intelligent color management and Dark Mode integration, eliminating the need for external resource files.
 
 ```kotlin
 .setPositiveButtonBackgroundColor(TelegramColors.getMainBlue())
-    .setCardBackgroundColor(TelegramColors.getDialogBackground(this))
+.setCardBackgroundColor(TelegramColors.getDialogBackground(this))
 ```
 
-or
+Or with your own resources:
 
 ```kotlin
 .setPositiveButtonBackgroundColor(getColor(R.color.btn_background))
-    .setCardBackgroundColor(getColor(R.color.background))
+.setCardBackgroundColor(getColor(R.color.background))
 ```
 
-<br><br>
 ### RTL Support
 
-The library supports both LTR and RTL directions, ensuring compatibility with languages such as Persian and Arabic.
 ```kotlin
 .setDirection(DialogDirection.RTL)
 ```
 
-<br><br>
 ### Animations
 
-Developers can apply custom animations to dialog components, such as shake effects for input validation.
 ```kotlin
 val shake = AnimationUtils.loadAnimation(this, R.anim.shake)
 dialog.startEditTextAnimation(shake)
 ```
 
-<br><br>
-### Contributing
+## 🛠 Tech Stack
 
-Contributions are welcome through pull requests. For bug reports or feature suggestions, please open an issue.
+| Layer | Library / Tool |
+|-------|----------------|
+| Language | Java (library), Kotlin (sample app) |
+| UI | Android Views, Material Components |
+| Core | AndroidX AppCompat, Core-KTX, Activity, ConstraintLayout |
+| Build | Gradle (Kotlin DSL), AGP 9.3.2, Java 17 |
+| Publish | JitPack, maven-publish |
+| Min / Target | minSdk 26, targetSdk 37, compileSdk 36/37 |
 
-### Support
+## 📁 Project Structure
 
-You may support the project by starring the repository on GitHub.
+```text
+TelegramDialog/
+├── app/                  # sample app
+│   └── src/main/java/.../MainActivity.kt
+├── TelegramDialog/       # library module
+│   └── src/main/java/.../telegramdialog/
+├── gradle/libs.versions.toml
+├── settings.gradle.kts
+└── README.md / README.fa.md
+```
+
+- `TelegramDialog/src/main/java/.../TelegramAlertDialog.java` — single-button alert dialog.
+- `TelegramDialog/src/main/java/.../TelegramConfirmDialog.java` — two-button confirm dialog.
+- `TelegramDialog/src/main/java/.../TelegramInputDialog.java` — input dialog.
+- `TelegramDialog/src/main/java/.../TelegramInputConfirmDialog.java` — input + confirm dialog.
+- `TelegramDialog/src/main/java/.../TelegramLoadingDialog.java`, `TelegramProgressDialog.java`, `TelegramPercentageProgressDialog.java` — progress variants.
+- `TelegramDialog/src/main/java/.../TelegramColors.java` — dark-mode aware color utility.
+- `TelegramDialog/src/main/java/.../direction/DialogDirection.java` — RTL/LTR enum.
+- `app/src/main/java/.../MainActivity.kt` — full usage demo of all dialogs.
+
+## 🚀 Build & Run
+
+1. Clone the repo:
+
+```bash
+git clone https://github.com/AmirBahadorAmiri/TelegramDialog.git
+```
+
+2. Open in Android Studio (Ladybug or newer, JDK 17).
+3. Let Gradle sync (JitPack + Google + MavenCentral).
+4. Run the `app` configuration on an emulator or device.
+
+> Note: first sync needs Internet for Gradle dependencies; after that the project builds offline unless dependencies change.
+
+## 📋 Requirements
+
+- Android 8.0 (API 26) or higher
+- Android Studio with JDK 17
+- Internet for first Gradle sync (JitPack, Google, MavenCentral)
+
+## 🤝 Contributing
+
+Contributions are welcome via pull requests. For bug reports or feature suggestions, please open an issue with reproduction steps, device / Android version and screenshots if possible.
+
+---
+
+Made with ❤️ for Telegram-style Android UIs
