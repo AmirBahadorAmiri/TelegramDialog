@@ -2,12 +2,12 @@
 
 > 🌍 [English version](./README.md)
 
-دیالوگ‌اندرویدی قابل‌شخصی‌سازی با الهام از رابط تلگرام — ساخته‌شده با جاوا، با دیالوگ‌های Alert ،Confirm ،Input و Progress.
+دیالوگ‌اندرویدی قابل‌شخصی‌سازی با الهام از رابط تلگرام — ساخته‌شده با جاوا، با دیالوگ‌های Alert ،Confirm ،Input و Progress و همینطور یه منوی popup به سبک تلگرام.
 
 [![Platform](https://img.shields.io/badge/Platform-Android-3DDC84?logo=android&logoColor=white)](https://developer.android.com)
 [![Language](https://img.shields.io/badge/Language-Java_%2B_Kotlin-ED8B00?logo=java&logoColor=white)](https://github.com/AmirBahadorAmiri/TelegramDialog)
 [![minSdk](https://img.shields.io/badge/minSdk-26-blue)](./TelegramDialog/build.gradle.kts)
-[![Version](https://img.shields.io/badge/Version-2.2.0-orange)](./TelegramDialog/build.gradle.kts)
+[![Version](https://img.shields.io/badge/Version-2.3.0-orange)](./TelegramDialog/build.gradle.kts)
 [![JitPack](https://jitpack.io/v/AmirBahadorAmiri/TelegramDialog.svg)](https://jitpack.io/#AmirBahadorAmiri/TelegramDialog)
 
 ## 👀 پیش‌نمایش
@@ -33,7 +33,7 @@ dependencyResolutionManagement {
 ۲. وابستگی را اضافه کن:
 
 ```kotlin
-implementation("com.github.AmirBahadorAmiri:TelegramDialog:2.2.0")
+implementation("com.github.AmirBahadorAmiri:TelegramDialog:2.3.0")
 ```
 
 ## ✨ امکانات
@@ -56,8 +56,11 @@ implementation("com.github.AmirBahadorAmiri:TelegramDialog:2.2.0")
 - تنظیم شعاع کارت، رنگ پس‌زمینه، رنگ/ریپل/گوشه دکمه‌ها، رنگ متن و هینت ورودی و آیکون با `setEditTextDrawable()`.
 - انیمیشن دلخواه — مثل افکت لرزش برای اعتبارسنجی با `startEditTextAnimation()`.
 
+### 🎯 منوی popup
+- `TelegramPopupMenu` — منوی اکشن به سبک تلگرام که به صورت popup متصل به یه view نمایش داده میشود، با آیکون، جداگر، پشتیبانی RTL/LTR و همان تنظیمات رنگ و ظاهری دیالوگها.
+
 ### ⚙️ لیسنرها
-- `OnAlertListener` ،`OnConfirmListener` ،`OnInputListener` ،`OnInputConfirmListener` ،`OnLoadingListener` ،`OnProgressListener` و `OnPercentageProgressListener` با تابع اختیاری `onCanceled()`.
+- `OnAlertListener` ،`OnConfirmListener` ،`OnInputListener` ،`OnInputConfirmListener` ،`OnLoadingListener` ،`OnProgressListener` ،`OnPercentageProgressListener` و `OnMenuListener` با تابع اختیاری `onCanceled()`.
 
 ## 📚 نحوه استفاده
 
@@ -183,6 +186,35 @@ val percentage = TelegramPercentageProgressDialog(this)
     .show()
 ```
 
+### منوی popup
+
+منو به view موردنظر متصل میشود و پایین آن باز میشود. با انتخاب آیتم، لمس بیرون یا دکمه back بسته میشود.
+
+```kotlin
+val menu = TelegramPopupMenu(this, findViewById(R.id.myButton))
+    .setCardRadius(16)
+    .setElevation(2)
+    .setWidth(220)
+    .setCardBackgroundColor(TelegramColors.getDialogBackground(this))
+    .setDirection(DialogDirection.LTR)
+    .addItem(R.drawable.ic_star, "Add to Favorites")
+    .addItem(R.drawable.ic_folder, "Add to Folder")
+    .addDivider()
+    .addItem(R.drawable.ic_report, "Report")
+    .addItem(R.drawable.ic_clear, "Clear History")
+    .addItem(R.drawable.ic_leave, "Leave Group")
+
+menu.setOnClickListener(object : OnMenuListener {
+    override fun onItemSelected(position: Int, text: String) {
+        // position فقط آیتمها رو میشمارد، جداگرها جزو شمارش نیستند
+    }
+    /* تابع اختیاری */
+    override fun onCanceled() {}
+})
+
+findViewById<View>(R.id.myButton).setOnClickListener { menu.show() }
+```
+
 ### مدیریت رنگ
 
 ```kotlin
@@ -240,6 +272,8 @@ TelegramDialog/
 - `TelegramDialog/src/main/java/.../TelegramInputConfirmDialog.java` — دیالوگ ورودی + تأیید.
 - `TelegramDialog/src/main/java/.../TelegramLoadingDialog.java` ،`TelegramProgressDialog.java` ،`TelegramPercentageProgressDialog.java` — مدل‌های پیشرفت.
 - `TelegramDialog/src/main/java/.../TelegramColors.java` — ابزار رنگ سازگار با حالت شب.
+- `TelegramDialog/src/main/java/.../TelegramPopupMenu.java` — منوی popup متصل به view.
+- `TelegramDialog/src/main/java/.../listeners/OnMenuListener.java` — لیسنر انتخاب آیتم/لغو منو.
 - `TelegramDialog/src/main/java/.../direction/DialogDirection.java` — اینام راست‌چین/چپ‌چین.
 - `app/src/main/java/.../MainActivity.kt` — دموی کامل همه دیالوگ‌ها.
 
@@ -264,6 +298,8 @@ git clone https://github.com/AmirBahadorAmiri/TelegramDialog.git
 - اینترنت برای اولین سینک گردل (JitPack ،Google ،MavenCentral)
 
 ## 🤝 مشارکت
+
+فهرست مشارکتکنندگان: [CONTRIBUTORS.md](./CONTRIBUTORS.md).
 
 مشارکت با پول‌ریکوئست آزاد است. برای باگ یا پیشنهاد، ایشو باز کن و مراحل تکرار، مدل گوشی / نسخه اندروید و اسکرین‌شات را بنویس.
 

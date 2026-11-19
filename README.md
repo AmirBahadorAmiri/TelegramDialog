@@ -2,12 +2,12 @@
 
 > 📖 [نسخه فارسی](./README.fa.md)
 
-A customizable Android dialog library inspired by the Telegram UI — built with Java, with Alert, Confirm, Input and Progress dialogs.
+A customizable Android dialog library inspired by the Telegram UI — built with Java, with Alert, Confirm, Input and Progress dialogs, plus a Telegram-style popup action menu.
 
 [![Platform](https://img.shields.io/badge/Platform-Android-3DDC84?logo=android&logoColor=white)](https://developer.android.com)
 [![Language](https://img.shields.io/badge/Language-Java_%2B_Kotlin-ED8B00?logo=java&logoColor=white)](https://github.com/AmirBahadorAmiri/TelegramDialog)
 [![minSdk](https://img.shields.io/badge/minSdk-26-blue)](./TelegramDialog/build.gradle.kts)
-[![Version](https://img.shields.io/badge/Version-2.2.0-orange)](./TelegramDialog/build.gradle.kts)
+[![Version](https://img.shields.io/badge/Version-2.3.0-orange)](./TelegramDialog/build.gradle.kts)
 [![JitPack](https://jitpack.io/v/AmirBahadorAmiri/TelegramDialog.svg)](https://jitpack.io/#AmirBahadorAmiri/TelegramDialog)
 
 ## 👀 Preview
@@ -33,7 +33,7 @@ dependencyResolutionManagement {
 2. Add the dependency:
 
 ```kotlin
-implementation("com.github.AmirBahadorAmiri:TelegramDialog:2.2.0")
+implementation("com.github.AmirBahadorAmiri:TelegramDialog:2.3.0")
 ```
 
 ## ✨ Features
@@ -47,6 +47,9 @@ implementation("com.github.AmirBahadorAmiri:TelegramDialog:2.2.0")
 - `TelegramProgressDialog` — determinate progress bar with `setMax` / `setValue`.
 - `TelegramPercentageProgressDialog` — progress with title + status text (e.g. `30%`), live updatable.
 
+### 🎯 Popup menu
+- `TelegramPopupMenu` — a Telegram-style action menu shown as a popup anchored to a view, with icons, dividers, RTL/LTR and the same color/styling options as the dialogs.
+
 ### 🌍 RTL & Dark Mode
 - Full RTL/LTR support via `DialogDirection.RTL` / `DialogDirection.LTR` and `setDirection()`.
 - Native Dark Mode via `TelegramColors` — `getDialogBackground()`, `getTextColor()`, `getMainBlueTint()`, `getMainRedTint()`, no extra resource files needed.
@@ -57,7 +60,7 @@ implementation("com.github.AmirBahadorAmiri:TelegramDialog:2.2.0")
 - Custom animations — e.g. shake validation via `startEditTextAnimation()`.
 
 ### ⚙️ Listeners
-- `OnAlertListener`, `OnConfirmListener`, `OnInputListener`, `OnInputConfirmListener`, `OnLoadingListener`, `OnProgressListener`, `OnPercentageProgressListener` with optional `onCanceled()`.
+- `OnAlertListener`, `OnConfirmListener`, `OnInputListener`, `OnInputConfirmListener`, `OnLoadingListener`, `OnProgressListener`, `OnPercentageProgressListener` and `OnMenuListener` with optional `onCanceled()`.
 
 ## 📚 Usage
 
@@ -183,6 +186,35 @@ val percentage = TelegramPercentageProgressDialog(this)
     .show()
 ```
 
+### Popup Menu
+
+The popup is anchored to a view and opens below it. It closes on item selection, outside touch or back.
+
+```kotlin
+val menu = TelegramPopupMenu(this, findViewById(R.id.myButton))
+    .setCardRadius(16)
+    .setElevation(2)
+    .setWidth(220)
+    .setCardBackgroundColor(TelegramColors.getDialogBackground(this))
+    .setDirection(DialogDirection.LTR)
+    .addItem(R.drawable.ic_star, "Add to Favorites")
+    .addItem(R.drawable.ic_folder, "Add to Folder")
+    .addDivider()
+    .addItem(R.drawable.ic_report, "Report")
+    .addItem(R.drawable.ic_clear, "Clear History")
+    .addItem(R.drawable.ic_leave, "Leave Group")
+
+menu.setOnClickListener(object : OnMenuListener {
+    override fun onItemSelected(position: Int, text: String) {
+        // position counts items only; dividers are skipped
+    }
+    /* Optional Function */
+    override fun onCanceled() {}
+})
+
+findViewById<View>(R.id.myButton).setOnClickListener { menu.show() }
+```
+
 ### Color Management
 
 ```kotlin
@@ -240,8 +272,10 @@ TelegramDialog/
 - `TelegramDialog/src/main/java/.../TelegramInputConfirmDialog.java` — input + confirm dialog.
 - `TelegramDialog/src/main/java/.../TelegramLoadingDialog.java`, `TelegramProgressDialog.java`, `TelegramPercentageProgressDialog.java` — progress variants.
 - `TelegramDialog/src/main/java/.../TelegramColors.java` — dark-mode aware color utility.
+- `TelegramDialog/src/main/java/.../TelegramPopupMenu.java` — anchored popup action menu.
+- `TelegramDialog/src/main/java/.../listeners/OnMenuListener.java` — popup item/cancel listener.
 - `TelegramDialog/src/main/java/.../direction/DialogDirection.java` — RTL/LTR enum.
-- `app/src/main/java/.../MainActivity.kt` — full usage demo of all dialogs.
+- `app/src/main/java/.../MainActivity.kt` — full usage demo of all dialogs and the popup menu.
 
 ## 🚀 Build & Run
 
@@ -265,7 +299,7 @@ git clone https://github.com/AmirBahadorAmiri/TelegramDialog.git
 
 ## 🤝 Contributing
 
-Contributions are welcome via pull requests. For bug reports or feature suggestions, please open an issue with reproduction steps, device / Android version and screenshots if possible.
+Contributions are welcome via pull requests. See [CONTRIBUTORS.md](./CONTRIBUTORS.md). For bug reports or feature suggestions, please open an issue with reproduction steps, device / Android version and screenshots if possible.
 
 ---
 
