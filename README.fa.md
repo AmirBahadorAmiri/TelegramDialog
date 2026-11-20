@@ -7,7 +7,7 @@
 [![Platform](https://img.shields.io/badge/Platform-Android-3DDC84?logo=android&logoColor=white)](https://developer.android.com)
 [![Language](https://img.shields.io/badge/Language-Java_%2B_Kotlin-ED8B00?logo=java&logoColor=white)](https://github.com/AmirBahadorAmiri/TelegramDialog)
 [![minSdk](https://img.shields.io/badge/minSdk-26-blue)](./TelegramDialog/build.gradle.kts)
-[![Version](https://img.shields.io/badge/Version-2.3.0-orange)](./TelegramDialog/build.gradle.kts)
+[![Version](https://img.shields.io/badge/Version-2.3.1-orange)](./TelegramDialog/build.gradle.kts)
 [![JitPack](https://jitpack.io/v/AmirBahadorAmiri/TelegramDialog.svg)](https://jitpack.io/#AmirBahadorAmiri/TelegramDialog)
 
 ## 👀 پیش‌نمایش
@@ -33,7 +33,7 @@ dependencyResolutionManagement {
 ۲. وابستگی را اضافه کن:
 
 ```kotlin
-implementation("com.github.AmirBahadorAmiri:TelegramDialog:2.3.0")
+implementation("com.github.AmirBahadorAmiri:TelegramDialog:2.3.1")
 ```
 
 ## ✨ امکانات
