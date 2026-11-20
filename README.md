@@ -7,7 +7,7 @@ A customizable Android dialog library inspired by the Telegram UI — built with
 [![Platform](https://img.shields.io/badge/Platform-Android-3DDC84?logo=android&logoColor=white)](https://developer.android.com)
 [![Language](https://img.shields.io/badge/Language-Java_%2B_Kotlin-ED8B00?logo=java&logoColor=white)](https://github.com/AmirBahadorAmiri/TelegramDialog)
 [![minSdk](https://img.shields.io/badge/minSdk-26-blue)](./TelegramDialog/build.gradle.kts)
-[![Version](https://img.shields.io/badge/Version-2.3.1-orange)](./TelegramDialog/build.gradle.kts)
+[![Version](https://img.shields.io/badge/Version-2.3.2-orange)](./TelegramDialog/build.gradle.kts)
 [![JitPack](https://jitpack.io/v/AmirBahadorAmiri/TelegramDialog.svg)](https://jitpack.io/#AmirBahadorAmiri/TelegramDialog)
 
 ## 👀 Preview
@@ -33,7 +33,7 @@ dependencyResolutionManagement {
 2. Add the dependency:
 
 ```kotlin
-implementation("com.github.AmirBahadorAmiri:TelegramDialog:2.3.1")
+implementation("com.github.AmirBahadorAmiri:TelegramDialog:2.3.2")
 ```
 
 ## ✨ Features
@@ -251,7 +251,7 @@ dialog.startEditTextAnimation(shake)
 | Core | AndroidX AppCompat, Core-KTX, Activity, ConstraintLayout |
 | Build | Gradle (Kotlin DSL), AGP 9.3.2, Java 17 |
 | Publish | JitPack, maven-publish |
-| Min / Target | minSdk 26, targetSdk 37, compileSdk 36/37 |
+| Min / Target | minSdk 26, targetSdk 37, compileSdk 37 |
 
 ## 📁 Project Structure
 
