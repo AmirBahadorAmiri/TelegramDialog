@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.ScrollView;
 
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
@@ -42,6 +43,7 @@ public class TelegramPopupMenu {
     private final View anchor;
     private final PopupWindow popupWindow;
     private final MaterialCardView cardView;
+    private final ScrollView scrollView;
     private final LinearLayout container;
 
     private final List<Item> items = new ArrayList<>();
@@ -60,6 +62,7 @@ public class TelegramPopupMenu {
         this.anchor = anchor;
         View view = LayoutInflater.from(context).inflate(R.layout.telegram_popup_menu, null);
         cardView = view.findViewById(R.id.cardview);
+        scrollView = view.findViewById(R.id.menu_scroll);
         container = view.findViewById(R.id.menu_container);
 
         popupWindow = new PopupWindow(view, LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -165,7 +168,20 @@ public class TelegramPopupMenu {
         }
         itemSelected = false;
         buildItems();
+        scrollView.scrollTo(0, 0);
+        updateHeight();
         showAtAnchor();
+    }
+
+    /** Grow with the items, but cap at 60% of the screen so the ScrollView takes over. */
+    private void updateHeight() {
+        int padding = dp(8);
+        int width = Math.max(dp(1), popupWindow.getWidth() - padding);
+        container.measure(View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        int contentHeight = container.getMeasuredHeight() + padding;
+        int maxHeight = (int) (context.getResources().getDisplayMetrics().heightPixels * 0.6f);
+        popupWindow.setHeight(Math.min(contentHeight, maxHeight));
     }
 
     private void showAtAnchor() {

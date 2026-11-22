@@ -1,26 +1,21 @@
-# TelegramDialog
+<p align="center">
+  🌍 Read in English: <a href="README.md"><b>English</b></a>
+</p>
 
-> 🌍 [English version](./README.md)
+<p align="center">
+  <img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" width="400" title="لوگوی TelegramDialog">
+</p>
 
-دیالوگ‌اندرویدی قابل‌شخصی‌سازی با الهام از رابط تلگرام — ساخته‌شده با جاوا، با دیالوگ‌های Alert ،Confirm ،Input و Progress و همینطور یه منوی popup به سبک تلگرام.
+# دیالوگ تلگرام (TelegramDialog) 💬
+### کتابخانهٔ اندرویدی دیالوگها با ظاهر تلگرام
 
-[![Platform](https://img.shields.io/badge/Platform-Android-3DDC84?logo=android&logoColor=white)](https://developer.android.com)
-[![Language](https://img.shields.io/badge/Language-Java_%2B_Kotlin-ED8B00?logo=java&logoColor=white)](https://github.com/AmirBahadorAmiri/TelegramDialog)
-[![minSdk](https://img.shields.io/badge/minSdk-26-blue)](./TelegramDialog/build.gradle.kts)
-[![Version](https://img.shields.io/badge/Version-2.3.2-orange)](./TelegramDialog/build.gradle.kts)
-[![JitPack](https://jitpack.io/v/AmirBahadorAmiri/TelegramDialog.svg)](https://jitpack.io/#AmirBahadorAmiri/TelegramDialog)
+**دیالوگ تلگرام** کتابخانهای اندرویدی است با دیالوگهایی به سبک تلگرام و یک منوی popup متصل به view. این کتابخانه به زبان Java نوشته شده و هم از Java و هم از Kotlin قابل استفاده است.
 
-## 👀 پیش‌نمایش
+---
 
-| `پیش‌نمایش` | `شروع انیمیشن` |
-|:-----------:|:---------------:|
-| <img width="184" height="408" src="https://github.com/user-attachments/assets/57c8e94b-24e9-4265-863a-1cafc3d2794f" /> | <img width="184" height="408" src="https://github.com/user-attachments/assets/4e1eb892-fc7d-4458-b9bd-0624bf9c2a81" /> |
+## 📥 دریافت کتابخانه
 
-## 📥 نصب
-
-**دریافت از JitPack** — [![دریافت از JitPack](https://img.shields.io/badge/Get_it_on-JitPack-909090?logo=jitpack&logoColor=white)](https://jitpack.io/#AmirBahadorAmiri/TelegramDialog)
-
-۱. جیت‌پک را به `settings.gradle.kts` اضافه کن:
+آخرین نسخه روی JitPack منتشر شده است. ابتدا JitPack را به `settings.gradle.kts` اضافه کنید، سپس وابستگی را بگیرید:
 
 ```kotlin
 dependencyResolutionManagement {
@@ -30,279 +25,89 @@ dependencyResolutionManagement {
 }
 ```
 
-۲. وابستگی را اضافه کن:
-
 ```kotlin
-implementation("com.github.AmirBahadorAmiri:TelegramDialog:2.3.2")
+dependencies {
+    implementation("com.github.AmirBahadorAmiri:TelegramDialog:2.3.3")
+}
 ```
-
-## ✨ امکانات
-
-### 💬 دیالوگ‌ها
-- `TelegramAlertDialog` — دیالوگ هشدار تک‌دکمه‌ای با عنوان، پیام و حالت تراز متن.
-- `TelegramConfirmDialog` — دیالوگ تأیید دودکمه‌ای با `OnConfirmListener`.
-- `TelegramInputDialog` — دیالوگ ورودی متن با `OnInputListener`، هینت، نوع ورودی و آیکون.
-- `TelegramInputConfirmDialog` — ترکیب ورودی + تأیید با `OnInputConfirmListener`.
-- `TelegramLoadingDialog` — دیالوگ لودینگ چرخان.
-- `TelegramProgressDialog` — نوار پیشرفت با `setMax` و `setValue`.
-- `TelegramPercentageProgressDialog` — پیشرفت همراه عنوان و وضعیت (مثل `30%`) با قابلیت به‌روزرسانی زنده.
-
-### 🌍 راست‌چین و حالت شب
-- پشتیبانی کامل از RTL و LTR با `DialogDirection.RTL` / `DialogDirection.LTR` و متد `setDirection()`.
-- حالت شب خودکار با `TelegramColors` — متدهای `getDialogBackground()` ،`getTextColor()` ،`getMainBlueTint()` و `getMainRedTint()` بدون نیاز به فایل ریسورس اضافه.
-
-### 🎨 شخصی‌سازی
-- سازگار با جاوا و کاتلین.
-- تنظیم شعاع کارت، رنگ پس‌زمینه، رنگ/ریپل/گوشه دکمه‌ها، رنگ متن و هینت ورودی و آیکون با `setEditTextDrawable()`.
-- انیمیشن دلخواه — مثل افکت لرزش برای اعتبارسنجی با `startEditTextAnimation()`.
-
-### 🎯 منوی popup
-- `TelegramPopupMenu` — منوی اکشن به سبک تلگرام که به صورت popup متصل به یه view نمایش داده میشود، با آیکون، جداگر، پشتیبانی RTL/LTR و همان تنظیمات رنگ و ظاهری دیالوگها.
-
-### ⚙️ لیسنرها
-- `OnAlertListener` ،`OnConfirmListener` ،`OnInputListener` ،`OnInputConfirmListener` ،`OnLoadingListener` ،`OnProgressListener` ،`OnPercentageProgressListener` و `OnMenuListener` با تابع اختیاری `onCanceled()`.
-
-## 📚 نحوه استفاده
-
-### دیالوگ هشدار
-
-```kotlin
-val dialog = TelegramAlertDialog(this)
-    .setTitle("Delete message")
-    .setMessage("Are you sure you want to delete this\nmessage?")
-    .setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD)
-    .setCancelable(true)
-    .setCardRadius(16)
-    .setCardBackgroundColor(TelegramColors.getDialogBackground(this))
-    .setPositiveButtonText("Delete")
-    .setPositiveButtonTextColor(TelegramColors.getMainBlue())
-    .setPositiveButtonRippleColor(TelegramColors.getMainBlueTint(this))
-
-dialog.setOnClickListener(object : OnAlertListener {
-    override fun onPositiveButtonClicked() {
-        dialog.dismiss()
-    }
-})
-
-dialog.show()
-```
-
-مثال راست‌چین:
-
-```kotlin
-val dialog = TelegramAlertDialog(this)
-    .setTitle("حذف پیام")
-    .setMessage("آیا از حذف این پیام اطمینان دارید؟")
-    .setCancelable(true)
-    .setCardRadius(16)
-    .setCardBackgroundColor(TelegramColors.getDialogBackground(this))
-    .setPositiveButtonText("حذف")
-    .setDirection(DialogDirection.RTL)
-    .setPositiveButtonTextColor(TelegramColors.getMainBlue())
-    .setPositiveButtonRippleColor(TelegramColors.getMainBlueTint(this))
-
-dialog.show()
-```
-
-### دیالوگ تأیید
-
-```kotlin
-val dialog = TelegramConfirmDialog(this, DialogDirection.LTR)
-    .setTitle("Delete message")
-    .setMessage("Are you sure?")
-    .setNegativeButtonText("Cancel")
-    .setPositiveButtonText("Delete")
-    .setPositiveButtonTextColor(TelegramColors.getMainRed())
-
-dialog.setOnClickListener(object : OnConfirmListener {
-    override fun onNegativeButtonClicked() { dialog.dismiss() }
-    override fun onPositiveButtonClicked() { dialog.dismiss() }
-})
-
-dialog.show()
-```
-
-### دیالوگ ورودی
-
-```kotlin
-val dialog = TelegramInputDialog(this)
-    .setTitle("Input")
-    .setEditTextHint("Type something...")
-    .setPositiveButtonText("Submit")
-    .setInputType(InputType.TYPE_CLASS_TEXT)
-    .setEditTextBackgroundColor(TelegramColors.getMainBlueTint(this))
-
-dialog.setOnClickListener(object : OnInputListener {
-    override fun onPositiveButtonClicked(text: String) {
-        Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
-        dialog.dismiss()
-    }
-})
-
-dialog.show()
-```
-
-### دیالوگ ورودی + تأیید
-
-```kotlin
-val dialog = TelegramInputConfirmDialog(this, DialogDirection.LTR)
-    .setTitle("Delete message")
-    .setMessage("Are you sure you want to delete this\nmessage?")
-    .setNegativeButtonText("Cancel")
-    .setPositiveButtonText("Delete")
-    .setPositiveButtonTextColor(TelegramColors.getMainRed())
-    .setPositiveButtonRippleColor(TelegramColors.getMainRedTint(this))
-    .setEditTextHint("Typing...")
-    .setEditTextBackgroundColor(TelegramColors.getMainBlueTint(this))
-    .setInputType(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
-    .setEditTextDrawable(R.drawable.ic_person, TelegramColors.getMainBlue())
-
-dialog.setOnClickListener(object : OnInputConfirmListener {
-    override fun onNegativeButtonClicked(text: String) { dialog.dismiss() }
-    override fun onPositiveButtonClicked(text: String) { dialog.dismiss() }
-})
-
-dialog.show()
-```
-
-### دیالوگ‌های پیشرفت
-
-```kotlin
-// لودینگ
-val loading = TelegramLoadingDialog(this)
-    .setProgressbarIndeterminateTint(TelegramColors.getMainBlue())
-    .show()
-
-// پیشرفت
-val progress = TelegramProgressDialog(this)
-    .setValue(30)
-    .show()
-
-// پیشرفت درصدی
-val percentage = TelegramPercentageProgressDialog(this)
-    .setTitle("Downloading...")
-    .setStatus("30%")
-    .setValue(30)
-    .show()
-```
-
-### منوی popup
-
-منو به view موردنظر متصل میشود و پایین آن باز میشود. با انتخاب آیتم، لمس بیرون یا دکمه back بسته میشود.
-
-```kotlin
-val menu = TelegramPopupMenu(this, findViewById(R.id.myButton))
-    .setCardRadius(16)
-    .setElevation(2)
-    .setWidth(220)
-    .setCardBackgroundColor(TelegramColors.getDialogBackground(this))
-    .setDirection(DialogDirection.LTR)
-    .addItem(R.drawable.ic_star, "Add to Favorites")
-    .addItem(R.drawable.ic_folder, "Add to Folder")
-    .addDivider()
-    .addItem(R.drawable.ic_report, "Report")
-    .addItem(R.drawable.ic_clear, "Clear History")
-    .addItem(R.drawable.ic_leave, "Leave Group")
-
-menu.setOnClickListener(object : OnMenuListener {
-    override fun onItemSelected(position: Int, text: String) {
-        // position فقط آیتمها رو میشمارد، جداگرها جزو شمارش نیستند
-    }
-    /* تابع اختیاری */
-    override fun onCanceled() {}
-})
-
-findViewById<View>(R.id.myButton).setOnClickListener { menu.show() }
-```
-
-### مدیریت رنگ
-
-```kotlin
-.setPositiveButtonBackgroundColor(TelegramColors.getMainBlue())
-.setCardBackgroundColor(TelegramColors.getDialogBackground(this))
-```
-
-یا با ریسورس خودت:
-
-```kotlin
-.setPositiveButtonBackgroundColor(getColor(R.color.btn_background))
-.setCardBackgroundColor(getColor(R.color.background))
-```
-
-### پشتیبانی از راست‌چین
-
-```kotlin
-.setDirection(DialogDirection.RTL)
-```
-
-### انیمیشن‌ها
-
-```kotlin
-val shake = AnimationUtils.loadAnimation(this, R.anim.shake)
-dialog.startEditTextAnimation(shake)
-```
-
-## 🛠 تکنولوژی‌ها
-
-| بخش | ابزار |
-|-----|-------|
-| زبان | جاوا (کتابخانه)، کاتلین (اپ نمونه) |
-| رابط کاربری | اندروید ویو، متریال کامپوننت |
-| هسته | AndroidX AppCompat ،Core-KTX ،Activity ،ConstraintLayout |
-| بیلد | گردل (کاتلین DSL)، AGP 9.3.2، جاوا ۱۷ |
-| انتشار | JitPack و maven-publish |
-| نسخه‌ها | minSdk 26 ،targetSdk 37 ،compileSdk 37 |
-
-## 📁 ساختار پروژه
-
-```text
-TelegramDialog/
-├── app/                  # اپ نمونه
-│   └── src/main/java/.../MainActivity.kt
-├── TelegramDialog/       # ماژول کتابخانه
-│   └── src/main/java/.../telegramdialog/
-├── gradle/libs.versions.toml
-├── settings.gradle.kts
-└── README.md / README.fa.md
-```
-
-- `TelegramDialog/src/main/java/.../TelegramAlertDialog.java` — دیالوگ هشدار تک‌دکمه‌ای.
-- `TelegramDialog/src/main/java/.../TelegramConfirmDialog.java` — دیالوگ تأیید دودکمه‌ای.
-- `TelegramDialog/src/main/java/.../TelegramInputDialog.java` — دیالوگ ورودی.
-- `TelegramDialog/src/main/java/.../TelegramInputConfirmDialog.java` — دیالوگ ورودی + تأیید.
-- `TelegramDialog/src/main/java/.../TelegramLoadingDialog.java` ،`TelegramProgressDialog.java` ،`TelegramPercentageProgressDialog.java` — مدل‌های پیشرفت.
-- `TelegramDialog/src/main/java/.../TelegramColors.java` — ابزار رنگ سازگار با حالت شب.
-- `TelegramDialog/src/main/java/.../TelegramPopupMenu.java` — منوی popup متصل به view.
-- `TelegramDialog/src/main/java/.../listeners/OnMenuListener.java` — لیسنر انتخاب آیتم/لغو منو.
-- `TelegramDialog/src/main/java/.../direction/DialogDirection.java` — اینام راست‌چین/چپ‌چین.
-- `app/src/main/java/.../MainActivity.kt` — دموی کامل همه دیالوگ‌ها.
-
-## 🚀 اجرا و بیلد
-
-۱. ریپو را کلون کن:
-
-```bash
-git clone https://github.com/AmirBahadorAmiri/TelegramDialog.git
-```
-
-۲. در اندروید استودیو باز کن (Ladybug یا جدیدتر، JDK 17).
-۳. بگذار گردل سینک شود (JitPack + Google + MavenCentral).
-۴. کانفیگ `app` را روی امولاتور یا گوشی اجرا کن.
-
-> نکته: اولین سینک به اینترنت نیاز دارد؛ بعدش آفلاین هم بیلد می‌شود مگر وابستگی‌ها عوض شوند.
-
-## 📋 پیش‌نیازها
-
-- اندروید ۸ (API 26) یا بالاتر
-- اندروید استودیو با JDK 17
-- اینترنت برای اولین سینک گردل (JitPack ،Google ،MavenCentral)
-
-## 🤝 مشارکت
-
-فهرست مشارکتکنندگان: [CONTRIBUTORS.md](./CONTRIBUTORS.md).
-
-مشارکت با پول‌ریکوئست آزاد است. برای باگ یا پیشنهاد، ایشو باز کن و مراحل تکرار، مدل گوشی / نسخه اندروید و اسکرین‌شات را بنویس.
 
 ---
 
-ساخته‌شده با ❤️ برای رابط‌های تلگرام‌استایل اندروید
+## 🆕 تغییرات نسخهٔ ۲.۳.۳ — منوی popup با اسکرول
+
+این نسخه منوی popup را برای فهرستهای بلند عملی میکند:
+
+*   **اسکرول هنگام نیاز:** وقتی آیتمها بیشتر از فضای موجود باشند، ارتفاع منو در ۶۰ درصد ارتفاع صفحه متوقف میشود و بجای بریده شدن، اسکرول میکند.
+*   **منوی متصل به view:** کلاس `TelegramPopupMenu` پایین هر view باز میشود، با آیکون، جداگر، پشتیبانی RTL و قابلیت تنظیم عرض و elevation.
+*   **compileSdk 37:** ماژول کتابخانه اکنون با API شماره ۳۷ بیلد میشود.
+
+---
+
+## 🌟 ویژگیهای کلیدی
+
+### 💬 دیالوگها
+*   `TelegramAlertDialog` — دیالوگ هشدار تکدکمهای با عنوان، پیام و حالت تراز متن.
+*   `TelegramConfirmDialog` — دیالوگ تأیید دودکمهای با `OnConfirmListener`.
+*   `TelegramInputDialog` و `TelegramInputConfirmDialog` — ورودی متن با هینت، نوع ورودی و آیکون.
+*   `TelegramLoadingDialog`، `TelegramProgressDialog` و `TelegramPercentageProgressDialog` — مدلهای لودینگ و پیشرفت با بهروزرسانی زنده.
+
+### 🎯 منوی popup
+*   `TelegramPopupMenu` — منوی اکشنی که به صورت popup متصل به یک view نمایش داده میشود، نه بعنوان دیالوگ.
+*   ردیفها از آیکون، جداگر میان گروهها و لیسنری با شماره و متن آیتم پشتیبانی میکنند.
+*   **اسکرول بهصورت پیشفرض:** منوهای بلند در ۶۰ درصد صفحه محدود میشوند و اسکرول میخورند؛ هر بار باز شدن از بالا شروع میشود.
+
+### 🎨 شخصیسازی
+*   شعاع کارت، رنگ پسزمینه، میزان سایه (`setElevation()`) و عرض ثابت منو (`setWidth()`).
+*   رنگ متن و ripple دکمهها، رنگ گوشهها، رنگ ورودی و هینت، آیکون و انیمیشن لرزش.
+*   رنگ متن منو، رنگ آیکونها و رنگ جداگر هر کدام جداگانه قابل تنظیماند.
+
+### 🌍 RTL و حالت شب
+*   `DialogDirection.RTL` / `DialogDirection.LTR` و متد `setDirection()` دیالوگها و منوی popup را برمیگردانند.
+*   `TelegramColors` حالت شب سیستم را تشخیص میدهد و رنگ پسزمینه، متن و tint مناسب را میدهد — بدون فایل ریسورس اضافه.
+
+### ⚙️ لیسنرها
+*   `OnAlertListener`، `OnConfirmListener`، `OnInputListener`، `OnInputConfirmListener`، `OnLoadingListener`، `OnProgressListener`، `OnPercentageProgressListener` و `OnMenuListener`.
+*   هر لیسنر یک تابع اختیاری `onCanceled()` برای لمس بیرون یا دکمه back دارد.
+
+---
+
+## 🛠 تکنولوژیهای استفاده شده
+
+در توسعهٔ دیالوگ تلگرام از ابزارهای روز اندروید استفاده شده است:
+
+*   **زبان:** Java برای کتابخانه، Kotlin برای اپ نمونه.
+*   **رابط کاربری:** Android Views، Material Components و ConstraintLayout.
+*   **هسته:** AndroidX AppCompat، Core-KTX و Activity.
+*   **بیلد:** Gradle Kotlin DSL، AGP 9.3.2 و Java 17 (minSdk 26، targetSdk 37، compileSdk 37).
+*   **انتشار:** JitPack و maven-publish.
+
+---
+
+## 🚀 راهنمای نصب و اجرا
+
+۱. ابتدا پروژه را از GitHub کلون کنید:
+```bash
+git clone https://github.com/AmirBahadorAmiri/TelegramDialog.git
+```
+۲. پروژه را در **Android Studio** باز کنید (Ladybug یا جدیدتر، JDK 17).
+۳. بگذارید Gradle سینک شود — برای سینک اول به JitPack، Google و MavenCentral نیاز است.
+۴. کانفیگ **app** را روی امولاتور یا گوشی اجرا کنید تا همه دیالوگها و منوی popup را امتحان کنید.
+
+---
+
+## 📸 اسکرینشاتها
+
+اپ نمونه تم دیالوگ و انیمیشن شروع آن را نشان میدهد:
+
+| 💬 نمای دیالوگ | 🎬 انیمیشن شروع |
+|:---:|:---:|
+| <img width="184" height="408" alt="دیالوگ هشدار به سبک تلگرام" src="https://github.com/user-attachments/assets/57c8e94b-24e9-4265-863a-1cafc3d2794f" /> | <img width="184" height="408" alt="انیمیشن شروع دیالوگ" src="https://github.com/user-attachments/assets/4e1eb892-fc7d-4458-b9bd-0624bf9c2a81" /> |
+
+---
+
+## 👨‍💻 توسعهدهنده
+
+توسعه داده شده توسط **امیربهادر امیری**. فهرست مشارکتکنندگان را در [CONTRIBUTORS.md](./CONTRIBUTORS.md) ببینید.
+
+> [!TIP]
+> متد `menu.show()` را از داخل یک کلیک لیسنر صدا بزنید. اگر آن را در `onCreate()` صدا بزنید، منو تا متصل شدن view موردنظر صبر میکند و سپس باز میشود.

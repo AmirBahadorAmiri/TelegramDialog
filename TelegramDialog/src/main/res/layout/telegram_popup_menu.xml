@@ -10,17 +10,25 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/cardview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:cardCornerRadius="16dp"
         app:cardElevation="0dp"
         app:strokeColor="@android:color/transparent"
         app:strokeWidth="0dp">
 
-        <LinearLayout
-            android:id="@+id/menu_container"
+        <ScrollView
+            android:id="@+id/menu_scroll"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
+
+            <LinearLayout
+                android:id="@+id/menu_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+        </ScrollView>
 
     </com.google.android.material.card.MaterialCardView>
 
